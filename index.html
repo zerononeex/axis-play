@@ -114,6 +114,43 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
 .kpi{background:#fff;border-radius:13px;padding:16px;box-shadow:0 1px 4px rgba(20,40,30,.07)}.kpi b{font-size:26px;display:block}.kpi span{color:var(--mut);font-size:12.5px}
 .hash{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--mut)}
 .holiday{display:none;background:linear-gradient(90deg,#7c1d1d,#1d5c33);color:#fff;text-align:center;font-weight:700;padding:9px;border-radius:10px;margin-bottom:14px}
+/* ---------- V22 GLASS HOME (from the code.xr reel) ---------- */
+#v-home{position:relative}
+.ambient{position:absolute;inset:-26px -18px auto;height:560px;z-index:-1;border-radius:0 0 40px 40px;background:linear-gradient(120deg,#dff3ec,#fdf0e2 45%,#e2ecfd);overflow:hidden}
+.ambient i{position:absolute;border-radius:50%;filter:blur(46px);opacity:.55;animation:blobFloat 14s ease-in-out infinite alternate}
+.ambient i:nth-child(1){width:340px;height:340px;background:#7fd4b2;top:-90px;left:-60px}
+.ambient i:nth-child(2){width:300px;height:300px;background:#f6c391;bottom:-110px;right:6%;animation-delay:-6s}
+.ambient i:nth-child(3){width:220px;height:220px;background:#93b8f5;top:34%;left:44%;animation-delay:-3s}
+@keyframes blobFloat{from{transform:translate(0,0) scale(1)}to{transform:translate(38px,26px) scale(1.09)}}
+.glass{background:rgba(255,255,255,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.85);border-radius:20px;box-shadow:0 10px 30px rgba(23,53,42,.10)}
+.rv{opacity:0;transform:translateY(18px)}
+.rv.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+.lift{transition:transform .25s ease,box-shadow .25s ease;position:relative;overflow:hidden}
+.lift:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(23,53,42,.18)}
+.lift::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .55s ease;pointer-events:none}
+.lift:hover::after{left:115%}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+.stat{padding:17px 18px}
+.stat .ic{float:right;width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.stat .lb{color:#5b6b60;font-size:12.5px;font-weight:700;letter-spacing:.3px}
+.stat .vl{font-size:31px;font-weight:800;margin-top:5px;color:#16241c}
+.chg{font-size:12px;font-weight:800;border-radius:99px;padding:2px 9px}
+.chg.up{background:#e2f4e6;color:#177245}.chg.dn{background:#fdeceb;color:#b3372c}
+.bars{display:flex;align-items:flex-end;gap:9px;height:120px;margin-top:12px}
+.bar{flex:1;background:linear-gradient(180deg,#f8cf9f,#f2ab72);border-radius:7px 7px 3px 3px;height:4%;transition:height 1s cubic-bezier(.22,.9,.3,1);position:relative}
+.bar:hover{background:linear-gradient(180deg,#7fd4b2,#3da87e)}
+.bar span{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:10.5px;color:#67766b;font-weight:700}
+.pillbtn{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:7px 14px;font-weight:700;font-size:13px;margin:0 6px 8px 0;transition:.2s}
+.pillbtn:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 10px 20px rgba(23,53,42,.14)}
+.act{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid rgba(23,53,42,.08);font-size:14px}
+.act:last-child{border-bottom:0}
+#splash{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,#14532d,#0a2e22 62%,#071f17);color:#fff;text-align:center}
+#splash .mk{font-size:44px;letter-spacing:7px;font-weight:800;animation:splashIn .8s ease both}
+#splash .mk span{color:var(--gold)}
+#splash p{color:#bcd6c6;letter-spacing:2.5px;font-size:13px;animation:splashIn .8s .15s ease both}
+@keyframes splashIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.ambient i{animation:none}.rv{opacity:1;transform:none}.bar{transition:none}}
 </style></head>
 <body>
 
@@ -167,29 +204,53 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
  <main>
   <div class="holiday" id="holidayBanner">🎄 JV Developments Holiday Theme is live — Holiday Party Dec 5 · Office closed Dec 25 – Jan 1 🎄</div>
 
-  <!-- HOME -->
+  <!-- HOME — V22 glass dashboard experience -->
   <section class="view" id="v-home">
+   <div class="ambient"><i></i><i></i><i></i></div>
    <h1 id="greet">Good morning</h1>
-   <p class="lede">JV Developments — one place for news, people, projects and answers.</p>
-   <div class="hero"><div class="tx"><span class="pill gold">PROJECT UPDATE</span><h2>Harbourgate Tower tops out</h2><p>The final concrete pour at Harbourgate Tower is complete — three weeks ahead of schedule. Homeowner orientations begin November 20.</p><button class="btn gold sm" onclick="go('builder')">Open the project page</button></div><img src="jv-home/hero-tower.jpg" alt="Harbourgate Tower rendering"></div>
-   <div style="height:16px"></div>
-   <div class="ql">
-    <a href="#" onclick="go('people');return false">👥 People directory<small>All 150 JV staff</small></a>
-    <a href="#" onclick="go('askhr');return false">💬 Ask HR<small>Answers from live HR documents</small></a>
-    <a href="#" onclick="go('templates');return false">🧩 Templates<small>Build any page in minutes</small></a>
-    <a href="#" onclick="go('builder');return false">🛠️ Site builder<small>Edit pages, menus, layouts</small></a>
+   <p class="lede">JV Developments — Team Workspace. News, numbers, people and answers, one home.</p>
+   <div class="stats">
+    <div class="glass stat lift rv"><div class="ic" style="background:#e2f4e6">🏠</div><div class="lb">HOMES CLOSING · NOV</div><div class="vl" data-count="24">0</div><span class="chg up">↗ 12% vs Oct</span></div>
+    <div class="glass stat lift rv"><div class="ic" style="background:#fdf0e2">📅</div><div class="lb">ORIENTATIONS BOOKED</div><div class="vl" data-count="38">0</div><span class="chg up">↗ 8% vs Oct</span></div>
+    <div class="glass stat lift rv"><div class="ic" style="background:#fdeceb">🛠️</div><div class="lb">OPEN DEFICIENCIES</div><div class="vl" data-count="17">0</div><span class="chg dn">↘ 23% — clearing fast</span></div>
+    <div class="glass stat lift rv"><div class="ic" style="background:#e2ecfd">💬</div><div class="lb">ASK HR ANSWERS · MONTH</div><div class="vl" data-count="1204">0</div><span class="chg up">↗ 31% adoption</span></div>
    </div>
    <div style="height:16px"></div>
-   <div class="news">
-    <div class="n"><span class="chip">Company</span><h3>Q3 results: strongest quarter yet</h3><p>Harbourgate is 92% sold and Northgate breaks ground in January. Full summary from the Executive team.</p></div>
-    <div class="n"><span class="chip">Safety</span><h3>Winter site safety refresh</h3><p>All field staff: the 15-minute winter safety module is due by Nov 28. See the Construction hub.</p></div>
-    <div class="n"><span class="chip">People</span><h3>Holiday party — Dec 5</h3><p>Save the date. Partners welcome; RSVP through the Events page by Nov 21.</p></div>
+   <div class="grid g2">
+    <div class="glass rv" style="padding:18px 20px"><b>About JV</b><div style="height:10px"></div>
+     <button class="pillbtn" onclick="toast('Company hub — opens in the full build')">Our story</button>
+     <button class="pillbtn" onclick="go('people')">People &amp; teams</button>
+     <button class="pillbtn" onclick="go('builder')">Projects</button>
+     <button class="pillbtn" onclick="go('templates')">Templates</button>
+     <button class="pillbtn" onclick="go('askhr')">HR policies</button>
+     <p style="color:var(--mut);font-size:13.5px;line-height:1.6;margin:8px 0 0">Harbourgate Tower topped out this week — three weeks ahead of schedule. Northgate breaks ground in January; The Marlowe launches sales in spring.</p></div>
+    <div class="glass rv" style="padding:18px 20px"><b>Focus this week</b> <span style="color:var(--mut);font-size:12.5px">— orientations per day</span>
+     <div class="bars" id="wkBars">
+      <div class="bar" data-h="45"><span>Mon</span></div><div class="bar" data-h="70"><span>Tue</span></div><div class="bar" data-h="55"><span>Wed</span></div><div class="bar" data-h="88"><span>Thu</span></div><div class="bar" data-h="100"><span>Fri</span></div><div class="bar" data-h="38"><span>Sat</span></div><div class="bar" data-h="22"><span>Sun</span></div>
+     </div></div>
    </div>
    <div style="height:16px"></div>
-   <div class="card"><b>Welcome our newest team members</b><div class="joiners" style="margin-top:13px">
-    <div class="joiner"><div class="mini">MC</div><div><b>Mei Chen</b><br><span style="color:var(--mut);font-size:12.5px">Homeowner Care Specialist · Customer Care · started Nov 3</span></div></div>
-    <div class="joiner"><div class="mini">RS</div><div><b>Ryan Scott</b><br><span style="color:var(--mut);font-size:12.5px">Field Engineer · Construction · started Nov 3</span></div></div>
-   </div></div>
+   <div class="hero rv"><div class="tx"><span class="pill gold">PROJECT UPDATE</span><h2>Harbourgate Tower tops out</h2><p>The final concrete pour at Harbourgate Tower is complete — three weeks ahead of schedule. Homeowner orientations begin November 20.</p><button class="btn gold sm" onclick="go('builder')">Open the project page</button></div><img src="jv-home/hero-tower.jpg" alt="Harbourgate Tower rendering"></div>
+   <div style="height:16px"></div>
+   <div class="grid g2">
+    <div class="glass rv" style="padding:18px 20px"><b>Recent activity</b>
+     <div class="act"><div class="mini">MC</div><div><b>Mei Chen</b> joined Customer Care<br><span style="color:var(--mut);font-size:12.5px">Monday · People</span></div></div>
+     <div class="act"><div class="mini">SL</div><div><b>Sofia Lindqvist</b> published “Northgate launch teaser”<br><span style="color:var(--mut);font-size:12.5px">Yesterday · News</span></div></div>
+     <div class="act"><div class="mini">JO</div><div><b>James Okafor</b> enabled the Holiday theme schedule<br><span style="color:var(--mut);font-size:12.5px">Yesterday · Settings</span></div></div>
+     <div class="act"><div class="mini">PN</div><div><b>Priya Nair</b> updated the Benefits Guide in the HR folder<br><span style="color:var(--mut);font-size:12.5px">Nov 5 · Ask HR re-indexed itself</span></div></div>
+    </div>
+    <div class="glass rv" style="padding:18px 20px"><b>Team — newest members</b>
+     <div class="joiners" style="margin-top:13px">
+      <div class="joiner"><div class="mini">MC</div><div><b>Mei Chen</b><br><span style="color:var(--mut);font-size:12.5px">Homeowner Care Specialist · started Nov 3</span></div></div>
+      <div class="joiner"><div class="mini">RS</div><div><b>Ryan Scott</b><br><span style="color:var(--mut);font-size:12.5px">Field Engineer · started Nov 3</span></div></div>
+     </div>
+     <div style="height:12px"></div>
+     <div class="news" style="grid-template-columns:1fr">
+      <div class="n lift" style="box-shadow:none;border:1px solid rgba(23,53,42,.08)"><span class="chip">Company</span><h3>Q3 results: strongest quarter yet</h3><p>Harbourgate is 92% sold and Northgate breaks ground in January.</p></div>
+      <div class="n lift" style="box-shadow:none;border:1px solid rgba(23,53,42,.08)"><span class="chip">People</span><h3>Holiday party — Dec 5</h3><p>Partners welcome; RSVP through the Events page by Nov 21.</p></div>
+     </div>
+    </div>
+   </div>
   </section>
 
   <!-- PEOPLE -->
@@ -306,6 +367,7 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
  </main>
 </div>
 
+<div id="splash"><div><div class="mk">AX<span>I</span>S</div><p>JV DEVELOPMENTS · TEAM WORKSPACE</p></div></div>
 <button id="fab" class="hidden" onclick="go('askhr')">💬 Ask HR</button>
 <div class="toast" id="toast"></div>
 
@@ -415,6 +477,7 @@ function enterAs(key){
  $("navAdmin").classList.toggle("hidden", !(key==="admin"||key==="super"));
  $("umSwitch").textContent = "Switch demo role (now: "+a.role+")";
  renderAll(); go("home");
+ const sp=$("splash"); sp.style.display="flex"; setTimeout(()=>{ sp.style.display="none"; animHome(); },1050);
  toast("Signed in as "+a.name+" — "+a.role+" (demo)");
 }
 function doLogin(){
@@ -435,6 +498,7 @@ function go(v){
  $("v-"+v).classList.remove("hidden");
  document.querySelectorAll(".navb").forEach(b=>b.classList.toggle("on", b.dataset.nav===v));
  window.scrollTo({top:0});
+ if(v==="home") setTimeout(animHome,40);
 }
 function currentPerson(){ const a=ACCOUNTS[me]; return {name:a.name,title:a.title,department:a.dept,email:a.email}; }
 
@@ -573,6 +637,18 @@ function ask(q){
 }
 function seedChat(){ if(chatSeeded) return; chatSeeded=true;
  botSay("Hi — I'm the Ask HR bot. I search the <b>live HR document folder</b> (handbook, benefits, expenses, conduct) and cite my source on every answer. Try a chip below, or ask about the wifi password to see me refuse honestly.");
+}
+
+/* ============ V22 HOME MOTION ============ */
+function animHome(){
+ const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+ document.querySelectorAll("#v-home .rv").forEach((el,i)=>{ el.classList.remove("in"); void el.offsetWidth; el.style.transitionDelay = reduced ? "0ms" : (i*85)+"ms"; el.classList.add("in"); });
+ document.querySelectorAll("#v-home [data-count]").forEach(el=>{
+  const target = +el.dataset.count, t0 = performance.now(), dur = reduced ? 0 : 1100;
+  const step = t => { const p = dur ? Math.min(1,(t-t0)/dur) : 1, e = 1-Math.pow(1-p,3); el.textContent = Math.round(target*e).toLocaleString(); if(p<1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+ });
+ document.querySelectorAll("#wkBars .bar").forEach((b,i)=>{ b.style.height = "4%"; setTimeout(()=>{ b.style.height = b.dataset.h+"%"; }, reduced ? 0 : 120+i*70); });
 }
 
 function renderAll(){ renderDepts(); renderPeople(); renderTemplates(); renderSettings(); renderAdmin(); renderBuilder(); seedChat(); }
