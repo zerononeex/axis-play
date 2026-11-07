@@ -195,6 +195,17 @@ main{margin-left:218px}
  .navb .car{display:none}#topSearch{display:none}
  main{margin-left:66px}#userMenu{left:76px}
 }
+/* --- C4 Facts Rail + Story profile layout (the company default) --- */
+.c4{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
+@media(max-width:820px){.c4{grid-template-columns:1fr}}
+.c4rail{background:var(--cream);border-radius:14px;padding:20px}
+.c4rail .pava{width:76px;height:76px;font-size:24px;border-radius:22px;margin:0 0 12px}
+.c4rail h2{margin:0 0 3px;font-size:21px}.c4rail .rl{color:var(--mut);font-size:13.5px;margin:0 0 12px}
+.frow{border-top:1px solid var(--line);padding:9px 0;font-size:14px;word-break:break-word}
+.frow b{display:block;font-size:10.5px;color:var(--mut);letter-spacing:.6px;margin-bottom:2px}
+.skillchip{display:inline-block;background:#eef3ee;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:12.5px;font-weight:700;margin:0 6px 7px 0}
+.c4story p{line-height:1.7;color:#33413a;margin:0 0 13px;font-size:15px}
+
 /* --- REAL MINI PREVIEWS for template cards --- */
 .tprev{height:118px;background:#e9efe9;padding:8px;overflow:hidden}
 .mp{background:#fff;border-radius:7px;height:100%;padding:7px;overflow:hidden;box-shadow:inset 0 0 0 1px #e2e7e1}
@@ -461,9 +472,9 @@ const ACCOUNTS = {
 };
 let me = null;               // current account key
 let device = "desktop";
-let profileTemplate = "C1 — The Original (Facebook 2008)";
+let profileTemplate = "C4 — Facts Rail + Story";
 const DEPTS = ["All","Executive","Development","Construction","Customer Care","Sales & Marketing","Finance & Accounting","Human Resources & Admin","IT & Systems","Property Management"];
-const SK = (p,i)=>["Homeowner care","Site safety","Procore","Client relations","Budgeting","AutoCAD","Microsoft 365","Training"][ (p.length+i)%8 ];
+const SK = (p,i)=>["Homeowner care","Site safety","Procore","Client relations","Budgeting","AutoCAD","Microsoft 365","Training"][ (p.name.length+i)%8 ];
 function ini(n){return n.split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase()}
 function startYr(i){return 2015+(i*7)%10}
 
@@ -508,7 +519,7 @@ const TEMPLATES = [
  T("Creative","A8 Before/After (gallery set)","Construction progress favourite.","ba")
 ];
 const FAMS = ["Homepage","Interior","Concepts","Profiles","Creative"];
-const PROF_TEMPLATES = ["C1 — The Original (Facebook 2008)","C2 Cover + Avatar","C3 Business Card","C5 Minimal Directory","C11 Exposed Blueprint Grid","C12 Materiality Split","C16 Concierge Dossier","C17 Command Center","C19 Minimalist Gallery","C20 Skill Constellation"];
+const PROF_TEMPLATES = ["C1 — The Original (Facebook 2008)","C2 Cover + Avatar","C3 Business Card","C4 — Facts Rail + Story","C5 Minimal Directory","C11 Exposed Blueprint Grid","C12 Materiality Split","C16 Concierge Dossier","C17 Command Center","C19 Minimalist Gallery","C20 Skill Constellation"];
 const HRKB = [
  {k:["sick","ill","unwell"], q:"sick days", a:"You get <b>10 paid sick days per year</b>, resetting each January. Up to 5 unused days carry into Q1 for the same illness. A doctor's note is only needed after 3 consecutive days.", cite:"Employee Handbook 2026 — §3.2 Sick Leave", doc:0},
  {k:["vacation","holiday","time off","pto","annual leave"], q:"vacation", a:"Vacation is <b>15 days per year</b> for your first 5 years, rising to <b>20 days</b> after 5 years and <b>25 days</b> after 10. Requests go in at least 2 weeks ahead; July–August blackout applies to site-critical roles only.", cite:"Employee Handbook 2026 — §2.1 Vacation", doc:0},
@@ -593,18 +604,27 @@ function searchPeople(q){ deptFilter="All"; renderDepts();
 }
 function viewProfile(p){
  const i = Math.max(0,PEOPLE.findIndex(x=>x.email===p.email));
+ const s1=SK(p,i), s2=SK(p,i+3), s3=SK(p,i+5), yrs=2026-startYr(i);
  $("profCard").innerHTML = `
-  <div class="profHead"><div class="pava big" style="border-radius:26px">${ini(p.name)}</div>
-   <div><h1 style="margin:0">${p.name}</h1><p style="color:var(--mut);margin:5px 0">${p.title} · ${p.department}</p>
-   <span class="pill grn">● At work</span> <span class="pill">${profileTemplate}</span></div></div>
-  <div style="height:16px"></div>
-  <div class="facts">
-   <div><b>EMAIL</b>${p.email}</div><div><b>DEPARTMENT</b>${p.department}</div>
-   <div><b>STARTED</b>${startYr(i)}</div><div><b>YEARS AT JV</b>${2026-startYr(i)} years</div>
-   <div><b>SKILLS</b>${SK(p,i)}, ${SK(p,i+3)}</div><div><b>ASK ME ABOUT</b>${SK(p,i+5)}</div>
-  </div>
-  <div style="height:14px"></div>
-  <b>About</b><p style="color:var(--mut);line-height:1.65;margin:7px 0 0">Profile boxes are fixed by the company template — everyone gets these same boxes in this same order. Team members write their own About and keep their facts current; nothing here is scored, ranked or gamified.</p>`;
+  <div style="margin-bottom:12px"><span class="pill grn">● At work</span> <span class="pill gold">${profileTemplate} — company default for everyone</span></div>
+  <div class="c4">
+   <div class="c4rail">
+    <div class="pava">${ini(p.name)}</div>
+    <h2>${p.name}</h2><p class="rl">${p.title}<br>${p.department}</p>
+    <div class="frow"><b>EMAIL</b>${p.email}</div>
+    <div class="frow"><b>STARTED</b>${startYr(i)} · ${yrs} years at JV</div>
+    <div class="frow"><b>SKILLS</b>${s1} · ${s2}</div>
+    <div class="frow"><b>ASK ME ABOUT</b>${s3}</div>
+   </div>
+   <div class="c4story">
+    <b style="font-size:17px">My story</b>
+    <p style="margin-top:10px">${p.name.split(" ")[0]} has been with JV Developments for ${yrs} years, working as a ${p.title} in ${p.department}. Day to day that means ${s1.toLowerCase()} and ${s2.toLowerCase()} — the unglamorous work that keeps projects moving and homeowners looked after.</p>
+    <p>Before JV, ${p.name.split(" ")[0]} built experience across the industry and joined in ${startYr(i)} for the chance to work on towers like Harbourgate from first dig to final key handover. The favourite part of the job: the people — a crew that tops out three weeks early and still shows up for each other.</p>
+    <b>Good to know</b><div style="height:9px"></div>
+    <span class="skillchip">${s1}</span><span class="skillchip">${s2}</span><span class="skillchip">Ask me about ${s3}</span>
+    <p style="color:var(--mut);font-size:13px;line-height:1.6;margin-top:8px">This profile uses the company's one default layout — the facts rail on the left, the story on the right, identical for all 150 staff. Members write their own story inside these boxes; the layout itself is set centrally in Admin settings. Nothing here is scored, ranked or gamified.</p>
+   </div>
+  </div>`;
  go("profile");
 }
 </script>
