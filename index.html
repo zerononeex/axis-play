@@ -151,6 +151,27 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
 #splash p{color:#bcd6c6;letter-spacing:2.5px;font-size:13px;animation:splashIn .8s .15s ease both}
 @keyframes splashIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion: reduce){.ambient i{animation:none}.rv{opacity:1;transform:none}.bar{transition:none}}
+/* --- retune from the owner's screen recording of the reel --- */
+.wipeIn{animation:wipeIn .95s cubic-bezier(.22,.9,.3,1) both}
+@keyframes wipeIn{from{clip-path:circle(0% at 30% 16%)}to{clip-path:circle(145% at 30% 16%)}}
+.greetCard{background:linear-gradient(120deg,#0f2f24,#1c4d3a);color:#fff;border-radius:20px;padding:22px 24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;box-shadow:0 14px 34px rgba(15,47,36,.28)}
+.greetCard h2{margin:0;font-size:25px;font-weight:700}
+.greetCard h2 em{font-family:Georgia,serif;font-style:italic;font-weight:400;color:#f2c979}
+.greetCard p{margin:6px 0 0;color:#c4dacd;font-size:13.5px;line-height:1.55;max-width:460px}
+.avstack{display:flex;align-items:center}
+.avstack .mini{border:2px solid #1c4d3a;margin-left:-9px;background:#dce8de}
+.avstack .mini:first-child{margin-left:0}
+.prog{height:6px;background:rgba(23,53,42,.10);border-radius:99px;margin-top:11px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#43b581,#1d7a4c);transition:width 1.1s cubic-bezier(.22,.9,.3,1)}
+.bar.hl{background:linear-gradient(180deg,#2e7d5f,#17352a)}
+.hero img{animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.09)}}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:12px;text-align:center;margin-top:10px}
+.cal b{color:var(--mut);font-size:10.5px}
+.cal span{padding:4px 0;border-radius:8px;position:relative}
+.cal .ev{background:#fdf0e2;font-weight:800}
+.cal .td{outline:2px solid var(--gold);font-weight:800}
+@media (prefers-reduced-motion: reduce){.hero img{animation:none}.wipeIn{animation:none}}
 </style></head>
 <body>
 
@@ -209,14 +230,21 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
    <div class="ambient"><i></i><i></i><i></i></div>
    <h1 id="greet">Good morning</h1>
    <p class="lede">JV Developments — Team Workspace. News, numbers, people and answers, one home.</p>
-   <div class="stats">
-    <div class="glass stat lift rv"><div class="ic" style="background:#e2f4e6">🏠</div><div class="lb">HOMES CLOSING · NOV</div><div class="vl" data-count="24">0</div><span class="chg up">↗ 12% vs Oct</span></div>
-    <div class="glass stat lift rv"><div class="ic" style="background:#fdf0e2">📅</div><div class="lb">ORIENTATIONS BOOKED</div><div class="vl" data-count="38">0</div><span class="chg up">↗ 8% vs Oct</span></div>
-    <div class="glass stat lift rv"><div class="ic" style="background:#fdeceb">🛠️</div><div class="lb">OPEN DEFICIENCIES</div><div class="vl" data-count="17">0</div><span class="chg dn">↘ 23% — clearing fast</span></div>
-    <div class="glass stat lift rv"><div class="ic" style="background:#e2ecfd">💬</div><div class="lb">ASK HR ANSWERS · MONTH</div><div class="vl" data-count="1204">0</div><span class="chg up">↗ 31% adoption</span></div>
+   <div class="greetCard rv">
+    <div style="flex:1;min-width:240px"><h2>Work's always <em>better</em> together</h2>
+    <p>Harbourgate topped out three weeks early and orientations open Nov 20 — here's your whole team, and everything happening, at a glance.</p></div>
+    <div class="avstack"><div class="mini">DM</div><div class="mini">MC</div><div class="mini">RS</div><div class="mini">SL</div><div class="mini">PN</div><div class="mini" style="background:var(--gold);color:#16130c">+145</div></div>
+    <button class="btn gold" onclick="go('people')">Meet the team</button>
    </div>
    <div style="height:16px"></div>
-   <div class="grid g2">
+   <div class="stats">
+    <div class="glass stat lift rv"><div class="ic" style="background:#e2f4e6">🏠</div><div class="lb">HOMES CLOSING · NOV</div><div class="vl" data-count="24">0</div><span class="chg up">↗ 12% vs Oct</span><div class="prog"><i data-w="80"></i></div></div>
+    <div class="glass stat lift rv"><div class="ic" style="background:#fdf0e2">📅</div><div class="lb">ORIENTATIONS BOOKED</div><div class="vl" data-count="38">0</div><span class="chg up">↗ 8% vs Oct</span><div class="prog"><i data-w="63"></i></div></div>
+    <div class="glass stat lift rv"><div class="ic" style="background:#fdeceb">🛠️</div><div class="lb">OPEN DEFICIENCIES</div><div class="vl" data-count="17">0</div><span class="chg dn">↘ 23% — clearing fast</span><div class="prog"><i data-w="34"></i></div></div>
+    <div class="glass stat lift rv"><div class="ic" style="background:#e2ecfd">💬</div><div class="lb">ASK HR ANSWERS · MONTH</div><div class="vl" data-count="1204">0</div><span class="chg up">↗ 31% adoption</span><div class="prog"><i data-w="92"></i></div></div>
+   </div>
+   <div style="height:16px"></div>
+   <div class="grid g3">
     <div class="glass rv" style="padding:18px 20px"><b>About JV</b><div style="height:10px"></div>
      <button class="pillbtn" onclick="toast('Company hub — opens in the full build')">Our story</button>
      <button class="pillbtn" onclick="go('people')">People &amp; teams</button>
@@ -226,8 +254,16 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
      <p style="color:var(--mut);font-size:13.5px;line-height:1.6;margin:8px 0 0">Harbourgate Tower topped out this week — three weeks ahead of schedule. Northgate breaks ground in January; The Marlowe launches sales in spring.</p></div>
     <div class="glass rv" style="padding:18px 20px"><b>Focus this week</b> <span style="color:var(--mut);font-size:12.5px">— orientations per day</span>
      <div class="bars" id="wkBars">
-      <div class="bar" data-h="45"><span>Mon</span></div><div class="bar" data-h="70"><span>Tue</span></div><div class="bar" data-h="55"><span>Wed</span></div><div class="bar" data-h="88"><span>Thu</span></div><div class="bar" data-h="100"><span>Fri</span></div><div class="bar" data-h="38"><span>Sat</span></div><div class="bar" data-h="22"><span>Sun</span></div>
+      <div class="bar" data-h="45"><span>Mon</span></div><div class="bar" data-h="70"><span>Tue</span></div><div class="bar" data-h="55"><span>Wed</span></div><div class="bar" data-h="88"><span>Thu</span></div><div class="bar hl" data-h="100"><span>Fri</span></div><div class="bar" data-h="38"><span>Sat</span></div><div class="bar" data-h="22"><span>Sun</span></div>
      </div></div>
+    <div class="glass rv" style="padding:18px 20px"><b>November 2026</b>
+     <div class="cal"><b>S</b><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b>
+     <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span class="td">7</span>
+     <span>8</span><span>9</span><span>10</span><span>11</span><span class="ev">12</span><span>13</span><span>14</span>
+     <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span class="ev">20</span><span>21</span>
+     <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+     <span>29</span><span>30</span></div>
+     <p style="color:var(--mut);font-size:12.5px;line-height:1.55;margin:10px 0 0"><b style="color:var(--ink)">12</b> All-Hands · <b style="color:var(--ink)">20</b> Harbourgate Orientation Night</p></div>
    </div>
    <div style="height:16px"></div>
    <div class="hero rv"><div class="tx"><span class="pill gold">PROJECT UPDATE</span><h2>Harbourgate Tower tops out</h2><p>The final concrete pour at Harbourgate Tower is complete — three weeks ahead of schedule. Homeowner orientations begin November 20.</p><button class="btn gold sm" onclick="go('builder')">Open the project page</button></div><img src="jv-home/hero-tower.jpg" alt="Harbourgate Tower rendering"></div>
@@ -642,6 +678,8 @@ function seedChat(){ if(chatSeeded) return; chatSeeded=true;
 /* ============ V22 HOME MOTION ============ */
 function animHome(){
  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+ const hv = $("v-home"); hv.classList.remove("wipeIn"); void hv.offsetWidth; if(!reduced) hv.classList.add("wipeIn");
+ document.querySelectorAll("#v-home .prog i").forEach(el=>{ el.style.width="0%"; setTimeout(()=>{ el.style.width = el.dataset.w+"%"; }, reduced ? 0 : 300); });
  document.querySelectorAll("#v-home .rv").forEach((el,i)=>{ el.classList.remove("in"); void el.offsetWidth; el.style.transitionDelay = reduced ? "0ms" : (i*85)+"ms"; el.classList.add("in"); });
  document.querySelectorAll("#v-home [data-count]").forEach(el=>{
   const target = +el.dataset.count, t0 = performance.now(), dur = reduced ? 0 : 1100;
