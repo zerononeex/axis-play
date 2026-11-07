@@ -172,6 +172,39 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
 .cal .ev{background:#fdf0e2;font-weight:800}
 .cal .td{outline:2px solid var(--gold);font-weight:800}
 @media (prefers-reduced-motion: reduce){.hero img{animation:none}.wipeIn{animation:none}}
+/* --- LEFT RAIL NAV (owner, from the reel) + per-view entrances --- */
+#topbar{position:fixed;left:0;top:0;bottom:0;width:218px;height:100vh;flex-direction:column;align-items:stretch;padding:20px 14px;gap:4px}
+#topbar .brand{margin:2px 6px 18px;font-size:22px}
+.navb{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:11px 13px;border-radius:12px;font-size:14.5px}
+.navb::before{font-size:17px;width:22px;text-align:center}
+.navb[data-nav="home"]::before{content:"🏠"}.navb[data-nav="people"]::before{content:"👥"}
+.navb[data-nav="builder"]::before{content:"🛠️"}.navb[data-nav="templates"]::before{content:"🧩"}
+.navb[data-nav="askhr"]::before{content:"💬"}.navb[data-nav="admin"]::before{content:"🛡️"}
+.navb[data-nav="settings"]::before{content:"⚙️"}
+.navb.on{background:var(--gold);color:#16130c;font-weight:800}
+#topSearch{width:100%;margin-top:10px}
+#avaBtn{align-self:flex-start;margin-top:10px}
+main{margin-left:218px}
+#userMenu{position:fixed;left:228px;right:auto;top:auto;bottom:16px}
+.rise{animation:riseIn .55s cubic-bezier(.22,.9,.3,1) both}
+@keyframes riseIn{from{opacity:0;transform:translateY(16px) scale(.996)}to{opacity:1;transform:none}}
+@media(max-width:820px){
+ #topbar{width:66px;padding:16px 9px}
+ #topbar .brand{font-size:0;margin-bottom:14px}#topbar .brand::first-letter{font-size:22px}
+ .navb{font-size:0;justify-content:center;padding:12px 0}.navb::before{font-size:19px;width:auto}
+ .navb .car{display:none}#topSearch{display:none}
+ main{margin-left:66px}#userMenu{left:76px}
+}
+/* --- REAL MINI PREVIEWS for template cards --- */
+.tprev{height:118px;background:#e9efe9;padding:8px;overflow:hidden}
+.mp{background:#fff;border-radius:7px;height:100%;padding:7px;overflow:hidden;box-shadow:inset 0 0 0 1px #e2e7e1}
+.mp .ln{height:5px;border-radius:3px;background:#d7ded7;margin:5px 0}
+.mp .ln.sh{width:55%}.mp .ln.dk{background:#9db3a4;width:75%}
+.mp .im{border-radius:5px;background-size:cover;background-position:center}
+.mp .row{display:flex;gap:5px}.mp .row>*{flex:1}
+.mp .cd{border:1px solid #e6eae6;border-radius:5px;padding:4px}
+.mp .av{width:20px;height:20px;border-radius:50%;background:var(--green);flex:none}
+.mp .br{border-radius:3px 3px 1px 1px;background:linear-gradient(180deg,#f8cf9f,#f2ab72)}
 </style></head>
 <body>
 
@@ -394,7 +427,7 @@ select.inp,input.inp{border:1.5px solid var(--line);border-radius:9px;padding:8p
       <button class="btn sm gold" onclick="holidayTheme()">🎄 Holiday</button>
      </div>
      <p style="color:var(--mut);font-size:12.5px;line-height:1.55">Holiday themes can be scheduled — set the December theme in October and it switches itself on Dec 1 and off Jan 2.</p></div>
-    <div class="card"><b>Top menu builder</b><p style="color:var(--mut);font-size:12.5px">The toolbar on every page. Toggle to show/hide; in the real builder you drag to reorder and nest up to 3 levels.</p><div id="menuRows"></div></div>
+    <div class="card"><b>Menu builder — left rail</b><p style="color:var(--mut);font-size:12.5px">The rail on the left of every page. Toggle to show/hide; in the real builder you drag to reorder and nest up to 3 levels.</p><div id="menuRows"></div></div>
     <div class="card"><b>Permissions — who can do what</b><table style="margin-top:8px"><tr><th>Capability</th><th>Staff</th><th>Editor</th><th>Admin</th><th>Super</th></tr><tbody id="permRows"></tbody></table>
      <p style="color:var(--mut);font-size:12.5px;line-height:1.55">Bulk permit/deny, exactly as specced. Raw HTML is Super User only and can't be granted down.</p></div>
    </div>
@@ -531,10 +564,14 @@ $("umSwitch").onclick = ()=>{ const order=["staff","editor","admin","super"]; en
 /* ============ NAV ============ */
 function go(v){
  document.querySelectorAll(".view").forEach(s=>s.classList.add("hidden"));
- $("v-"+v).classList.remove("hidden");
+ const sec = $("v-"+v); sec.classList.remove("hidden");
  document.querySelectorAll(".navb").forEach(b=>b.classList.toggle("on", b.dataset.nav===v));
  window.scrollTo({top:0});
- if(v==="home") setTimeout(animHome,40);
+ if(v==="home"){ setTimeout(animHome,40); return; }
+ /* Apple-style load-up on every view switch: iris wipe + staggered rise */
+ const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+ sec.classList.remove("wipeIn"); void sec.offsetWidth; if(!reduced) sec.classList.add("wipeIn");
+ sec.querySelectorAll(":scope > *").forEach((el,i)=>{ el.classList.remove("rise"); void el.offsetWidth; el.style.animationDelay = reduced ? "0ms" : (i*70)+"ms"; el.classList.add("rise"); });
 }
 function currentPerson(){ const a=ACCOUNTS[me]; return {name:a.name,title:a.title,department:a.dept,email:a.email}; }
 
@@ -613,9 +650,35 @@ function applyTemplate(t){
 }
 /* templates views */
 let tFam="Homepage", cFam="Homepage";
+function miniRow(r){
+ const L=(c)=>`<div class="ln ${c||''}"></div>`;
+ if(r==="hero"||r==="mag") return `<div class="im" style="height:40px;background-image:url(${IMG.tower})"></div>${L("dk")}${L("sh")}`;
+ if(r==="text") return `${L("dk")}${L()}${L()}${L("sh")}`;
+ if(r==="ql") return `<div class="row">${"<div class='cd'>▦</div>".repeat(4)}</div>${L("sh")}`;
+ if(r==="news"||r==="cards") return `<div class="row">${("<div class='cd'>"+L("dk")+L("sh")+"</div>").repeat(3)}</div>`;
+ if(r==="mosaic") return `<div class="row"><div class="im" style="height:44px;background-image:url(${IMG.crane})"></div><div class="im" style="height:44px;background-image:url(${IMG.site})"></div><div class="im" style="height:44px;background-image:url(${IMG.facade})"></div></div>`;
+ if(r==="feed") return `<div class="row" style="align-items:center"><div class="av"></div><div>${L("dk")}${L("sh")}</div></div><div class="row" style="align-items:center;margin-top:5px"><div class="av" style="background:var(--gold)"></div><div>${L("dk")}${L("sh")}</div></div>`;
+ if(r==="zig"||r==="split") return `<div class="row"><div class="im" style="height:36px;background-image:url(${IMG.city})"></div><div>${L("dk")}${L()}${L("sh")}</div></div>`;
+ if(r==="bars") return `<div class="row" style="align-items:flex-end;height:42px">${[40,65,50,85,100,55].map(h=>`<div class="br" style="height:${h}%"></div>`).join("")}</div>`;
+ if(r==="team") return `<div class="row" style="justify-content:flex-start;gap:7px">${"<div class='av'></div>".repeat(5)}</div>${L("sh")}`;
+ if(r==="faq") return `${L("dk")}${L("dk")}${L("dk")}`;
+ if(r==="toc") return `<div class="row"><div style="flex:.6">${L()}${L()}${L()}</div><div>${L("dk")}${L()}${L("sh")}</div></div>`;
+ if(r==="time") return `<div style="border-top:3px dotted #9db3a4;margin:16px 2px 6px;position:relative"><span style="position:absolute;top:-6px;left:12%;width:9px;height:9px;border-radius:50%;background:var(--gold)"></span><span style="position:absolute;top:-6px;left:48%;width:9px;height:9px;border-radius:50%;background:var(--green)"></span><span style="position:absolute;top:-6px;left:82%;width:9px;height:9px;border-radius:50%;background:var(--gold)"></span></div>${L("sh")}`;
+ if(r==="blank") return `<div style="border:2px dashed #c4cfc4;border-radius:6px;height:52px;display:flex;align-items:center;justify-content:center;color:#9db3a4;font-size:11px;font-weight:700">BLANK CANVAS</div>`;
+ if(r==="constellation") return `<div style="background:#0f2f24;border-radius:5px;height:54px;position:relative"><span style="position:absolute;top:9px;left:16%;width:7px;height:7px;border-radius:50%;background:#f2c979"></span><span style="position:absolute;top:30px;left:44%;width:6px;height:6px;border-radius:50%;background:#fff"></span><span style="position:absolute;top:14px;left:74%;width:8px;height:8px;border-radius:50%;background:#7fd4b2"></span><span style="position:absolute;top:38px;left:84%;width:5px;height:5px;border-radius:50%;background:#fff"></span></div>`;
+ if(r==="metro") return `<div style="height:50px;position:relative"><div style="position:absolute;top:12px;left:0;right:0;height:4px;background:#43b581;border-radius:2px"></div><div style="position:absolute;top:32px;left:0;right:0;height:4px;background:#f2ab72;border-radius:2px"></div><span style="position:absolute;top:8px;left:22%;width:10px;height:10px;border-radius:50%;background:#fff;border:3px solid #43b581"></span><span style="position:absolute;top:28px;left:60%;width:10px;height:10px;border-radius:50%;background:#fff;border:3px solid #f2ab72"></span></div>`;
+ if(r==="shelf") return `<div class="row"><div class="im" style="height:40px;background-image:url(${IMG.facade})"></div><div class="im" style="height:40px;background-image:url(${IMG.tower})"></div><div class="im" style="height:40px;background-image:url(${IMG.city})"></div><div class="im" style="height:40px;background-image:url(${IMG.crane})"></div></div>${L("sh")}`;
+ if(r==="ticker") return `<div style="background:#12241b;color:#f2c979;border-radius:5px;padding:4px 8px;font-size:10px;font-weight:800">● LIVE — Harbourgate tops out</div>${L("dk")}${L("sh")}`;
+ if(r==="bento") return `<div class="row"><div class="im" style="height:44px;background-image:url(${IMG.site})"></div><div>${L("dk")}${L("sh")}<div class="row"><div class="cd">★</div><div class="cd">✓</div></div></div></div>`;
+ if(r==="profile") return `<div class="row" style="align-items:center"><div class="av" style="width:30px;height:30px"></div><div>${L("dk")}${L("sh")}</div></div>${L()}${L("sh")}`;
+ if(r==="ba") return `<div class="row" style="gap:0"><div class="im" style="height:44px;border-radius:5px 0 0 5px;background-image:url(${IMG.crane})"></div><div style="width:3px;background:var(--gold)"></div><div class="im" style="height:44px;border-radius:0 5px 5px 0;background-image:url(${IMG.tower})"></div></div>`;
+ if(r==="masonry") return `<div class="row"><div><div class="im" style="height:26px;background-image:url(${IMG.tower})"></div><div class="im" style="height:16px;margin-top:4px;background-image:url(${IMG.city})"></div></div><div><div class="im" style="height:16px;background-image:url(${IMG.site})"></div><div class="im" style="height:26px;margin-top:4px;background-image:url(${IMG.facade})"></div></div></div>`;
+ if(r==="reel") return `<div class="row">${[IMG.tower,IMG.crane,IMG.city,IMG.facade].map(u=>`<div class="im" style="height:44px;border-radius:16px;background-image:url(${u})"></div>`).join("")}</div>`;
+ return `${L("dk")}${L()}${L("sh")}`;
+}
 function tCard(t,where){
- const bars = t.rows.split("|").map((r,i)=>`<i class="${i===0?'h':''}" style="height:${i===0?26:13}px"></i>`).join("");
- return `<div class="tcard"><div class="tprev">${bars}</div><div class="tb"><h3>${t.name}</h3><p>${t.blurb}</p><button class="btn sm" onclick='applyTemplate(${JSON.stringify(t).replace(/'/g,"&#39;")})'>Use this template</button></div></div>`;
+ const prev = t.rows.split("|").slice(0,2).map(miniRow).join('<div style="height:5px"></div>');
+ return `<div class="tcard"><div class="tprev"><div class="mp">${prev}</div></div><div class="tb"><h3>${t.name}</h3><p>${t.blurb}</p><button class="btn sm" onclick='applyTemplate(${JSON.stringify(t).replace(/'/g,"&#39;")})'>Use this template</button></div></div>`;
 }
 function renderTemplates(){
  $("tTabs").innerHTML = FAMS.map(f=>`<button class="tab ${f===tFam?'on':''}" onclick="tFam='${f}';renderTemplates()">${f}</button>`).join("");
