@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creative Picture Displays — Live Samples (10)</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#10160f;color:#eef2ec}
+header,.sample{max-width:980px;margin:auto;padding:26px 20px 6px}
+h1{margin:0 0 6px;font-size:25px}h2{font-size:19px;margin:0 0 4px}
+.sub,.note{color:#a9b8ab;font-size:14px;line-height:1.5;margin:0}
+.note b{color:#eef2ec}
+.sample{padding-top:34px}
+.stage{background:#fff;color:#1c2620;border-radius:14px;padding:16px;margin-top:12px;overflow:hidden}
+img{display:block;max-width:100%}
+.num{display:inline-block;background:#b98a2f;color:#14100a;font-weight:800;font-size:11.5px;border-radius:99px;padding:2px 9px;margin-bottom:6px}
+footer{max-width:980px;margin:auto;padding:26px 20px 40px;color:#8fa392;font-size:13px;line-height:1.55}
+/* 1 before/after */
+.ba{position:relative;height:340px;border-radius:10px;overflow:hidden;touch-action:none;cursor:ew-resize;user-select:none}
+.ba img{width:100%;height:100%;object-fit:cover}
+.ba .after{position:absolute;inset:0}
+.ba .beforeWrap{position:absolute;inset:0;width:50%;overflow:hidden}
+.ba .beforeWrap img{width:980px;max-width:none;height:340px;object-fit:cover;filter:grayscale(1) sepia(.35) brightness(.92)}
+.ba .handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,.5)}
+.ba .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:50%;width:40px;height:40px;text-align:center;line-height:40px;font-weight:800;color:#17352a;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.ba .tag{position:absolute;top:10px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:3px 9px;border-radius:99px}
+/* 2 masonry */
+.masonry{columns:3;column-gap:10px}
+.masonry figure{margin:0 0 10px;break-inside:avoid;border-radius:9px;overflow:hidden}
+.masonry img{width:100%}
+/* 3 tilt */
+.tiltWrap{perspective:900px;display:flex;justify-content:center;padding:14px 0}
+.tilt{position:relative;width:340px;height:230px;border-radius:14px;transform-style:preserve-3d;transition:transform .25s ease;overflow:hidden;background:#000}
+.tilt img.bg{width:100%;height:100%;object-fit:cover}
+.tilt .mid{position:absolute;inset:auto 18px 52px 18px;background:rgba(23,53,42,.82);color:#fff;border-radius:9px;padding:8px 12px;font-size:13px;transform:translateZ(38px)}
+.tilt .front{position:absolute;left:18px;bottom:14px;color:#fff;font-weight:800;font-size:19px;text-shadow:0 2px 8px rgba(0,0,0,.6);transform:translateZ(60px)}
+/* 4 reel */
+.reel{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.reel figure{margin:0;flex:0 0 78%;scroll-snap-align:center;position:relative;border-radius:11px;overflow:hidden}
+.reel img{width:100%;height:250px;object-fit:cover}
+.reel figcaption{position:absolute;left:12px;bottom:10px;color:#fff;font-weight:700;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+/* 5 hover reveal */
+.hoverList{position:relative}
+.hoverList a{display:block;padding:13px 6px;border-bottom:1px solid #e4e9e3;font-size:18px;font-weight:700;color:#17352a;text-decoration:none}
+.hoverList a:hover{color:#b98a2f}
+#floatPrev{position:absolute;width:190px;height:130px;border-radius:10px;object-fit:cover;pointer-events:none;opacity:0;transition:opacity .18s;box-shadow:0 10px 28px rgba(0,0,0,.35);z-index:3}
+/* 6 orbit */
+.orbitStage{perspective:1000px;height:250px;position:relative}
+.orbit{position:absolute;left:50%;top:50%;width:170px;height:120px;margin:-60px 0 0 -85px;transform-style:preserve-3d;transition:transform .6s ease}
+.orbit img{position:absolute;inset:0;width:170px;height:120px;object-fit:cover;border-radius:9px;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.orbitBtns{text-align:center;margin-top:6px}
+.orbitBtns button,.btn{background:#17352a;color:#fff;border:0;border-radius:9px;padding:9px 18px;font-weight:700;font-size:14px;cursor:pointer}
+/* 7 lightbox thumbs */
+.lbGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.lbGrid img{width:100%;height:110px;object-fit:cover;border-radius:9px;cursor:pointer}
+#lightbox{position:fixed;inset:0;background:rgba(8,12,9,.93);display:none;z-index:50;color:#fff}
+#lightbox .inner{max-width:1060px;margin:0 auto;height:100%;display:flex;gap:0;align-items:stretch;padding:22px}
+#lightbox img.main{flex:1.6;width:100%;height:100%;object-fit:contain;background:#000;border-radius:10px}
+#lightbox .cap{flex:1;padding:26px 8px 26px 24px;overflow:auto}
+#lightbox .x{position:absolute;top:14px;right:20px;font-size:26px;background:none;border:0;color:#fff;cursor:pointer}
+/* 8 accordion */
+.acc{display:flex;gap:6px;height:280px}
+.acc figure{margin:0;flex:1;border-radius:10px;overflow:hidden;position:relative;transition:flex .5s ease;cursor:pointer}
+.acc figure.on{flex:3.4}
+.acc img{width:100%;height:100%;object-fit:cover}
+.acc figcaption{position:absolute;left:10px;bottom:9px;color:#fff;font-weight:700;font-size:13.5px;text-shadow:0 1px 6px rgba(0,0,0,.7);white-space:nowrap}
+/* 9 magazine */
+.mag{position:relative;min-height:330px}
+.mag .big{width:72%;height:300px;object-fit:cover;border-radius:11px}
+.mag .inset{position:absolute;right:2%;top:36px;width:38%;height:170px;object-fit:cover;border-radius:11px;border:6px solid #fff;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.mag .txt{position:absolute;right:5%;bottom:0;width:44%;background:#17352a;color:#f2efe6;border-radius:11px;padding:13px 16px;font-size:13.5px;line-height:1.5}
+/* 10 scroll zoom */
+.zoomOuter{height:190vh;position:relative}
+.zoomSticky{position:sticky;top:60px;height:70vh;border-radius:14px;overflow:hidden;background:#000}
+.zoomSticky img{width:100%;height:100%;object-fit:cover;transform:scale(.55);will-change:transform}
+.zoomSticky .zc{position:absolute;left:20px;bottom:16px;color:#fff;font-weight:800;font-size:21px;text-shadow:0 2px 10px rgba(0,0,0,.7);opacity:0}
+@media(max-width:640px){.masonry{columns:2}.mag .txt{position:static;width:100%;margin-top:10px}.mag .big{width:100%}.mag .inset{display:none}#lightbox .inner{flex-direction:column}#lightbox .cap{padding:14px 4px}}
+</style></head><body>
+<header>
+<h1>Creative Picture Displays — Live Samples</h1>
+<p class="sub">Your 10, built as working samples with JV-style photos. Every one of these <b style="color:#eef2ec">actually does the thing</b> — drag it, hover it, tap it, scroll it. On a phone: tilt, orbit, accordion and the zoom all respond to touch/scroll; the cursor-trail one (5) is a desktop trick, and its sample says so.</p>
+</header>
+
+<div class="sample"><span class="num">SAMPLE 1</span><h2>Interactive Before &amp; After Slider</h2><p class="note">Drag the handle. In JV's world this is excavation vs. topped-out, or a suite before/after staging.</p>
+<div class="stage"><div class="ba" id="ba">
+  <div class="after"><img src="img/tower.jpg" alt="After"></div>
+  <div class="beforeWrap" id="baBefore"><img src="img/tower.jpg" alt="Before"></div>
+  <span class="tag" style="left:10px">BEFORE</span><span class="tag" style="right:10px">AFTER</span>
+  <div class="handle" id="baHandle"></div><div class="knob" id="baKnob">⇔</div>
+</div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 2</span><h2>Masonry / Pinterest-Style Dynamic Grid</h2><p class="note">Photos keep their natural shapes and pack in like bricks — nothing gets cropped to a forced ratio.</p>
+<div class="stage"><div class="masonry">
+  <figure><img src="img/tower.jpg"></figure><figure><img src="img/vancouver.jpg"></figure>
+  <figure><img src="img/crane.jpg"></figure><figure><img src="img/construction.jpg"></figure>
+  <figure><img src="img/facade.jpg"></figure><figure><img src="img/vancouver.jpg"></figure>
+  <figure><img src="img/tower.jpg"></figure><figure><img src="img/crane.jpg"></figure>
+</div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 3</span><h2>3D Parallax Tilt</h2><p class="note">Move your mouse over the card (or tilt it with a drag on touch) — the photo, the panel and the headline sit at different depths and shift separately.</p>
+<div class="stage"><div class="tiltWrap"><div class="tilt" id="tilt">
+  <img class="bg" src="img/facade.jpg">
+  <div class="mid">Harbourgate Tower · 34 storeys · Now selling</div>
+  <div class="front">Featured Project</div>
+</div></div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 4</span><h2>Horizontal Scrolling "Story" Reel</h2><p class="note">Scroll (or swipe / shift-scroll) and the story glides sideways like a film strip instead of down the page.</p>
+<div class="stage"><div class="reel" id="reel">
+  <figure><img src="img/construction.jpg"><figcaption>Chapter 1 — Breaking ground</figcaption></figure>
+  <figure><img src="img/crane.jpg"><figcaption>Chapter 2 — The crane goes up</figcaption></figure>
+  <figure><img src="img/tower.jpg"><figcaption>Chapter 3 — Topping out</figcaption></figure>
+  <figure><img src="img/vancouver.jpg"><figcaption>Chapter 4 — Welcome home</figcaption></figure>
+</div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 5</span><h2>Floating Cursor Trail / Hover Reveal</h2><p class="note">A clean text list — until you hover a name and its photo follows your cursor. Desktop-only magic (phones have no cursor); on touch, tapping a name pins its photo under the list instead.</p>
+<div class="stage"><div class="hoverList" id="hoverList">
+  <img id="floatPrev" alt="">
+  <a href="#" data-img="img/tower.jpg">Harbourgate Tower</a>
+  <a href="#" data-img="img/crane.jpg">Northgate Residences</a>
+  <a href="#" data-img="img/vancouver.jpg">The Marlowe</a>
+  <a href="#" data-img="img/construction.jpg">Cedarline Works Yard</a>
+  <img id="tapPrev" style="display:none;width:100%;height:180px;object-fit:cover;border-radius:10px;margin-top:10px" alt="">
+</div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 6</span><h2>Circular "Orbit" Carousel Wheel</h2><p class="note">Photos arranged in a ring — spin it and each one comes to the front. Great for team photos or project line-ups.</p>
+<div class="stage"><div class="orbitStage"><div class="orbit" id="orbit">
+  <img src="img/tower.jpg"><img src="img/crane.jpg"><img src="img/facade.jpg"><img src="img/construction.jpg"><img src="img/vancouver.jpg"><img src="img/tower.jpg">
+</div></div><div class="orbitBtns"><button id="orbL">‹ Spin</button> <button id="orbR">Spin ›</button></div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 7</span><h2>Full-Screen Lightbox with Storytelling Captions</h2><p class="note">Tap any photo — the lights go down, the photo takes the stage, and its story sits beside it.</p>
+<div class="stage"><div class="lbGrid" id="lbGrid">
+  <img src="img/tower.jpg" data-title="Harbourgate tops out" data-story="Thirty-four storeys, placed on schedule. The final beam went up on a clear morning with the whole site crew watching — and yes, somebody's kid asked if the crane driver gets dizzy.">
+  <img src="img/crane.jpg" data-title="Northgate, week 12" data-story="Second crane erected ahead of the winter schedule. The site team beat the permit office's timeline by nine days, which our superintendent describes as 'basically a miracle with paperwork.'">
+  <img src="img/construction.jpg" data-title="Groundbreaking day" data-story="Golden shovels, hard hats, and one very serious ribbon. Neighbours were invited first — the coffee lineup was longer than the speeches, exactly as it should be.">
+  <img src="img/vancouver.jpg" data-title="The Marlowe, dusk" data-story="Our photographer waited three evenings for this light. The amenity terrace faces the sunset on purpose — the design team fought for that orientation and this photo is their victory lap.">
+  <img src="img/facade.jpg" data-title="Glass, up close" data-story="The facade panels reflect the sky differently every hour. Facilities keeps a running photo log because the building is, in their words, 'a weather report you can live in.'">
+  <img src="img/tower.jpg" data-title="Harbourgate, street view" data-story="From the sidewalk, the tower reads as a stack of gardens — every fourth floor has a planted terrace. Two of them are already promised to a beekeeping club. True story.">
+</div></div></div>
+<div id="lightbox"><button class="x" id="lbX">✕</button><div class="inner">
+  <img class="main" id="lbImg" alt="">
+  <div class="cap"><h2 id="lbTitle" style="margin-top:0"></h2><p id="lbStory" style="line-height:1.65;color:#cfd8cd"></p>
+  <p style="margin-top:18px"><button class="btn" id="lbPrev">‹ Prev</button> <button class="btn" id="lbNext">Next ›</button></p></div>
+</div></div>
+
+<div class="sample"><span class="num">SAMPLE 8</span><h2>Collapsing Accordion Grid</h2><p class="note">Five slim panels side by side — hover or tap one and it opens up while the others politely squeeze over.</p>
+<div class="stage"><div class="acc" id="acc">
+  <figure class="on"><img src="img/tower.jpg"><figcaption>Harbourgate</figcaption></figure>
+  <figure><img src="img/crane.jpg"><figcaption>Northgate</figcaption></figure>
+  <figure><img src="img/construction.jpg"><figcaption>Groundbreaking</figcaption></figure>
+  <figure><img src="img/vancouver.jpg"><figcaption>The Marlowe</figcaption></figure>
+  <figure><img src="img/facade.jpg"><figcaption>Details</figcaption></figure>
+</div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 9</span><h2>Asymmetric "Magazine" Editorial Layout</h2><p class="note">One big focal photo, a smaller one overlapping it, and the text block sitting off-grid — the high-end print look. Notice this one is literally built out of layers, like your layers idea.</p>
+<div class="stage"><div class="mag">
+  <img class="big" src="img/vancouver.jpg">
+  <img class="inset" src="img/tower.jpg">
+  <div class="txt"><b>Inside Harbourgate</b><br>The amenity floor was designed around one rule: every room gets a view worth sitting down for.</div>
+</div></div></div>
+
+<div class="sample"><span class="num">SAMPLE 10</span><h2>Scroll-Triggered Reveal &amp; Zoom</h2><p class="note">Keep scrolling — the photo starts small and zooms out to fill the screen as you move down, and its headline fades in. Scroll back up and it rewinds.</p>
+<div class="zoomOuter" id="zoomOuter"><div class="zoomSticky">
+  <img id="zoomImg" src="img/tower.jpg">
+  <div class="zc" id="zoomCap">Harbourgate Tower — all 34 storeys of it.</div>
+</div></div></div>
+
+<footer><b style="color:#cdb271">STATUS — OWNER DECISION 2026-11-06: ALL 10 APPROVED.</b> Every display on this page ships in the builder two ways: (1) as a <b>template</b> for a whole page/site dedicated to displaying images that way, and (2) as a <b>block</b> anyone can drop into the main homepage or any page they build. Built as working samples for the JV intranet — these 10 are the "effects" family (CD1–CD10), alongside the A1–A10 structural displays in the Options Galleries. Honest builder notes: #3 tilt, #5 cursor trail and #6 orbit are garnish, not staples — lovely on a hero or a feature page, tiring if every page does it. #1, #2-style masonry, #7 lightbox and #8 accordion are the workhorses. Anything hover-based needs a tap equivalent on phones, per the device-visibility rules (v7).</footer>
+
+<script>
+// 1 · Before/After
+(function(){var ba=document.getElementById('ba'),bw=document.getElementById('baBefore'),h=document.getElementById('baHandle'),k=document.getElementById('baKnob');
+function setP(x){var r=ba.getBoundingClientRect();var p=Math.max(2,Math.min(98,(x-r.left)/r.width*100));bw.style.width=p+'%';h.style.left=p+'%';k.style.left=p+'%';
+bw.querySelector('img').style.width=r.width+'px';}
+function drag(e){if(e.buttons||e.type.indexOf('touch')===0||e.type==='pointerdown'){setP(e.touches?e.touches[0].clientX:e.clientX);}}
+ba.addEventListener('pointerdown',function(e){setP(e.clientX);ba.setPointerCapture(e.pointerId);ba.onpointermove=function(ev){setP(ev.clientX)};ba.onpointerup=function(){ba.onpointermove=null}});
+window.addEventListener('resize',function(){setP(ba.getBoundingClientRect().left+ba.offsetWidth/2)});})();
+// 3 · Tilt
+(function(){var t=document.getElementById('tilt');var wrap=t.parentElement;
+function move(x,y){var r=t.getBoundingClientRect();var rx=((y-r.top)/r.height-.5)*-14;var ry=((x-r.left)/r.width-.5)*16;t.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';}
+wrap.addEventListener('pointermove',function(e){move(e.clientX,e.clientY)});
+wrap.addEventListener('pointerleave',function(){t.style.transform='rotateX(0) rotateY(0)'});})();
+// 4 · Reel wheel
+(function(){var r=document.getElementById('reel');r.addEventListener('wheel',function(e){if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){r.scrollLeft+=e.deltaY;e.preventDefault();}},{passive:false});})();
+// 5 · Hover reveal + tap fallback
+(function(){var list=document.getElementById('hoverList'),fp=document.getElementById('floatPrev'),tp=document.getElementById('tapPrev');
+list.querySelectorAll('a').forEach(function(a){
+a.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){fp.src=a.dataset.img;fp.style.opacity=1;}});
+a.addEventListener('pointerleave',function(){fp.style.opacity=0;});
+a.addEventListener('click',function(e){e.preventDefault();if(e.pointerType!=='mouse'||window.innerWidth<700){tp.src=a.dataset.img;tp.style.display='block';}});});
+list.addEventListener('pointermove',function(e){var r=list.getBoundingClientRect();fp.style.left=Math.min(r.width-200,e.clientX-r.left+16)+'px';fp.style.top=(e.clientY-r.top-40)+'px';});})();
+// 6 · Orbit
+(function(){var o=document.getElementById('orbit'),imgs=o.querySelectorAll('img'),n=imgs.length,ang=0;
+imgs.forEach(function(im,i){im.style.transform='rotateY('+(i*360/n)+'deg) translateZ(300px)';});
+function draw(){o.style.transform='rotateY('+ang+'deg)';}
+document.getElementById('orbL').onclick=function(){ang+=360/n;draw();};
+document.getElementById('orbR').onclick=function(){ang-=360/n;draw();};draw();})();
+// 7 · Lightbox
+(function(){var grid=document.getElementById('lbGrid'),items=[].slice.call(grid.querySelectorAll('img')),lb=document.getElementById('lightbox'),im=document.getElementById('lbImg'),ti=document.getElementById('lbTitle'),st=document.getElementById('lbStory'),cur=0;
+function show(i){cur=(i+items.length)%items.length;im.src=items[cur].src;ti.textContent=items[cur].dataset.title;st.textContent=items[cur].dataset.story;lb.style.display='block';document.body.style.overflow='hidden';}
+items.forEach(function(it,i){it.addEventListener('click',function(){show(i)});});
+function close(){lb.style.display='none';document.body.style.overflow='';}
+document.getElementById('lbX').onclick=close;lb.addEventListener('click',function(e){if(e.target===lb)close();});
+document.getElementById('lbPrev').onclick=function(){show(cur-1)};document.getElementById('lbNext').onclick=function(){show(cur+1)};})();
+// 8 · Accordion
+(function(){var figs=document.querySelectorAll('#acc figure');
+figs.forEach(function(f){function act(){figs.forEach(function(x){x.classList.remove('on')});f.classList.add('on');}
+f.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')act();});f.addEventListener('click',act);});})();
+// 10 · Scroll zoom
+(function(){var outer=document.getElementById('zoomOuter'),img=document.getElementById('zoomImg'),cap=document.getElementById('zoomCap');
+function onScroll(){var r=outer.getBoundingClientRect();var total=outer.offsetHeight-window.innerHeight*.7;var p=Math.max(0,Math.min(1,-r.top/Math.max(1,total)));
+img.style.transform='scale('+(0.55+0.45*p)+')';cap.style.opacity=p>0.55?Math.min(1,(p-0.55)*2.4):0;}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
+</script>
+</body></html>

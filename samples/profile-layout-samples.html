@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Industrial-Chic Profile Layouts — Samples (10)</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#141414;color:#f0ede8}
+header,.sample{max-width:980px;margin:auto;padding:26px 20px 6px}
+h1{margin:0 0 6px;font-size:25px}h2{font-size:19px;margin:0 0 4px}
+.sub,.note{color:#b0a89c;font-size:14px;line-height:1.5;margin:0}.note b{color:#f0ede8}
+.sample{padding-top:34px}
+.num{display:inline-block;background:#c96a1e;color:#14100a;font-weight:800;font-size:11.5px;border-radius:99px;padding:2px 9px;margin-bottom:6px}
+.frame{border-radius:14px;overflow:hidden;margin-top:12px;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+.avt{border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex:none}
+.chip{display:inline-block;border-radius:99px;padding:3px 11px;font-size:11.5px;font-weight:700;margin:2px 3px 2px 0}
+footer{max-width:980px;margin:auto;padding:26px 20px 40px;color:#9a917f;font-size:13px;line-height:1.55}
+/* P1 blueprint */
+.p1{background:#16324a;background-image:linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px);background-size:26px 26px;color:#dcebf5;padding:22px}
+.p1 .bx{border:1.5px solid rgba(160,210,245,.75);padding:13px 15px;position:relative}
+.p1 .bx h4{margin:0 0 7px;font-size:11px;letter-spacing:2.5px;color:#8fc3e8;text-transform:uppercase}
+.p1 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+/* P2 materiality */
+.p2{display:flex;min-height:300px}
+.p2 .left{width:32%;background:#1d1d1f;color:#f0ede8;padding:24px 18px;text-align:center}
+.p2 .right{flex:1;background:linear-gradient(140deg,#8a6a48,#6f5136 55%,#7d5f40);color:#fdf8ef;padding:22px}
+.p2 .card{background:rgba(20,14,8,.32);border-radius:11px;padding:12px 15px;margin-top:11px;line-height:1.55;font-size:13.5px}
+/* P3 brick gallery */
+.p3{background:#2a2320;background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.35) 0 2px,transparent 2px 26px),repeating-linear-gradient(90deg,rgba(0,0,0,.25) 0 2px,transparent 2px 64px);padding:22px;color:#f0ede8}
+.p3 .cols{columns:3;column-gap:12px;margin-top:14px}
+.p3 .art{break-inside:avoid;background:#fdfcf8;color:#262019;border-radius:4px;padding:9px;margin-bottom:12px;box-shadow:0 8px 18px rgba(0,0,0,.45)}
+.p3 .art img{width:100%;border-radius:2px}
+/* P4 mono neon */
+.p4{background:#f4f4f2;color:#141414;padding:26px}
+.p4 .name{font-size:52px;font-weight:900;letter-spacing:-1.5px;line-height:.95;text-transform:uppercase}
+.p4 .accent{color:#e85d04}
+.p4 .stats{display:flex;gap:26px;margin-top:16px;flex-wrap:wrap}
+.p4 .stats b{font-size:30px;display:block}
+.p4 .stats span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666}
+/* P5 glass bento */
+.p5{background:linear-gradient(150deg,#23272e,#3a3f47 60%,#26221e);padding:20px;color:#f2f2f0}
+.p5 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:13px}
+.p5 .g{background:rgba(255,255,255,.13);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.55}
+.p5 .g h4{margin:0 0 6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#d8c9a3}
+/* P6 concierge */
+.p6{background:#faf6ec;color:#2c2417;padding:26px;font-family:Georgia,'Times New Roman',serif;text-align:center}
+.p6 .rule{height:1px;background:linear-gradient(90deg,transparent,#b08d3c,transparent);margin:14px auto;max-width:420px}
+.p6 .tabs{margin-top:16px}
+.p6 .tabs button{background:none;border:1px solid #b08d3c;color:#6d5518;border-radius:99px;padding:7px 16px;font-family:inherit;font-size:13.5px;cursor:pointer;margin:0 3px}
+.p6 .tabs button.on{background:#b08d3c;color:#fff}
+.p6 .panel{display:none;text-align:left;max-width:560px;margin:16px auto 0;line-height:1.7;font-size:14.5px}
+.p6 .panel.show{display:block}
+/* P7 command */
+.p7{background:#0f141a;color:#cfe3d4;padding:20px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.p7 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:13px}
+.p7 .w{background:#16202a;border:1px solid #2b3f4d;border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.65}
+.p7 .w h4{margin:0 0 6px;font-size:10.5px;letter-spacing:2px;color:#7fd08f;text-transform:uppercase}
+.p7 .bar{height:7px;background:#22303c;border-radius:99px;margin:4px 0 9px}
+.p7 .bar i{display:block;height:7px;border-radius:99px;background:#58b368}
+/* P8 chronicle */
+.p8{background:#fdfdf9;color:#26221c;padding:24px}
+.p8 .tl{border-left:3px solid #b98a2f;margin:18px 0 0 12px;padding-left:24px;position:relative}
+.p8 .ev{position:relative;margin-bottom:19px;line-height:1.55;font-size:14px}
+.p8 .ev:before{content:"";position:absolute;left:-32.5px;top:4px;width:14px;height:14px;border-radius:50%;background:#b98a2f;border:3px solid #fdfdf9;box-shadow:0 0 0 2px #b98a2f}
+.p8 .ev b{display:block}
+.p8 .ev span{color:#8a7f68;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+/* P9 gallery floating */
+.p9{position:relative;background:#101010}
+.p9 .hero{width:100%;height:290px;object-fit:cover;filter:saturate(.85)}
+.p9 .bio{max-width:640px;margin:-64px auto 0;position:relative;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:14px;padding:18px 22px;color:#1c2620;box-shadow:0 16px 38px rgba(0,0,0,.4)}
+.p9 .pad{height:26px}
+/* P10 constellation */
+.p10{background:#0c1220;color:#dce6f5;padding:22px}
+.p10 .node{cursor:pointer}
+.p10 .node:hover circle{stroke:#ffd166;stroke-width:2.5}
+.p10 .card{background:#141e33;border:1px solid #2c4066;border-radius:11px;padding:12px 16px;margin-top:12px;font-size:14px;line-height:1.6;min-height:66px}
+@media(max-width:640px){.p2{flex-direction:column}.p2 .left{width:100%}.p3 .cols{columns:2}.p5 .grid,.p7 .grid{grid-template-columns:1fr 1fr}.p4 .name{font-size:38px}}
+</style></head><body>
+<header>
+<h1>Industrial-Chic Profile Layouts — Samples</h1>
+<p class="sub">The same person — Mei Chen — dressed ten different ways, so you can judge the *look*, not the content. Drafted as templates per your word: they join the profile shelf as the C11–C20 Industrial Series, and the company-picks-one rule still applies across all twenty. One is genuinely interactive below (the Constellation), one has working tabs (the Concierge) — the rest are about the visual system.</p>
+</header>
+
+<div class="sample"><span class="num">PROFILE 1 · C11</span><h2>The "Exposed Blueprint" Grid</h2><p class="note">Drafting-table dark blue, grid lines showing, every section a precision frame with its title stamped like a drawing label.</p>
+<div class="frame p1">
+<div style="display:flex;gap:16px;align-items:center"><span class="avt" style="width:78px;height:78px;font-size:25px;background:#1d4e68;border:2px solid #a0d2f5">MC</span>
+<div><div style="font-size:23px;font-weight:800;letter-spacing:.5px">MEI CHEN</div><div style="color:#8fc3e8;font-size:13px;letter-spacing:2px">HOMEOWNER CARE SPECIALIST — DWG NO. CC-041</div></div></div>
+<div class="grid">
+<div class="bx"><h4>Current Projects</h4>Harbourgate Tower — orientations<br>The Marlowe — key handover prep</div>
+<div class="bx"><h4>Contact</h4>Desk 4-12 · Teams chat<br>mei.chen@jvdev.example</div>
+<div class="bx"><h4>Expertise</h4>Deficiency reviews · Possession days<br>Homeowner guides</div>
+<div class="bx"><h4>Scale / Status</h4>At her desk · Vancouver (PT)<br>Scale 1:1 — do not scale drawing 😉</div>
+</div></div></div>
+
+<div class="sample"><span class="num">PROFILE 2 · C12</span><h2>The "Materiality Split"</h2><p class="note">Matte charcoal on the left holds the person; warm wood-and-concrete on the right holds the story, scrolling past like a material sample board.</p>
+<div class="frame p2">
+<div class="left"><span style="display:inline-block;padding:3px;border-radius:50%;background:#2fa84f"><span class="avt" style="width:96px;height:96px;font-size:32px;background:#40613a">MC</span></span>
+<div style="font-size:19px;font-weight:800;margin-top:12px">Mei Chen</div><div style="opacity:.75;font-size:13px">Homeowner Care Specialist</div>
+<p style="margin:16px 0 0"><button style="background:#c96a1e;color:#fff;border:0;border-radius:9px;padding:8px 15px;font-weight:700;cursor:pointer">💬 Message</button> <button style="background:transparent;color:#f0ede8;border:1px solid #777;border-radius:9px;padding:8px 15px;font-weight:700;cursor:pointer">📅 Sync</button></p>
+<div style="font-size:12px;opacity:.65;margin-top:14px">● Active now · Desk 4-12</div></div>
+<div class="right"><b style="letter-spacing:2px;font-size:12px">PROJECT HISTORY</b>
+<div class="card"><b>Harbourgate Tower (2025– )</b><br>Ran 120+ homeowner orientations; wrote the guide new owners actually read.</div>
+<div class="card"><b>Northgate Residences (2024)</b><br>First point of contact for 86 families from purchase to keys.</div>
+<div class="card"><b>From the blog:</b> "Possession day is a wedding, not a warehouse drop-off."</div></div>
+</div></div>
+
+<div class="sample"><span class="num">PROFILE 3 · C13</span><h2>The "Exposed Brick &amp; Gallery" Masonry Wall</h2><p class="note">Dark brick behind, and her updates, site photos and posts pinned up like art in a gallery — uneven, warm, human.</p>
+<div class="frame p3">
+<div style="display:flex;gap:14px;align-items:center"><span class="avt" style="width:66px;height:66px;font-size:21px;background:#7ba05b">MC</span><div><b style="font-size:20px">Mei Chen</b><div style="opacity:.8;font-size:13px">Homeowner Care Specialist · Customer Care</div></div></div>
+<div class="cols">
+<div class="art"><img src="img/tower.jpg"><b>Harbourgate, topped out</b><br><span style="font-size:12px;color:#6b5f4c">Site visit · Nov 2</span></div>
+<div class="art"><b>Latest update</b><br><span style="font-size:13px;line-height:1.55">Orientation night #3 done — 40 families, zero lost keys, one very happy dog in unit 1204.</span></div>
+<div class="art"><img src="img/vancouver.jpg"><b>The Marlowe at dusk</b><br><span style="font-size:12px;color:#6b5f4c">Photo gallery · 12 shots</span></div>
+<div class="art"><b>Care Award 2026</b><br><span style="font-size:13px">For the welcome-home program.</span></div>
+<div class="art"><img src="img/crane.jpg"><b>Northgate rising</b><br><span style="font-size:12px;color:#6b5f4c">Throwback · 2024</span></div>
+</div></div></div>
+
+<div class="sample"><span class="num">PROFILE 4 · C14</span><h2>The "Monochrome Editorial &amp; Neon Accent"</h2><p class="note">Everything grayscale except one loud construction-orange accent. The name is the headline; the numbers are the story.</p>
+<div class="frame p4">
+<div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap"><span class="avt" style="width:104px;height:104px;font-size:36px;background:#222;filter:grayscale(1)">MC</span>
+<div style="flex:1;min-width:260px"><div class="name">Mei<br>Chen<span class="accent">.</span></div>
+<div style="letter-spacing:3px;font-size:12.5px;margin-top:8px">HOMEOWNER CARE SPECIALIST — <span class="accent" style="font-weight:800">CUSTOMER CARE</span></div></div></div>
+<div class="stats">
+<div><b>312</b><span>Homes handed over</span></div>
+<div><b>128</b><span>Orientations run</span></div>
+<div><b>6<span class="accent">yrs</span></b><span>At JV</span></div>
+<div><b>1</b><span>Guide she wrote</span></div>
+</div>
+<p style="color:#555;line-height:1.65;max-width:560px;margin:18px 0 0">Possession day is a wedding, not a warehouse drop-off. Mei makes sure every family crosses their own threshold like it matters — because it does.</p>
+</div></div>
+
+<div class="sample"><span class="num">PROFILE 5 · C15</span><h2>The "Layered Glass &amp; Steel" Bento</h2><p class="note">Frosted glass tiles floating over dark steel — schedule in one, skills in another, the human stuff in a third.</p>
+<div class="frame p5">
+<div style="display:flex;gap:14px;align-items:center"><span class="avt" style="width:66px;height:66px;font-size:21px;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.6)">MC</span><div><b style="font-size:20px">Mei Chen</b><div style="opacity:.8;font-size:13px">Homeowner Care Specialist · ● Active now</div></div></div>
+<div class="grid">
+<div class="g"><h4>Today</h4>Orientations 10:00 + 13:30<br>Deficiency walk 15:00</div>
+<div class="g"><h4>Skills</h4>Deficiency reviews · Possession days · Homeowner guides</div>
+<div class="g"><h4>Projects</h4>Harbourgate · The Marlowe</div>
+<div class="g"><h4>Currently reading</h4><i>The Design of Everyday Things</i> — "for the guide rewrite"</div>
+<div class="g"><h4>On repeat 🎧</h4>Lo-fi site-visit playlist, vol. 3</div>
+<div class="g"><h4>Find me</h4>Desk 4-12 · Teams · mei.chen@</div>
+</div></div></div>
+
+<div class="sample"><span class="num">PROFILE 6 · C16</span><h2>The "Boutique Hotel Concierge" Dossier</h2><p class="note">Serif type, bronze rules, tabs that glide. Networking that feels like checking in somewhere lovely. <b style="color:#f0ede8">The tabs work — try them.</b></p>
+<div class="frame p6">
+<span class="avt" style="width:92px;height:92px;font-size:30px;background:#8a6d3b;margin:auto;border:3px solid #b08d3c">MC</span>
+<div style="font-size:26px;margin-top:10px">Mei Chen</div>
+<div style="letter-spacing:3px;font-size:11.5px;color:#8a6d3b">HOMEOWNER CARE SPECIALIST · EST. 2020</div>
+<div class="rule"></div>
+<div class="tabs">
+<button class="on" data-p="c1">Direct Contacts</button><button data-p="c2">Active Site Allocations</button><button data-p="c3">Personal Bio</button>
+</div>
+<div class="panel show" id="pc1">Desk 4-12, HQ fourth floor · Teams chat preferred · mei.chen@jvdev.example · Vancouver (PT), at her desk until 16:30.</div>
+<div class="panel" id="pc2">Harbourgate Tower — orientations &amp; key handover, through spring. The Marlowe — homeowner guide review, two afternoons a week.</div>
+<div class="panel" id="pc3">Mei has welcomed more than 300 families into JV homes. She keeps a notebook of every dog's name. Off the clock: night markets, film photography, one very spoiled cat.</div>
+</div></div>
+
+<div class="sample"><span class="num">PROFILE 7 · C17</span><h2>The "Command Center" Dashboard</h2><p class="note">For power users and managers: the profile as a workstation — live project status, availability, recent approvals, a message console.</p>
+<div class="frame p7">
+<div style="display:flex;gap:12px;align-items:center"><span class="avt" style="width:54px;height:54px;font-size:18px;background:#2b5d3a">MC</span><div><b style="font-size:17px;color:#eef6ee">M.CHEN — CUSTOMER CARE</b><div style="font-size:12px;color:#7d94a3">STATUS: ONLINE · SHIFT 08:00–16:30 PT</div></div></div>
+<div class="grid">
+<div class="w"><h4>Project status</h4>Harbourgate orientations<div class="bar"><i style="width:82%"></i></div>Marlowe guide review<div class="bar"><i style="width:45%"></i></div></div>
+<div class="w"><h4>Availability — today</h4>Busy 10:00–11:30 · 13:30–14:15<br><span style="color:#7fd08f">Free now → 10:00, 14:15 → 16:30</span></div>
+<div class="w"><h4>Recent approvals</h4>✓ Orientation Guide v3 — approved<br>✓ Welcome Kit order — signed<br>✓ Dec orientation roster — filed</div>
+<div class="w"><h4>Queue</h4>Deficiency reports: 4 open<br>Homeowner emails: 2 waiting</div>
+<div class="w"><h4>Direct message</h4>&gt; "Keys for 1204 are at your desk."<br><span style="color:#7d94a3">[ type a message… ]</span></div>
+<div class="w"><h4>This week</h4>Orientations: 9 · Walks: 3<br>Response time: 41 min avg</div>
+</div></div></div>
+
+<div class="sample"><span class="num">PROFILE 8 · C18</span><h2>The "Chronicle &amp; Timeline" Storyline</h2><p class="note">Her JV story on a brass rail: scroll the years, watch a career happen. The profile as institutional memory.</p>
+<div class="frame p8">
+<div style="display:flex;gap:14px;align-items:center"><span class="avt" style="width:64px;height:64px;font-size:20px;background:#8a6d3b">MC</span><div><b style="font-size:20px">Mei Chen — A JV Chronicle</b><div style="color:#8a7f68;font-size:13px">Homeowner Care Specialist · since 2020</div></div></div>
+<div class="tl">
+<div class="ev"><span>2020</span><b>Joins JV</b>First hire on the Customer Care team — employee #41.</div>
+<div class="ev"><span>2022</span><b>Northgate keys</b>Welcomed 86 families; started the dog-name notebook.</div>
+<div class="ev"><span>2024</span><b>Wrote the Homeowner Guide</b>The 70-page guide every JV buyer now gets — in plain language.</div>
+<div class="ev"><span>2026</span><b>Care Award + Harbourgate</b>Company Care Award; leading orientations at Harbourgate Tower.</div>
+</div></div></div>
+
+<div class="sample"><span class="num">PROFILE 9 · C19</span><h2>The "Minimalist Gallery &amp; Floating Bio"</h2><p class="note">A cinematic full-bleed image takes the top; the glass bio card floats up over it — imagery first, details in the frost.</p>
+<div class="frame p9">
+<img class="hero" src="img/vancouver.jpg" alt="City at dusk">
+<div class="bio"><div style="display:flex;gap:14px;align-items:center"><span class="avt" style="width:60px;height:60px;font-size:19px;background:#40613a">MC</span>
+<div><b style="font-size:19px">Mei Chen</b><div style="font-size:13px;color:#66736a">Homeowner Care Specialist · Customer Care · Vancouver</div></div></div>
+<p style="line-height:1.6;font-size:14px;margin:11px 0 0">The person who hands you your keys. 312 homes and counting — and she remembers the dogs. <span class="chip" style="background:#eef3ee;border:1px solid #cfd8cd">Orientations</span><span class="chip" style="background:#eef3ee;border:1px solid #cfd8cd">Deficiencies</span><span class="chip" style="background:#eef3ee;border:1px solid #cfd8cd">Guides</span></p></div>
+<div class="pad"></div>
+</div></div>
+
+<div class="sample"><span class="num">PROFILE 10 · C20</span><h2>The "Interactive Skill Constellation"</h2><p class="note">Her expertise as a star map — skills, certifications and projects on glowing threads. <b style="color:#f0ede8">Tap a node</b> and its story opens below.</p>
+<div class="frame p10">
+<div style="display:flex;gap:14px;align-items:center"><span class="avt" style="width:58px;height:58px;font-size:18px;background:#33507a">MC</span><div><b style="font-size:19px">Mei Chen</b><div style="font-size:13px;color:#8fa8c8">Homeowner Care Specialist</div></div></div>
+<svg viewBox="0 0 880 250" style="width:100%;margin-top:8px">
+<g stroke="#3d5a8a" stroke-width="1.4">
+<line x1="440" y1="125" x2="180" y2="55"/><line x1="440" y1="125" x2="160" y2="190"/><line x1="440" y1="125" x2="700" y2="50"/><line x1="440" y1="125" x2="720" y2="195"/><line x1="440" y1="125" x2="440" y2="32"/>
+<line x1="180" y1="55" x2="700" y2="50" stroke-dasharray="4 5" opacity=".5"/><line x1="160" y1="190" x2="720" y2="195" stroke-dasharray="4 5" opacity=".5"/></g>
+<g class="node" data-t="Deficiency Reviews" data-d="Mei has walked 300+ homes with a tag gun and a flashlight. Her sub-4-tags-per-home average is the number the Construction team quotes back at her — proudly."><circle cx="440" cy="125" r="26" fill="#2b4a7a" stroke="#8fb6e8" stroke-width="2"/><text x="440" y="121" fill="#fff" font-size="10.5" font-weight="700" text-anchor="middle">CORE</text><text x="440" y="135" fill="#cfe0f5" font-size="9.5" text-anchor="middle">SKILL</text></g>
+<g class="node" data-t="Possession Days" data-d="The big one: keys, walkthrough, welcome kit, first-night check-in call. Mei has run possession for three full towers and trained every coordinator who does it now."><circle cx="180" cy="55" r="21" fill="#1b2c49" stroke="#7aa5dd"/><text x="180" y="52" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Possession</text><text x="180" y="65" fill="#9db9dd" font-size="9" text-anchor="middle">Days</text></g>
+<g class="node" data-t="Homeowner Guides" data-d="Author of the JV Homeowner Guide (70 pages, plain language, actually read). Currently reviewing the Marlowe edition."><circle cx="160" cy="190" r="21" fill="#1b2c49" stroke="#7aa5dd"/><text x="160" y="187" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Guides</text><text x="160" y="200" fill="#9db9dd" font-size="9" text-anchor="middle">Author</text></g>
+<g class="node" data-t="Harbourgate Tower" data-d="Current project: leading orientations and key handovers for all 34 storeys, through spring."><circle cx="700" cy="50" r="21" fill="#1b2c49" stroke="#7aa5dd"/><text x="700" y="47" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Harbour-</text><text x="700" y="60" fill="#9db9dd" font-size="9" text-anchor="middle">gate</text></g>
+<g class="node" data-t="First Aid Cert." data-d="Certified workplace first aid attendant, Level 1 — the person the HQ floor warden list points to. Renewed 2026."><circle cx="720" cy="195" r="21" fill="#1b2c49" stroke="#7aa5dd"/><text x="720" y="192" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">First Aid</text><text x="720" y="205" fill="#9db9dd" font-size="9" text-anchor="middle">Certified</text></g>
+<g class="node" data-t="New-Owner Onboarding" data-d="Built the welcome sequence every JV buyer goes through — email at purchase, call at 30 days, orientation, keys, first-week check-in."><circle cx="440" cy="32" r="19" fill="#1b2c49" stroke="#7aa5dd"/><text x="440" y="29" fill="#fff" font-size="9.5" font-weight="700" text-anchor="middle">Onboard-</text><text x="440" y="41" fill="#9db9dd" font-size="9" text-anchor="middle">ing</text></g>
+</svg>
+<div class="card" id="skillCard"><b>Deficiency Reviews</b> — tap any node. The centre is her core skill; the ring is everything connected to it.</div>
+</div></div>
+
+<footer>STATUS — OWNER DECISION 2026-11-06: ALL 10 APPROVED AS TEMPLATES. These join the profile shelf as C11–C20, the Industrial Series, beside the original C1–C10. The company still picks ONE profile template for everyone (the original Facebook rule) — now from a shelf of twenty. Avatar components AV1–AV10 layer on top of whichever profile template is chosen.</footer>
+
+<script>
+// P6 tabs
+document.querySelectorAll('.p6 .tabs button').forEach(function(b){b.addEventListener('click',function(){
+document.querySelectorAll('.p6 .tabs button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+document.querySelectorAll('.p6 .panel').forEach(function(p){p.classList.remove('show')});
+document.getElementById('p'+b.dataset.p).classList.add('show');});});
+// P10 constellation
+document.querySelectorAll('.p10 .node').forEach(function(n){n.addEventListener('click',function(){
+document.getElementById('skillCard').innerHTML='<b>'+n.dataset.t+'</b> — '+n.dataset.d;});});
+</script>
+</body></html>

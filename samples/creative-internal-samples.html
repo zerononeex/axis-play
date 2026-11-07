@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Internal Site Concepts — Live Sample Previews (15)</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#0d130e;color:#eef2ec}
+header,.sample{max-width:980px;margin:auto;padding:26px 20px 6px}
+h1{margin:0 0 6px;font-size:25px}h2{font-size:19px;margin:0 0 4px}
+.sub,.note{color:#a9b8ab;font-size:14px;line-height:1.5;margin:0}.note b{color:#eef2ec}
+.sample{padding-top:34px}
+.stage{background:#fff;color:#1c2620;border-radius:14px;padding:16px;margin-top:12px;overflow:hidden;position:relative}
+.num{display:inline-block;background:#b98a2f;color:#14100a;font-weight:800;font-size:11.5px;border-radius:99px;padding:2px 9px;margin-bottom:6px}
+.btn{background:#17352a;color:#fff;border:0;border-radius:9px;padding:8px 16px;font-weight:700;font-size:13.5px;cursor:pointer}
+.btn.alt{background:#eef3ee;color:#17352a;border:1px solid #cfd8cd}
+img{max-width:100%}
+footer{max-width:980px;margin:auto;padding:26px 20px 40px;color:#8fa392;font-size:13px;line-height:1.55}
+/* 1 graph */
+#graphWrap{background:#0a1020;border-radius:10px;position:relative}
+#graphTip{position:absolute;background:#fff;color:#16211b;border-radius:9px;padding:9px 12px;font-size:12.5px;max-width:230px;box-shadow:0 8px 22px rgba(0,0,0,.4);display:none;z-index:4;line-height:1.45}
+#graphTip b{display:block;font-size:13.5px}
+.node{cursor:pointer;transition:r .15s}
+.readout{margin-top:10px;background:#eef3ee;border-radius:9px;padding:10px 13px;font-size:13.5px;line-height:1.5;min-height:44px}
+/* 2 quest */
+#questWrap{background:linear-gradient(180deg,#fdf6e0,#f3e9c8);border-radius:10px;padding:8px}
+.checkpoint{cursor:pointer}
+.checkpoint circle{stroke:#fff;stroke-width:3}
+/* 3 metro */
+#metroWrap{background:#fdfdf8;border-radius:10px;overflow:auto}
+#metroSvg{transition:transform .3s;transform-origin:0 0}
+.station{cursor:pointer}.station:hover circle{stroke:#111;stroke-width:2}
+/* 4 floorplan */
+.fp{display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:110px 110px;gap:8px}
+.fp .room{border-radius:10px;padding:10px 12px;cursor:pointer;color:#fff;font-weight:700;font-size:14px;position:relative}
+.fp .room small{display:block;font-weight:400;opacity:.85;font-size:12px;margin-top:3px}
+.fp .room.on{outline:3px solid #16211b}
+/* 5 swipe deck */
+.deck{position:relative;height:330px;max-width:400px;margin:auto}
+.deckCard{position:absolute;inset:0;background:#fff;border:1px solid #e2e7e1;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.18);overflow:hidden;transition:transform .35s ease,opacity .35s ease;touch-action:pan-y}
+.deckCard img{width:100%;height:180px;object-fit:cover}
+.deckCard .dc{padding:12px 16px}
+.deckBtns{text-align:center;margin-top:12px}
+/* 6 shelves */
+.shelfRow{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px}
+.shelfCard{flex:0 0 190px;border-radius:11px;overflow:hidden;position:relative;cursor:pointer}
+.shelfCard img{width:100%;height:120px;object-fit:cover;display:block}
+.shelfCard span{position:absolute;left:9px;bottom:8px;color:#fff;font-weight:700;font-size:13px;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+/* 7 magazine */
+.magGrid{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}
+.magGrid .hero img{width:100%;height:230px;object-fit:cover;border-radius:10px}
+.pull{border-left:4px solid #b98a2f;padding:4px 0 4px 13px;font-size:17px;line-height:1.45;font-style:italic;color:#33413a}
+.wave{display:flex;gap:3px;align-items:flex-end;height:28px;margin:8px 0}
+.wave i{flex:1;background:#b9c6ba;border-radius:2px;height:30%}
+.wave.playing i{animation:wv 0.7s ease-in-out infinite alternate;background:#2e6b4f}
+@keyframes wv{from{height:18%}to{height:95%}}
+/* 8 ticker */
+.ticker{background:#16211b;color:#fff;border-radius:9px;overflow:hidden;white-space:nowrap;padding:9px 0}
+.ticker .move{display:inline-block;padding-left:100%;animation:tick 26s linear infinite}
+@keyframes tick{to{transform:translateX(-100%)}}
+.ticker b{color:#cdb271}
+/* 9 timeline */
+#tlRange{width:100%}
+.tlTrack{position:relative;height:8px;background:#dde3dc;border-radius:99px;margin:26px 6px 8px}
+.tlDot{position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:#2e6b4f;transform:translate(-50%,-50%);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3)}
+/* 10 bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:104px;gap:9px}
+.bento .bx{border-radius:12px;padding:12px;overflow:hidden;position:relative}
+.bento .wide{grid-column:span 2}.bento .tall{grid-row:span 2}.bento .big{grid-column:span 2;grid-row:span 2}
+.bento img{width:100%;height:100%;object-fit:cover}
+.pollbar{background:#dde3dc;border-radius:99px;height:9px;margin:5px 0 9px;cursor:pointer}
+.pollbar i{display:block;height:9px;border-radius:99px;background:#2e6b4f}
+/* 11 adventure */
+.advQ{text-align:center;padding:6px 0 2px}
+.advOpts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.advCard{border:1px solid #e2e7e1;border-radius:11px;padding:11px 13px;margin-top:9px;display:none}
+.advCard.show{display:block}
+/* 12 audio */
+.transcript{line-height:1.9;font-size:14.5px;color:#66736a;max-height:170px;overflow:auto;padding-right:6px}
+.transcript .ln{padding:2px 6px;border-radius:6px}
+.transcript .ln.on{background:#fdf3d8;color:#16211b;font-weight:600}
+/* 13 social */
+.post{border:1px solid #e6eae5;border-radius:12px;padding:13px 15px;margin-top:11px}
+.post .who{display:flex;gap:10px;align-items:center}
+.av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7ba05b,#40613a);flex:none}
+.react button{background:#eef3ee;border:1px solid #dde3dc;border-radius:99px;padding:4px 11px;cursor:pointer;font-size:13px;margin-right:6px}
+.comments{display:none;border-top:1px solid #eef1ee;margin-top:9px;padding-top:8px;font-size:13.5px;color:#4c5a50;line-height:1.6}
+.comments.open{display:block}
+/* 14 pinboard */
+.board{background:#b08954;background-image:radial-gradient(rgba(0,0,0,.14) 1px,transparent 1.6px);background-size:14px 14px;border-radius:10px;padding:20px 14px;display:flex;gap:13px;flex-wrap:wrap;justify-content:center}
+.pin{width:158px;background:#fff;padding:8px 8px 10px;box-shadow:0 8px 18px rgba(0,0,0,.3);position:relative;font-size:12px;line-height:1.45}
+.pin img{width:100%;height:104px;object-fit:cover}
+.pin:before{content:"";position:absolute;top:-7px;left:50%;margin-left:-8px;width:16px;height:16px;border-radius:50%;background:#c0392b;box-shadow:0 3px 5px rgba(0,0,0,.4);z-index:2}
+.pin.sticky{background:#fdf3a7;min-height:130px;padding:14px 11px;font-size:13px}
+.pin.r1{transform:rotate(-3.5deg)}.pin.r2{transform:rotate(2.5deg)}.pin.r3{transform:rotate(-1.5deg)}.pin.r4{transform:rotate(3.5deg)}
+/* 15 flipbook */
+.bookWrap{perspective:1400px;display:flex;justify-content:center;padding:10px 0}
+.book{position:relative;width:300px;height:380px;transform-style:preserve-3d}
+.page{position:absolute;inset:0;background:#fffdf4;border:1px solid #e3ddc8;border-radius:6px;box-shadow:0 10px 26px rgba(0,0,0,.28);padding:20px;transform-origin:left center;transition:transform .8s ease;backface-visibility:hidden;overflow:hidden}
+.page img{width:100%;height:170px;object-fit:cover;border-radius:6px}
+.page.flipped{transform:rotateY(-180deg)}
+@media(max-width:640px){.magGrid{grid-template-columns:1fr}.fp{grid-template-rows:96px 96px}.bento{grid-auto-rows:92px}}
+</style></head><body>
+<header>
+<h1>Internal Site Concepts — Live Sample Previews</h1>
+<p class="sub">Your 15, each one built as a small <b style="color:#eef2ec">working preview</b> with JV Developments content — hover, tap, drag, scrub and flip your way through them. One honest flag before you start: #2's description earns people "XP and badges" — that's the points system you killed an hour ago, so the sample shows the map itself, and if you ever pick it we'd run it as a pure reading journey with the rewards stripped out.</p>
+</header>
+
+<div class="sample"><span class="num">CONCEPT 1</span><h2>The Knowledge Graph (Constellation View)</h2><p class="note">Every star is a post; the glowing lines connect shared tags. Hover a star to preview it, tap it to pin the preview below.</p>
+<div class="stage"><div id="graphWrap"><svg id="graphSvg" viewBox="0 0 900 340" style="width:100%;display:block"></svg><div id="graphTip"></div></div>
+<div class="readout" id="graphOut">✦ Hover the constellation — the big stars are the most-read posts this month.</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 2</span><h2>The Quest Map / Journey Board</h2><p class="note">Announcements and training as checkpoints on a winding path. Tap a checkpoint to see what's there. (Journey only — no XP, no badges, per your no-points rule.)</p>
+<div class="stage"><div id="questWrap"><svg viewBox="0 0 900 300" style="width:100%;display:block">
+<path d="M40,250 C200,120 260,280 420,180 S700,60 860,110" fill="none" stroke="#b98a2f" stroke-width="5" stroke-dasharray="11 8" stroke-linecap="round"/>
+<g id="questPts"></g></svg></div>
+<div class="readout" id="questOut">🗺 Start at the trailhead: tap checkpoint 1.</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 3</span><h2>The Metro / Subway Map</h2><p class="note">Departments are colour-coded lines, posts are stations. Tap a station to see its latest post; zoom to explore.</p>
+<div class="stage"><div id="metroWrap"><svg id="metroSvg" viewBox="0 0 900 320" style="width:100%;display:block">
+<path d="M30,60 H870" stroke="#c0392b" stroke-width="6"/><path d="M30,160 H870" stroke="#2471a3" stroke-width="6"/><path d="M30,260 H870" stroke="#2e6b4f" stroke-width="6"/>
+<text x="34" y="40" font-size="15" font-weight="700" fill="#c0392b">HR LINE</text><text x="34" y="140" font-size="15" font-weight="700" fill="#2471a3">CONSTRUCTION LINE</text><text x="34" y="240" font-size="15" font-weight="700" fill="#2e6b4f">CUSTOMER CARE LINE</text>
+<g id="metroPts"></g></svg></div>
+<p style="margin:10px 0 0"><button class="btn alt" id="metroZoom">＋ Zoom in</button> <button class="btn alt" id="metroReset">Reset</button></p>
+<div class="readout" id="metroOut">🚇 Pick a line and ride it — tap any station.</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 4</span><h2>The Virtual Office / Floorplan</h2><p class="note">Rooms are teams and topics. Tap the Boardroom, the Library, the Watercooler — each opens its posts.</p>
+<div class="stage"><div class="fp">
+  <div class="room on" data-room="board" style="background:#17352a">🏛 Boardroom<small>Leadership updates &amp; town halls</small></div>
+  <div class="room" data-room="library" style="background:#5b84a0">📚 Library<small>Deep dives &amp; guides</small></div>
+  <div class="room" data-room="water" style="background:#7ba05b">☕ Watercooler<small>Social posts &amp; shout-outs</small></div>
+  <div class="room" data-room="site" style="background:#a06a2c">🏗 Site Office<small>Construction news</small></div>
+  <div class="room" data-room="care" style="background:#8a5ba0">🏠 Homeowner Lounge<small>Customer Care stories</small></div>
+  <div class="room" data-room="lab" style="background:#40613a">🧪 The Lab<small>IT, tools &amp; experiments</small></div>
+</div>
+<div class="readout" id="fpOut">🏛 <b>Boardroom:</b> “Q4 Town Hall — the Harbourgate numbers, in plain English” · “A note from the CEO on Northgate”</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 5</span><h2>The Swipe Deck (Flash Cards)</h2><p class="note">One punchy card at a time. Skip it, save it, or tap the card to flip it over and read. Fast thumbs-first news.</p>
+<div class="stage"><div class="deck" id="deck"></div>
+<div class="deckBtns"><button class="btn alt" id="deckSkip">✕ Skip</button> <button class="btn alt" id="deckFlip">↻ Flip to read</button> <button class="btn" id="deckSave">♥ Save</button></div>
+<div class="readout" id="deckOut">🂡 Card 1 of 4 — Harbourgate tops out.</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 6</span><h2>The "Spotify-Style" Shelf Rows</h2><p class="note">Everyone already knows how to browse this: bold shelves, sideways scrolling, zero learning curve.</p>
+<div class="stage">
+<h3 style="margin:2px 0 6px">Trending in Construction</h3><div class="shelfRow">
+<div class="shelfCard"><img src="img/crane.jpg"><span>Crane day at Northgate</span></div>
+<div class="shelfCard"><img src="img/construction.jpg"><span>Groundbreaking gallery</span></div>
+<div class="shelfCard"><img src="img/tower.jpg"><span>Topping out, in photos</span></div>
+<div class="shelfCard"><img src="img/facade.jpg"><span>Glass, up close</span></div></div>
+<h3 style="margin:10px 0 6px">Must-Reads This Week</h3><div class="shelfRow">
+<div class="shelfCard"><img src="img/vancouver.jpg"><span>The Marlowe at dusk</span></div>
+<div class="shelfCard"><img src="img/tower.jpg"><span>Harbourgate: full story</span></div>
+<div class="shelfCard"><img src="img/crane.jpg"><span>Winter site safety</span></div>
+<div class="shelfCard"><img src="img/construction.jpg"><span>Meet the site crew</span></div></div>
+<h3 style="margin:10px 0 6px">Quick 2-Minute Bites</h3><div class="shelfRow">
+<div class="shelfCard"><img src="img/facade.jpg"><span>One photo, one fact</span></div>
+<div class="shelfCard"><img src="img/vancouver.jpg"><span>Neighbourhood notes</span></div>
+<div class="shelfCard"><img src="img/tower.jpg"><span>34 storeys, 34 seconds</span></div>
+<div class="shelfCard"><img src="img/crane.jpg"><span>Permit office miracle</span></div></div>
+</div></div>
+
+<div class="sample"><span class="num">CONCEPT 7</span><h2>The Immersive Digital Magazine Spread</h2><p class="note">A company blog that feels like a publication you'd pick up in a waiting room on purpose.</p>
+<div class="stage"><div class="magGrid">
+<div class="hero"><img src="img/vancouver.jpg"><h3 style="margin:10px 0 4px;font-size:20px">The Marlowe Issue</h3><p style="color:#4c5a50;line-height:1.55;margin:0">Three evenings the photographer waited for this light. Inside: the fight for the sunset-facing terrace, the beekeeping club, and why the fourth floor is everyone's favourite.</p></div>
+<div><div class="pull">"Every room gets a view worth sitting down for."</div>
+<p style="font-size:13px;color:#66736a;margin:8px 0 0">— Design lead, on the one rule that shaped Harbourgate</p>
+<div style="margin-top:16px;border-top:1px solid #e6eae5;padding-top:12px"><b style="font-size:14px">🎧 Listen: the 90-second version</b>
+<div class="wave" id="magWave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<button class="btn" id="magPlay">▶ Play snippet</button></div></div>
+</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 8</span><h2>Live News Ticker &amp; Flash Bulletin Bar</h2><p class="note">The urgent stuff never stops moving at the top; the rich feed lives underneath it.</p>
+<div class="stage"><div class="ticker"><span class="move"><b>FLASH:</b> Harbourgate tops out on schedule &nbsp;•&nbsp; <b>WIN:</b> Northgate permits approved 9 days early &nbsp;•&nbsp; <b>POLL:</b> Holiday party — Friday or Saturday? Vote in Community &nbsp;•&nbsp; <b>URGENT:</b> Site radios swap to channel 6 on Monday &nbsp;•&nbsp;</span></div>
+<div id="tickerFeed">
+<div class="post"><b>Harbourgate tops out</b><p style="margin:4px 0 0;color:#4c5a50;font-size:14px;line-height:1.5">Final beam placed this morning. Photos and the CEO's note inside.</p></div>
+<div class="post"><b>Winter safety refresh</b><p style="margin:4px 0 0;color:#4c5a50;font-size:14px;line-height:1.5">What changes on site Monday — two-minute read, please actually read it.</p></div>
+</div>
+<p style="margin:12px 0 0"><button class="btn" id="tickerPush">Simulate a breaking update</button></p></div></div>
+
+<div class="sample"><span class="num">CONCEPT 9</span><h2>The Interactive Timeline / Time Machine</h2><p class="note">The whole Harbourgate story on one rail. Drag the slider and scrub through the years — every era has its post pinned to it.</p>
+<div class="stage">
+<div class="tlTrack" id="tlTrack">
+<span class="tlDot" style="left:4%"></span><span class="tlDot" style="left:28%"></span><span class="tlDot" style="left:52%"></span><span class="tlDot" style="left:76%"></span><span class="tlDot" style="left:96%"></span>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:11.5px;color:#66736a;padding:0 2px"><span>2023 · Groundbreaking</span><span>2024 · Crane up</span><span>2025 · Halfway</span><span>2026 · Glass on</span><span>2026 · Topped out</span></div>
+<input type="range" id="tlRange" min="0" max="4" step="1" value="4" style="margin-top:14px">
+<div class="readout" id="tlOut">🏆 <b>Nov 2026 — Topping out:</b> “Final beam placed this morning, on schedule. The whole crew signed it before it went up — look for your name in the photos.”</div>
+</div></div>
+
+<div class="sample"><span class="num">CONCEPT 10</span><h2>The "Bento Box" Grid</h2><p class="note">One screen, many appetites: a film, the top story, two polls, photos — each in its own compartment. Tap a poll bar to cast your vote and watch it move.</p>
+<div class="stage"><div class="bento" style="grid-auto-flow:dense">
+<div class="bx big" style="padding:0"><img src="img/tower.jpg"><span style="position:absolute;left:12px;bottom:10px;color:#fff;font-weight:800;text-shadow:0 1px 6px rgba(0,0,0,.7)">▶ Watch: Topping-out day (2:14)</span></div>
+<div class="bx wide" style="background:#17352a;color:#f2efe6"><b style="font-size:15.5px">Top story of the week</b><p style="margin:5px 0 0;font-size:13px;line-height:1.5;color:#cfd8cd">Northgate permits approved nine days early — what it means for the spring schedule.</p></div>
+<div class="bx tall" style="padding:0"><img src="img/crane.jpg"></div>
+<div class="bx wide poll" style="background:#fdf6e0"><b style="font-size:13.5px">🗳 Holiday party — which night?</b>
+<div style="font-size:12px;margin-top:7px">Friday <span class="pv" style="float:right;font-weight:700"></span></div><div class="pollbar" data-pct="64"><i style="width:4%;transition:width .8s ease"></i></div>
+<div style="font-size:12px">Saturday <span class="pv" style="float:right;font-weight:700"></span></div><div class="pollbar" data-pct="36"><i style="width:4%;transition:width .8s ease"></i></div></div>
+<div class="bx wide poll" style="background:#eef6ee"><b style="font-size:13.5px">🗳 Amenity you'd actually use?</b>
+<div style="font-size:12px;margin-top:7px">Rooftop garden <span class="pv" style="float:right;font-weight:700"></span></div><div class="pollbar" data-pct="58"><i style="width:4%;transition:width .8s ease"></i></div>
+<div style="font-size:12px">Games room <span class="pv" style="float:right;font-weight:700"></span></div><div class="pollbar" data-pct="42"><i style="width:4%;transition:width .8s ease"></i></div></div>
+<div class="bx" style="padding:0"><img src="img/facade.jpg"></div>
+<div class="bx" style="padding:0"><img src="img/vancouver.jpg"></div>
+<div class="bx wide" style="background:#eef3ee"><b style="font-size:13.5px">📅 This week at JV</b><p style="margin:5px 0 0;font-size:12.5px;line-height:1.55;color:#4c5a50">Tue — Safety stand-down, all sites · Thu — New-joiner lunch · Fri — Harbourgate photo walk</p></div>
+</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 11</span><h2>The "Choose-Your-Own-Adventure" Decision Tree</h2><p class="note">No searching, no guessing where things live. One question, three doors, and the exact articles behind the one you pick.</p>
+<div class="stage"><div class="advQ"><h3 style="margin:0;font-size:18px">What are you trying to accomplish today?</h3></div>
+<div class="advOpts">
+<button class="btn advBtn" data-adv="adv-fix">🔧 Something's broken</button>
+<button class="btn advBtn" data-adv="adv-learn">📘 I want to learn a process</button>
+<button class="btn advBtn" data-adv="adv-meet">👋 I'm new here</button>
+</div>
+<div class="advCard" id="adv-fix"><b>Fix it fast:</b><p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:#4c5a50">• “Radios swapped to channel 6 — the two-minute fix guide”<br>• “IT Helpdesk: what to include in your ticket so it gets answered first”<br>• “Site tablet won't sync? Do these three things before you call”</p></div>
+<div class="advCard" id="adv-learn"><b>Learn the process:</b><p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:#4c5a50">• “Deficiency walkthroughs, explained by the people who do 400+ a year”<br>• “How a homeowner orientation is booked, start to finish”<br>• “Reading a Procore drawing set without fear”</p></div>
+<div class="advCard" id="adv-meet"><b>Welcome aboard:</b><p style="margin:6px 0 0;font-size:14px;line-height:1.6;color:#4c5a50">• “Your first week at JV: the five people to meet and why”<br>• “Who's who — the 150 of us, in the Directory”<br>• “Friday photo walk: new joiners get the good camera”</p></div>
+<div class="readout" id="advOut">🧭 Pick a door — the reading list shapes itself around your answer.</div>
+</div></div>
+
+<div class="sample"><span class="num">CONCEPT 12</span><h2>The "Audio First" Podcast &amp; Read-Along Deck</h2><p class="note">For the commute and the site drive: press play and the transcript lights up in step with the voice. (This preview simulates the sync — no actual audio.)</p>
+<div class="stage">
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><img src="img/crane.jpg" style="width:74px;height:74px;object-fit:cover;border-radius:11px"><div><b style="font-size:16px">The JV Download — Ep. 12</b><div style="font-size:13px;color:#66736a">“Nine days early: how Northgate beat the permit office” · 2 min listen</div></div></div>
+<div class="wave" id="podWave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<button class="btn" id="podPlay">▶ Play episode</button>
+<div class="transcript" id="podTranscript" style="margin-top:13px">
+<div class="ln">Welcome back to The JV Download — the two minutes that save you twenty.</div>
+<div class="ln">Today: Northgate's permits landed nine days early, and no, it wasn't luck.</div>
+<div class="ln">The team filed early, walked the drawings in by hand, and brought donuts. Twice.</div>
+<div class="ln">What it means: the spring excavation moves up, and two crews shift in February.</div>
+<div class="ln">If your project touches Northgate, your manager has the new dates already.</div>
+<div class="ln">That's the Download. See you at the topping-out photos — link in the post.</div>
+</div>
+</div></div>
+
+<div class="sample"><span class="num">CONCEPT 13</span><h2>The "Social Feed Wall" (Card Stream)</h2><p class="note">LinkedIn-familiar: rich cards, reactions, and the conversation right inside the card. Tap ❤ to react, tap Comments to open the thread.</p>
+<div class="stage">
+<div class="post"><div class="who"><div class="av"></div><div><b>Mei Chen</b><div style="font-size:12px;color:#66736a">Customer Care · 2h ago</div></div></div>
+<p style="margin:9px 0 0;font-size:14.5px;line-height:1.55">Walked a Harbourgate homeowner through her deficiency list twice today — second time with tea. Zero items left open. This is the job. 🏠</p>
+<div class="react" style="margin-top:10px"><button class="reactBtn">❤ <span>24</span></button><button class="reactBtn">👏 <span>11</span></button><button class="cmtToggle">💬 Comments (2)</button></div>
+<div class="comments"><div>👏 <b>Ryan Scott:</b> The tea is the whole secret and we all know it.</div><div style="margin-top:5px">⭐ <b>Amara Osei:</b> Putting this one in the orientation deck, with permission.</div></div></div>
+<div class="post"><div class="who"><div class="av" style="background:linear-gradient(135deg,#5b84a0,#33566e)"></div><div><b>Ryan Scott</b><div style="font-size:12px;color:#66736a">Construction · 5h ago</div></div></div>
+<img src="img/crane.jpg" style="width:100%;height:180px;object-fit:cover;border-radius:9px;margin-top:10px">
+<p style="margin:9px 0 0;font-size:14.5px;line-height:1.55">Crane two is up at Northgate. Nine days of permit luck and one very patient operator. 🏗</p>
+<div class="react" style="margin-top:10px"><button class="reactBtn">❤ <span>41</span></button><button class="reactBtn">🎉 <span>18</span></button><button class="cmtToggle">💬 Comments (1)</button></div>
+<div class="comments"><div>🏗 <b>Site Office:</b> Officially naming her "Early" — because everything about this job is.</div></div></div>
+<div class="post"><div class="who"><div class="av" style="background:linear-gradient(135deg,#a07d5b,#6e4f33)"></div><div><b>Priya Mann</b><div style="font-size:12px;color:#66736a">Human Resources · Yesterday</div></div></div>
+<p style="margin:9px 0 0;font-size:14.5px;line-height:1.55">Reminder: the holiday-party vote closes Friday. Friday is winning, Saturday is campaigning hard in the lunchroom. Democracy works. 🗳</p>
+<div class="react" style="margin-top:10px"><button class="reactBtn">❤ <span>9</span></button><button class="reactBtn">😄 <span>15</span></button><button class="cmtToggle">💬 Comments (1)</button></div>
+<div class="comments"><div>🗳 <b>Dev Patel:</b> Saturday voters: our time is now. Rally at the coffee machine, 9 AM.</div></div></div>
+</div></div>
+
+<div class="sample"><span class="num">CONCEPT 14</span><h2>The PIN-Board / Moodboard Collage</h2><p class="note">A corkboard for the culture stuff: polaroids at angles, sticky notes, pushpins. Deliberately the least corporate page in the building.</p>
+<div class="stage"><div class="board">
+<div class="pin r1"><img src="img/tower.jpg">Topping out! Final beam, signed by the whole crew ✍️</div>
+<div class="pin sticky r2">🗳 Holiday party vote closes FRIDAY — the bento box poll on Home. Make your voice heard!</div>
+<div class="pin r3"><img src="img/crane.jpg">Crane two, day one. She's called "Early" now.</div>
+<div class="pin r4"><img src="img/vancouver.jpg">The Marlowe at dusk — photographer's third evening waiting for this light 🌇</div>
+<div class="pin sticky r1">☕ New coffee machine on 4. It's fancy. Nobody touch the descaling button. — Facilities</div>
+<div class="pin r2"><img src="img/construction.jpg">Groundbreaking, where it all started 🚧</div>
+</div></div></div>
+
+<div class="sample"><span class="num">CONCEPT 15</span><h2>The Flippable 3D Magazine Reader</h2><p class="note">The monthly newsletter as an actual little book. Tap Next and the page physically turns, shadow and all.</p>
+<div class="stage"><div class="bookWrap"><div class="book" id="book">
+<div class="page" style="z-index:4"><img src="img/tower.jpg"><h3 style="margin:12px 0 4px;font-size:19px">The JV Journal</h3><p style="color:#66736a;font-size:13.5px;line-height:1.55;margin:0">November issue · The topping-out edition. Harbourgate's big month, Northgate's head start, and the great party-night debate.</p><p style="font-size:12px;color:#b98a2f;font-weight:700;margin-top:12px">TAP NEXT TO TURN THE PAGE →</p></div>
+<div class="page" style="z-index:3"><img src="img/crane.jpg"><h3 style="margin:12px 0 4px;font-size:17px">Northgate, nine days early</h3><p style="color:#4c5a50;font-size:13.5px;line-height:1.6;margin:0">Permits approved ahead of schedule after the team filed early and walked the drawings in by hand. Excavation now starts in spring, and crane two — "Early" — is already standing over the site.</p></div>
+<div class="page" style="z-index:2"><img src="img/construction.jpg"><h3 style="margin:12px 0 4px;font-size:17px">People of JV</h3><p style="color:#4c5a50;font-size:13.5px;line-height:1.6;margin:0">Two new faces joined this month: a Homeowner Care Specialist who has already closed out a full deficiency list, and a Field Engineer who named the crane. Meet them in the Directory — same profile layout as everyone, by design.</p></div>
+<div class="page" style="z-index:1"><img src="img/vancouver.jpg"><h3 style="margin:12px 0 4px;font-size:17px">The Marlowe at dusk</h3><p style="color:#4c5a50;font-size:13.5px;line-height:1.6;margin:0">Our cover's quieter cousin: the sunset-facing terrace doing exactly what it was designed to do. Next issue — the holiday party results, and the amenity-floor beekeeping verdict.</p><p style="font-size:12px;color:#b98a2f;font-weight:700;margin-top:10px">— END OF ISSUE —</p></div>
+</div></div>
+<div style="text-align:center"><button class="btn alt" id="bookPrev">‹ Prev page</button> <button class="btn" id="bookNext">Next page ›</button></div>
+<div class="readout" id="bookOut">📖 The JV Journal — cover. Page 1 of 4.</div>
+</div></div>
+
+<footer><b style="color:#cdb271">STATUS — OWNER DECISION 2026-11-06: ALL 15 APPROVED AS TEMPLATES.</b> Every concept above ships in the builder's template library as a site/page template (the S1–S15 "Site Concepts" family) — pick one when building a site and it loads as an empty-placeholder skeleton in that concept's shape, ready to fill. Working previews for the JV Developments intranet — every concept is functional in miniature: scrub the timeline, vote in the bento polls, flip the magazine. Fictional company, fictional people, real interactions. Concept 2 ships as a pure journey — no XP, badges or points anywhere, per the owner's no-points ruling. These 15 sit alongside the B1–B15 interior page templates in the Options Galleries.</footer>
+
+<script>
+function $(id){return document.getElementById(id);}
+function on(el,ev,fn){if(el){el.addEventListener(ev,fn);}}
+var SVGNS='http://www.w3.org/2000/svg';
+function svgEl(tag,attrs){var e=document.createElementNS(SVGNS,tag);for(var k in attrs){e.setAttribute(k,attrs[k]);}return e;}
+
+/* 1 · Knowledge Graph */
+(function(){var svg=$('graphSvg'),tip=$('graphTip'),out=$('graphOut'),wrap=$('graphWrap');if(!svg)return;
+var nodes=[
+{x:140,y:90,r:16,t:'Harbourgate tops out',s:'Final beam placed on schedule — the most-read post this month.',tag:'Construction'},
+{x:300,y:180,r:10,t:'Winter safety refresh',s:'What changes on site Monday. Two minutes, please actually read it.',tag:'Construction'},
+{x:430,y:80,r:13,t:'A note from the CEO on Northgate',s:'Why nine days early matters more than it sounds.',tag:'Leadership'},
+{x:560,y:200,r:9,t:'Deficiency walkthroughs, explained',s:'The Library deep-dive by the people who do 400+ a year.',tag:'Customer Care'},
+{x:680,y:90,r:14,t:'The Marlowe photo essay',s:'Three evenings waiting for one sunset. Worth it.',tag:'Projects'},
+{x:790,y:210,r:8,t:'Holiday party vote',s:'Friday vs Saturday. Democracy, lunchroom edition.',tag:'Culture'},
+{x:220,y:270,r:8,t:'New joiner field guide',s:'Your first week at JV: five people to meet and why.',tag:'HR'},
+{x:500,y:290,r:11,t:'How an orientation is booked',s:'Start to finish, with the checklist attached.',tag:'Customer Care'},
+{x:760,y:300,r:7,t:'Radio channel 6 fix guide',s:'Two minutes, three steps, zero static.',tag:'IT'}];
+var links=[[0,1],[0,2],[2,7],[3,7],[4,0],[4,5],[6,1],[8,3],[5,4]];
+for(var i=0;i<46;i++){svg.appendChild(svgEl('circle',{cx:(i*197)%900,cy:(i*131)%340,r:i%3===0?1.8:1,fill:'rgba(255,255,255,.5)'}));}
+links.forEach(function(L){svg.appendChild(svgEl('line',{x1:nodes[L[0]].x,y1:nodes[L[0]].y,x2:nodes[L[1]].x,y2:nodes[L[1]].y,stroke:'rgba(130,170,255,.45)','stroke-width':1.4}));});
+nodes.forEach(function(n,idx){var c=svgEl('circle',{cx:n.x,cy:n.y,r:n.r,fill:'#ffd97a',stroke:'#fff','stroke-width':1.6,class:'node'});
+c.addEventListener('pointerenter',function(){c.setAttribute('r',n.r+5);if(tip&&wrap){tip.innerHTML='<b>'+n.t+'</b>'+n.s+'<br><span style="color:#2e6b4f;font-weight:700">'+n.tag+'</span>';tip.style.display='block';tip.style.left=Math.min(72,n.x/9)+'%';tip.style.top=Math.max(2,n.y/3.4-14)+'%';}});
+c.addEventListener('pointerleave',function(){c.setAttribute('r',n.r);if(tip)tip.style.display='none';});
+c.addEventListener('click',function(){if(out)out.innerHTML='✦ <b>'+n.t+'</b> ('+n.tag+') — '+n.s;});
+svg.appendChild(c);});
+})();
+
+/* 2 · Quest Map */
+(function(){var g=$('questPts'),out=$('questOut');if(!g)return;
+var pts=[[40,250,'Trailhead','“Start here: the CEO’s welcome and the one form everyone must sign.”'],
+[200,190,'Safety Ridge','“Winter safety refresh — the two-minute read that keeps the streak alive.”'],
+[330,215,'Paperwork Flats','“Expense claims without tears: the new one-page guide.”'],
+[470,160,'The Directory','“Meet the 150 of us — find your team, find your people.”'],
+[640,105,'Topping-Out Peak','“Harbourgate’s final beam: the story and the signed photos.”'],
+[860,110,'The Marlowe','“Journey’s end (for now): the photo essay everyone keeps sharing.”']];
+pts.forEach(function(p,i){var gr=svgEl('g',{class:'checkpoint'});var c=svgEl('circle',{cx:p[0],cy:p[1],r:16,fill:i===0?'#b98a2f':'#2e6b4f'});var t=svgEl('text',{x:p[0],y:p[1]+5,'text-anchor':'middle',fill:'#fff','font-size':13,'font-weight':800});t.textContent=i+1;gr.appendChild(c);gr.appendChild(t);
+gr.addEventListener('click',function(){if(out)out.innerHTML='🗺 <b>Checkpoint '+(i+1)+' — '+p[2]+':</b> '+p[3];});
+g.appendChild(gr);});
+})();
+
+/* 3 · Metro Map */
+(function(){var g=$('metroPts'),out=$('metroOut'),svg=$('metroSvg');if(!g)return;
+var lines=[{y:60,color:'#c0392b',name:'HR Line',stations:['New joiner field guide','Benefits, in plain English','Holiday party vote']},
+{y:160,color:'#2471a3',name:'Construction Line',stations:['Winter safety refresh','Crane two is up','Topping-out photos']},
+{y:260,color:'#2e6b4f',name:'Customer Care Line',stations:['How an orientation is booked','Deficiency walkthroughs','Homeowner story: the tea fix']}];
+lines.forEach(function(L){[200,480,760].forEach(function(x,i){var gr=svgEl('g',{class:'station'});var c=svgEl('circle',{cx:x,cy:L.y,r:11,fill:'#fff',stroke:L.color,'stroke-width':4});gr.appendChild(c);
+gr.addEventListener('click',function(){if(out)out.innerHTML='🚇 <b>'+L.name+'</b> · Station: “'+L.stations[i]+'” — tap another station to keep riding.';});
+g.appendChild(gr);});});
+var zoomed=false;on($('metroZoom'),'click',function(){zoomed=!zoomed;if(svg)svg.style.transform=zoomed?'scale(1.6)':'scale(1)';this.textContent=zoomed?'－ Zoom out':'＋ Zoom in';});
+on($('metroReset'),'click',function(){zoomed=false;if(svg)svg.style.transform='scale(1)';var z=$('metroZoom');if(z)z.textContent='＋ Zoom in';});
+})();
+
+/* 4 · Virtual Office */
+(function(){var out=$('fpOut');var rooms={
+board:'🏛 <b>Boardroom:</b> “Q4 Town Hall — the Harbourgate numbers, in plain English” · “A note from the CEO on Northgate”',
+library:'📚 <b>Library:</b> “Deficiency walkthroughs, explained by the people who do them” · “Reading a Procore drawing set without fear”',
+water:'☕ <b>Watercooler:</b> “Shout-out: the Harbourgate crew’s zero-incident streak” · “Holiday party: the great Friday-vs-Saturday debate”',
+site:'🏗 <b>Site Office:</b> “Crane two is up at Northgate” · “Winter safety refresh — what changes Monday”',
+care:'🏠 <b>Homeowner Lounge:</b> “The tea fix: closing a deficiency list with kindness” · “Orientation night, behind the scenes”',
+lab:'🧪 <b>The Lab:</b> “Radio channel 6: the two-minute fix” · “We tested a new site tablet so you don’t have to”'};
+document.querySelectorAll('.fp .room').forEach(function(r){r.addEventListener('click',function(){document.querySelectorAll('.fp .room').forEach(function(x){x.classList.remove('on');});r.classList.add('on');if(out&&rooms[r.dataset.room])out.innerHTML=rooms[r.dataset.room];});});
+})();
+
+/* 5 · Swipe Deck */
+(function(){var deck=$('deck'),out=$('deckOut');if(!deck)return;
+var cards=[
+{img:'img/tower.jpg',t:'Harbourgate tops out',f:'Final beam placed this morning — on schedule.',b:'The whole crew signed the beam before it went up. The CEO’s note, the photo set, and the lunch menu (priorities) are in the full post.'},
+{img:'img/crane.jpg',t:'Northgate: crane two is up',f:'Nine days of permit luck, one patient operator.',b:'Permits landed early after the team filed ahead and walked the drawings in by hand. Excavation moves to spring; two crews shift in February.'},
+{img:'img/vancouver.jpg',t:'The Marlowe at dusk',f:'Our photographer waited three evenings for this light.',b:'The amenity terrace faces the sunset on purpose — the design team fought for that orientation, and this photo is their victory lap.'},
+{img:'img/construction.jpg',t:'Groundbreaking, remembered',f:'Golden shovels and one very serious ribbon.',b:'Neighbours were invited first, and the coffee lineup was longer than the speeches — exactly as it should be. The full gallery is in Projects.'}];
+var idx=0,saved=0;
+function render(){deck.innerHTML='';if(idx>=cards.length){var d=document.createElement('div');d.className='deckCard';d.innerHTML='<div class="dc" style="text-align:center;padding-top:110px"><div style="font-size:34px">🎉</div><b style="font-size:18px">You’re all caught up</b><p style="color:#66736a;font-size:14px;line-height:1.55">That’s every card in today’s deck.'+(saved?' You saved '+saved+' to read later.':'')+'</p></div>';deck.appendChild(d);if(out)out.innerHTML='🂡 Deck cleared — nothing left unread today.';return;}
+for(var i=cards.length-1;i>=idx;i--){(function(i){var c=cards[i];var d=document.createElement('div');d.className='deckCard';d.style.zIndex=cards.length-i;d.style.top=(i-idx)*7+'px';
+if(i===idx){d.innerHTML='<img src="'+c.img+'"><div class="dc"><b style="font-size:17px">'+c.t+'</b><p class="frontTxt" style="margin:6px 0 0;color:#4c5a50;font-size:14px;line-height:1.55">'+c.f+'</p><p class="backTxt" style="margin:6px 0 0;color:#4c5a50;font-size:14px;line-height:1.55;display:none">'+c.b+'</p><p style="margin:9px 0 0;font-size:12px;color:#b98a2f;font-weight:700">TAP CARD OR “FLIP” TO READ · SKIP OR SAVE BELOW</p></div>';
+d.addEventListener('click',function(){flip(d);});}
+deck.appendChild(d);})(i);}
+if(out)out.innerHTML='🂡 Card '+(idx+1)+' of '+cards.length+' — '+cards[idx].t;}
+function flip(d){var f=d.querySelector('.frontTxt'),b=d.querySelector('.backTxt');if(!f||!b)return;var showBack=b.style.display==='none';b.style.display=showBack?'block':'none';f.style.display=showBack?'none':'block';}
+function dismiss(goSaved){var top=deck.querySelector('.deckCard');if(!top||idx>=cards.length)return;
+top.style.transform='translateX('+(goSaved?130:-130)+'%) rotate('+(goSaved?9:-9)+'deg)';top.style.opacity='0';
+if(goSaved)saved++;idx++;setTimeout(render,330);}
+on($('deckSkip'),'click',function(){dismiss(false);});
+on($('deckSave'),'click',function(){dismiss(true);});
+on($('deckFlip'),'click',function(){var top=deck.querySelector('.deckCard');if(top&&idx<cards.length)flip(top);});
+render();
+})();
+
+/* 7 · Magazine audio snippet */
+(function(){var w=$('magWave'),b=$('magPlay');on(b,'click',function(){if(!w)return;var playing=w.classList.toggle('playing');b.textContent=playing?'⏸ Pause snippet':'▶ Play snippet';});})();
+
+/* 8 · Ticker push */
+(function(){var feed=$('tickerFeed'),btn=$('tickerPush');if(!feed||!btn)return;
+var flashes=['<b>FLASH: The Marlowe photo essay just dropped</b><p style="margin:4px 0 0;color:#4c5a50;font-size:14px;line-height:1.5">Three evenings of waiting, one perfect sunset. See it in Projects.</p>',
+'<b>WIN: Zero lost-time incidents — 200 days</b><p style="margin:4px 0 0;color:#4c5a50;font-size:14px;line-height:1.5">The Harbourgate crew extends the streak. Safety team has donuts. Obviously.</p>',
+'<b>JUST IN: Holiday party vote is tied</b><p style="margin:4px 0 0;color:#4c5a50;font-size:14px;line-height:1.5">Friday 64, Saturday 61 — the bento poll on Home is now officially a nail-biter.</p>'];
+var n=0;btn.addEventListener('click',function(){var d=document.createElement('div');d.className='post';d.style.borderColor='#b98a2f';d.style.background='#fdf6e0';d.innerHTML=flashes[n%flashes.length];feed.insertBefore(d,feed.firstChild);n++;});})();
+
+/* 9 · Timeline / Time Machine */
+(function(){var range=$('tlRange'),out=$('tlOut');if(!range||!out)return;
+var eras=['🌱 <b>Spring 2023 — Groundbreaking:</b> “Golden shovels, hard hats, and one very serious ribbon. The neighbours were invited first — the coffee lineup was longer than the speeches.”',
+'🏗 <b>2024 — The crane goes up:</b> “First crane erected over the Harbourgate site. From here on, the neighbourhood watches us grow one floor at a time.”',
+'🧱 <b>2025 — Halfway there:</b> “Structure passes the 17th floor. The signed-beam tradition starts early — the crew begins a ‘wall of names’ in the site office.”',
+'🪟 <b>Spring 2026 — Glass on:</b> “The facade starts reflecting the sky. Facilities begins its photo log: ‘a weather report you can live in.’”',
+'🏆 <b>Nov 2026 — Topping out:</b> “Final beam placed this morning, on schedule. The whole crew signed it before it went up — look for your name in the photos.”'];
+function show(){out.innerHTML=eras[Number(range.value)];}
+range.addEventListener('input',show);
+document.querySelectorAll('.tlDot').forEach(function(d,i){d.style.cursor='pointer';d.addEventListener('click',function(){range.value=i;show();});});
+})();
+
+/* 10 · Bento polls */
+(function(){document.querySelectorAll('.poll').forEach(function(poll){
+poll.querySelectorAll('.pollbar').forEach(function(bar){bar.addEventListener('click',function(){
+poll.querySelectorAll('.pollbar').forEach(function(b){var fill=b.querySelector('i');if(fill)fill.style.width=b.dataset.pct+'%';
+var prev=b.previousElementSibling;if(prev){var pv=prev.querySelector('.pv');if(pv)pv.textContent=b.dataset.pct+'%';}});
+});});});
+})();
+
+/* 11 · Choose-Your-Own-Adventure */
+(function(){var out=$('advOut');var msgs={ 'adv-fix':'🔧 <b>Fix-it path:</b> three articles, zero searching. The radio guide alone has saved the site office a hundred calls.',
+'adv-learn':'📘 <b>Learning path:</b> the deep-dives, taught by the people who actually do the work.',
+'adv-meet':'👋 <b>New-joiner path:</b> welcome! Start with the five people to meet — the rest of the building gets easier after that.'};
+document.querySelectorAll('.advBtn').forEach(function(btn){btn.addEventListener('click',function(){
+document.querySelectorAll('.advCard').forEach(function(c){c.classList.remove('show');});
+var card=$(btn.dataset.adv);if(card)card.classList.add('show');
+if(out&&msgs[btn.dataset.adv])out.innerHTML=msgs[btn.dataset.adv];});});
+})();
+
+/* 12 · Audio-first read-along */
+(function(){var btn=$('podPlay'),wave=$('podWave'),tr=$('podTranscript');if(!btn||!tr)return;
+var lines=tr.querySelectorAll('.ln');var timer=null,cur=-1;
+function stop(label){if(timer){clearInterval(timer);timer=null;}if(wave)wave.classList.remove('playing');btn.textContent=label||'▶ Play episode';}
+btn.addEventListener('click',function(){if(timer){stop();return;}
+if(wave)wave.classList.add('playing');btn.textContent='⏸ Pause';cur=-1;
+lines.forEach(function(l){l.classList.remove('on');});
+timer=setInterval(function(){if(cur>=0&&lines[cur])lines[cur].classList.remove('on');cur++;
+if(cur>=lines.length){stop('↻ Play again');lines.forEach(function(l){l.classList.remove('on');});return;}
+lines[cur].classList.add('on');lines[cur].scrollIntoView({block:'nearest'});},1500);});
+})();
+
+/* 13 · Social feed wall */
+(function(){document.querySelectorAll('.sample .post').forEach(function(post){
+post.querySelectorAll('.reactBtn').forEach(function(btn){btn.addEventListener('click',function(){
+var span=btn.querySelector('span');if(!span)return;var n=Number(span.textContent)||0;
+if(btn.dataset.on){n--;delete btn.dataset.on;btn.style.background='#eef3ee';}
+else{n++;btn.dataset.on='1';btn.style.background='#fdf3d8';}
+span.textContent=n;});});
+var tog=post.querySelector('.cmtToggle');var comments=post.querySelector('.comments');
+if(tog&&comments){tog.addEventListener('click',function(){comments.classList.toggle('open');});}
+});})();
+
+/* 15 · Flippable 3D magazine */
+(function(){var book=$('book'),out=$('bookOut');if(!book)return;
+var pages=book.querySelectorAll('.page');var labels=['cover','Northgate, nine days early','People of JV','The Marlowe at dusk'];var cur=0;
+function show(){if(out)out.innerHTML='📖 The JV Journal — '+labels[cur]+'. Page '+(cur+1)+' of '+pages.length+'.';}
+on($('bookNext'),'click',function(){if(cur>=pages.length-1)return;var p=pages[cur];p.classList.add('flipped');p.style.zIndex=10+cur;cur++;show();});
+on($('bookPrev'),'click',function(){if(cur<=0)return;cur--;var p=pages[cur];p.classList.remove('flipped');p.style.zIndex=pages.length-cur;show();});
+})();
+</script>
+</body></html>

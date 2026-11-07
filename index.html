@@ -1,5 +1,44 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Axis — demo coming soon</title>
-<style>body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#10160f;color:#eef2ec;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px}h1{font-size:44px;letter-spacing:6px;margin:0}.a{color:#b98a2f}p{color:#a9b8ab;line-height:1.6}</style></head>
-<body><div><h1>AX<span class="a">I</span>S</h1><p>A secure company intranet — a website behind a login wall,<br>with a builder anyone can use. Demo under construction.</p></div></body></html>
+<title>Axis — Secure Intranet Demo</title>
+<style>
+body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#10160f;color:#eef2ec}
+.wrap{max-width:880px;margin:auto;padding:44px 22px 60px}
+h1{font-size:46px;letter-spacing:7px;margin:0}.a{color:#b98a2f}
+.sub{color:#a9b8ab;line-height:1.65;font-size:15.5px}
+.card{background:#fff;color:#1c2620;border-radius:14px;padding:20px 22px;margin-top:18px}
+.card h2{margin:0 0 8px;font-size:18px}
+.card p{color:#4c5a50;line-height:1.6;margin:0 0 10px;font-size:14.5px}
+.card a{display:inline-block;margin:4px 8px 4px 0;background:#17352a;color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;padding:9px 15px;border-radius:9px}
+.card a.alt{background:#eef3ee;color:#17352a;border:1px solid #cfd8cd}
+table{border-collapse:collapse;font-size:14px}
+td,th{border:1px solid #e2e7e1;padding:7px 12px;text-align:left}
+.badge{display:inline-block;background:#b98a2f;color:#14100a;font-weight:800;font-size:11.5px;border-radius:99px;padding:2px 10px;margin-bottom:8px}
+footer{color:#8fa392;font-size:13px;line-height:1.6;margin-top:26px}
+</style></head><body><div class="wrap">
+<h1>AX<span class="a">I</span>S</h1>
+<p class="sub">A secure company intranet — a website behind a login wall — with a no-code website builder anyone can use, a deep template library, people profiles, and an "Ask HR" chatbot that answers from live policy documents instead of stale file copies.</p>
+<p class="sub"><b style="color:#eef2ec">Status: full demo build complete and independently verified</b> — all 7 build batches, 197/197 automated tests including an adversarial security suite (160 concurrent logins with tenant isolation, a 3,000-attempt hostile login flood, injection/XSS/CSRF/IDOR attacks — all blocked). Everything below runs on <b style="color:#eef2ec">fictional demo data</b> (JV Developments, 150 fictional staff). The application itself runs on a server (it needs a database and sign-in), so this public mirror hosts the design &amp; demo artefacts; the app demo runs from the private repo.</p>
+
+<div class="card"><span class="badge">START HERE</span><h2>The JV Developments homepage</h2>
+<p>The demo company's home page — Template #1 "Clean Greeting Hero," populated with fictional staff, news and events. This is the layout the built application renders from its database.</p>
+<a href="jv-home/">Open the JV homepage mock</a></div>
+
+<div class="card"><h2>Working samples — every one is interactive</h2>
+<p>Built during the design phase and mirrored here so anyone can click through what the builder offers:</p>
+<a href="samples/">Options galleries (35 wireframes)</a>
+<a href="samples/creative-display-samples.html">10 creative picture displays</a>
+<a href="samples/creative-internal-samples.html">15 internal site concepts</a>
+<a href="samples/avatar-ui-samples.html">10 avatar UI components</a>
+<a href="samples/profile-layout-samples.html">10 industrial-chic profile layouts</a>
+<a class="alt" href="gallery/">10 real intranet homepages (research gallery)</a></div>
+
+<div class="card"><h2>Demo logins (app demo, fictional data only)</h2>
+<table><tr><th>Role</th><th>Email</th><th>Password</th></tr>
+<tr><td>Staff</td><td>staff@jvdev.example</td><td>axis-demo</td></tr>
+<tr><td>Editor</td><td>editor@jvdev.example</td><td>axis-demo</td></tr>
+<tr><td>Admin</td><td>admin@jvdev.example</td><td>axis-demo</td></tr>
+<tr><td>Super User</td><td>super@jvdev.example</td><td>axis-demo</td></tr></table></div>
+
+<footer>Axis is a demonstration built entirely on fictional data. No real company, staff or homeowner information exists in this project. Production use would sit behind Microsoft Entra sign-in, Azure Canada hosting, and an independent penetration test before any real data is touched.</footer>
+</div></body></html>

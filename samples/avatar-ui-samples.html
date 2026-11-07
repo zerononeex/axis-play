@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avatar UI Components — Live Samples (10)</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:#0d130e;color:#eef2ec}
+header,.sample{max-width:980px;margin:auto;padding:26px 20px 6px}
+h1{margin:0 0 6px;font-size:25px}h2{font-size:19px;margin:0 0 4px}
+.sub,.note{color:#a9b8ab;font-size:14px;line-height:1.5;margin:0}.note b{color:#eef2ec}
+.sample{padding-top:34px}
+.stage{background:#fff;color:#1c2620;border-radius:14px;padding:18px;margin-top:12px;overflow:hidden;position:relative}
+.num{display:inline-block;background:#b98a2f;color:#14100a;font-weight:800;font-size:11.5px;border-radius:99px;padding:2px 9px;margin-bottom:6px}
+.btn{background:#17352a;color:#fff;border:0;border-radius:9px;padding:8px 16px;font-weight:700;font-size:13.5px;cursor:pointer}
+.btn.alt{background:#eef3ee;color:#17352a;border:1px solid #cfd8cd}
+footer{max-width:980px;margin:auto;padding:26px 20px 40px;color:#8fa392;font-size:13px;line-height:1.55}
+.avt{border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex:none;position:relative}
+.who{display:flex;align-items:center;gap:12px}
+.who .nm{font-weight:700}.who .rl{font-size:12.5px;color:#66736a}
+.readout{margin-top:12px;background:#eef3ee;border-radius:9px;padding:10px 13px;font-size:13.5px;line-height:1.5;min-height:42px}
+/* 1 status rings */
+.ring{padding:3px;border-radius:50%}
+.ring.green{background:#2fa84f}.ring.meeting{background:#e67e22;animation:pulse 1.6s ease-in-out infinite}
+.ring.focus{background:#7d3c98}
+.ring.party{background:conic-gradient(#e74c3c,#f1c40f,#2fa84f,#2471a3,#7d3c98,#e74c3c);animation:spin 5s linear infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(230,126,34,.5)}50%{box-shadow:0 0 0 7px rgba(230,126,34,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ringRow{display:flex;gap:22px;flex-wrap:wrap}
+.ringRow figure{margin:0;text-align:center;font-size:12px;color:#4c5a50}
+.ringRow figcaption{margin-top:6px;line-height:1.4}
+/* 2 orbit */
+.orbitStage2{position:relative;height:320px}
+#orbitRing{position:absolute;left:50%;top:50%;width:0;height:0;animation:spin 26s linear infinite}
+.orb{position:absolute;width:56px;height:56px;margin:-28px;animation:spin 26s linear infinite reverse;cursor:pointer}
+.orb .avt{width:56px;height:56px;font-size:17px;border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+#orbitCenter{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;z-index:2}
+#orbitCenter .avt{width:96px;height:96px;font-size:30px;margin:auto;border:4px solid #17352a}
+/* 3 skill bubbles */
+.skillWrap{position:relative;width:120px;height:120px;margin:26px auto}
+.skillWrap .avt{width:84px;height:84px;font-size:26px;position:absolute;left:18px;top:18px;cursor:pointer;z-index:2}
+.bub{position:absolute;background:#17352a;color:#fff;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+.skillWrap.open .bub{opacity:1;transform:scale(1)}
+/* 4 flip card */
+.flipScene{perspective:800px;width:210px;margin:auto}
+.flipCard{position:relative;width:210px;height:250px;transform-style:preserve-3d;transition:transform .7s;cursor:pointer}
+.flipCard.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:13px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.face.front{background:linear-gradient(160deg,#40613a,#7ba05b);color:#fff;text-align:center;padding:26px 14px}
+.face.front .avt{width:96px;height:96px;font-size:32px;margin:0 auto 12px;background:rgba(255,255,255,.22);border:3px solid #fff}
+.face.back{background:#fdfdf8;transform:rotateY(180deg);padding:18px;font-size:13.5px;line-height:1.75;color:#33413a}
+/* 5 watercooler */
+.wall{display:flex;flex-wrap:wrap;gap:20px 14px}
+.wall figure{margin:0;width:104px;text-align:center;font-size:11.5px;color:#4c5a50}
+.wall .avt{width:60px;height:60px;font-size:19px;margin:auto;animation:float 3.4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.bub2{display:inline-block;background:#eef3ee;border:1px solid #dde3dc;border-radius:11px;padding:3px 8px;font-size:11px;margin-top:7px;line-height:1.35}
+/* 6 milestones */
+.mile{position:relative;display:inline-block}
+.mile .bdg{position:absolute;width:27px;height:27px;border-radius:50%;background:#fdf3d8;border:2px solid #b98a2f;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:2}
+/* 7 dept frames */
+.deptRow{display:flex;gap:20px;flex-wrap:wrap}
+.deptRow figure{margin:0;text-align:center;font-size:12px;color:#4c5a50;width:96px}
+.frm{margin:auto;display:flex;align-items:center;justify-content:center}
+.frm.hex{width:78px;height:78px;background:#2471a3;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.frm.circ{width:74px;height:74px;background:#12836f;border-radius:50%}
+.frm.sq{width:74px;height:74px;background:#a05b8a;border-radius:20px}
+.frm.dia{width:74px;height:74px;background:#b98a2f;border-radius:14px;transform:rotate(45deg)}
+.frm .avt{width:62px;height:62px;font-size:19px}
+.frm.dia .avt{transform:rotate(-45deg)}
+/* 8 paging stack */
+.stack{display:flex;align-items:center;cursor:pointer;padding:8px 0}
+.stack .avt{width:52px;height:52px;font-size:16px;border:3px solid #fff;margin-left:-16px;transition:all .45s ease;box-shadow:0 3px 9px rgba(0,0,0,.2)}
+.stack .avt:first-child{margin-left:0}
+.stack.fanned .avt{margin-left:8px}
+.stackLbl{font-size:12.5px;color:#66736a;margin-left:10px;opacity:0;transition:opacity .3s}
+.stack.fanned .stackLbl{opacity:1}
+/* 9 radial */
+.radialStage{position:relative;height:240px}
+#radialCenter{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);cursor:pointer;z-index:3}
+#radialCenter .avt{width:76px;height:76px;font-size:24px;border:3px solid #17352a}
+.rad{position:absolute;left:50%;top:50%;width:86px;margin:-17px 0 0 -43px;background:#17352a;color:#fff;border:0;border-radius:99px;padding:8px 4px;font-size:12px;font-weight:700;cursor:pointer;opacity:0;transform:scale(.3);transition:all .38s cubic-bezier(.34,1.56,.64,1);z-index:2}
+.radialStage.open .rad{opacity:1}
+/* 10 pixel */
+.pixRow{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+#pixCanvas{image-rendering:pixelated;width:144px;height:144px;border-radius:12px;background:#dfe8dd}
+.toggle{display:inline-flex;background:#eef3ee;border-radius:99px;padding:3px;gap:3px}
+.toggle button{border:0;background:transparent;padding:6px 14px;border-radius:99px;font-weight:700;cursor:pointer;font-size:13px}
+.toggle button.on{background:#17352a;color:#fff}
+</style></head><body>
+<header>
+<h1>Avatar UI Components — Live Samples</h1>
+<p class="sub">Your 10, built as the working widgets they are — sprinkled-size pieces that live in feeds, comments, directories, document headers and sidebars, on top of the normal profile pages. Initials stand in for photos in these samples; the real build uses each person's uploaded headshot. One flag: #6's "trivia badge" flavour touches the points-and-badges ban you set tonight, so I built it as <b style="color:#eef2ec">factual milestone markers</b> (years of service, a real award) — nothing earnable, nothing scored. Your call if even that goes.</p>
+</header>
+
+<div class="sample"><span class="num">AVATAR 1</span><h2>The Live Status Ring</h2><p class="note">The ring IS the status: green free, pulsing orange in a meeting, purple heads-down, rainbow for a celebration day.</p>
+<div class="stage"><div class="ringRow">
+<figure><span class="ring green" style="display:inline-block"><span class="avt" style="width:62px;height:62px;font-size:20px;background:#40613a">MC</span></span><figcaption><b>Mei Chen</b><br>Active now</figcaption></figure>
+<figure><span class="ring meeting" style="display:inline-block"><span class="avt" style="width:62px;height:62px;font-size:20px;background:#5b84a0">RS</span></span><figcaption><b>Ryan Scott</b><br>In a meeting</figcaption></figure>
+<figure><span class="ring focus" style="display:inline-block"><span class="avt" style="width:62px;height:62px;font-size:20px;background:#8a5ba0">PF</span></span><figcaption><b>Priya Flores</b><br>Focus mode</figcaption></figure>
+<figure><span class="ring party" style="display:inline-block"><span class="avt" style="width:62px;height:62px;font-size:20px;background:#a06a2c">GL</span></span><figcaption><b>Grace Liu</b><br>🎂 Birthday today!</figcaption></figure>
+</div></div></div>
+
+<div class="sample"><span class="num">AVATAR 2</span><h2>The Org-Chart Orbit</h2><p class="note">The manager sits in the middle; their people orbit like planets. Tap anyone in orbit and they swap into the centre, with their own team around them.</p>
+<div class="stage"><div class="orbitStage2">
+<div id="orbitCenter"><span class="avt" id="ocAv" style="background:#40613a">DM</span><div style="margin-top:8px"><b id="ocName">Daniel Mercer</b><div style="font-size:12.5px;color:#66736a" id="ocRole">Director, Customer Care</div></div></div>
+<div id="orbitRing"></div>
+</div><div class="readout" id="orbitOut">🪐 Daniel's team: Mei (Care), Tom (Systems), Aisha (Care), Lucas (Care). Tap a planet to visit their world.</div></div></div>
+
+<div class="sample"><span class="num">AVATAR 3</span><h2>The Interactive Skill Bubble Cluster</h2><p class="note">Hover or tap the avatar and their expertise pops out in bubbles — the directory becomes "find me a person who knows X."</p>
+<div class="stage"><div class="skillWrap" id="skillWrap">
+<span class="avt" style="background:#5b84a0">RS</span>
+<span class="bub" style="left:-52px;top:-16px">Procore</span>
+<span class="bub" style="right:-58px;top:-16px">Site Safety</span>
+<span class="bub" style="left:-64px;bottom:-14px">Crane Ops</span>
+<span class="bub" style="right:-70px;bottom:-14px">First Aid</span>
+<span class="bub" style="left:22px;top:-38px">Estimating</span>
+</div><p style="text-align:center;margin:26px 0 0"><b>Ryan Scott</b> · Field Engineer, Construction</p></div></div>
+
+<div class="sample"><span class="num">AVATAR 4</span><h2>The Hover-Flip Badge (Business Card Flip)</h2><p class="note">Front: photo and name. Hover or tap: the card flips like a real business card — time zone, best way to reach them, desk, and one human line.</p>
+<div class="stage"><div class="flipScene"><div class="flipCard" id="flipCard">
+<div class="face front"><span class="avt">MC</span><b style="font-size:18px">Mei Chen</b><div style="opacity:.85;font-size:13px;margin-top:3px">Homeowner Care Specialist<br>Customer Care</div><div style="margin-top:16px;font-size:12px;opacity:.75">hover / tap to flip ↻</div></div>
+<div class="face back"><b>Mei Chen</b><br>🕐 Vancouver (PT) · at her desk<br>💬 Best reached: Teams chat<br>🪑 Desk 4-12, HQ 4th floor<br>📧 mei.chen@jvdev.example<br><br><i>"I know every Harbourgate homeowner by name. Most of their dogs too."</i></div>
+</div></div></div></div>
+
+<div class="sample"><span class="num">AVATAR 5</span><h2>The Virtual Watercooler Presence Wall</h2><p class="note">A homepage wall of gentle floating faces, each with its little status bubble — the ambient "who's around" of a real office.</p>
+<div class="stage"><div class="wall">
+<figure><span class="avt" style="background:#40613a">MC</span><br><span class="bub2">☕ Grabbed a coffee</span></figure>
+<figure><span class="avt" style="background:#5b84a0;animation-delay:.5s">RS</span><br><span class="bub2">🏗 On site at Northgate</span></figure>
+<figure><span class="avt" style="background:#8a5ba0;animation-delay:1s">PF</span><br><span class="bub2">🏠 Working from home</span></figure>
+<figure><span class="avt" style="background:#a06a2c;animation-delay:.2s">GL</span><br><span class="bub2">🎂 It's my birthday!</span></figure>
+<figure><span class="avt" style="background:#12836f;animation-delay:.8s">TB</span><br><span class="bub2">🎧 Deep in tickets</span></figure>
+<figure><span class="avt" style="background:#a05b8a;animation-delay:1.3s">SR</span><br><span class="bub2">📸 Shooting the Marlowe</span></figure>
+</div></div></div>
+
+<div class="sample"><span class="num">AVATAR 6</span><h2>The Milestone Marker Overlay</h2><p class="note">Factual markers docked on the photo's corners — a star for 5 years served, a trophy for a real company award. Display only: nothing to earn, nothing scored.</p>
+<div class="stage"><div class="who">
+<span class="mile"><span class="avt" style="width:76px;height:76px;font-size:24px;background:#40613a">MC</span><span class="bdg" style="right:-7px;top:-7px" title="5 years of service">⭐</span><span class="bdg" style="right:-7px;bottom:-7px" title="Care Award 2026">🏆</span></span>
+<div><div class="nm">Mei Chen</div><div class="rl">Homeowner Care Specialist · ⭐ 5 years at JV · 🏆 Care Award 2026</div></div></div>
+<div class="who" style="margin-top:16px">
+<span class="mile"><span class="avt" style="width:76px;height:76px;font-size:24px;background:#5b84a0">RS</span><span class="bdg" style="right:-7px;top:-7px" title="10 years of service">🔟</span></span>
+<div><div class="nm">Ryan Scott</div><div class="rl">Field Engineer · 🔟 10 years at JV</div></div></div>
+</div></div>
+
+<div class="sample"><span class="num">AVATAR 7</span><h2>The Contextual Department Frame</h2><p class="note">Shape + colour = department, at a glance, in any comment thread or board. Hexagon blue is Construction, circle teal is Customer Care, rounded square is Marketing, diamond gold is Finance.</p>
+<div class="stage"><div class="deptRow">
+<figure><span class="frm hex"><span class="avt" style="background:#33536e">RS</span></span><figcaption><b>Ryan Scott</b><br>Construction</figcaption></figure>
+<figure><span class="frm circ"><span class="avt" style="background:#0d5c4d">MC</span></span><figcaption><b>Mei Chen</b><br>Customer Care</figcaption></figure>
+<figure><span class="frm sq"><span class="avt" style="background:#74405f">SR</span></span><figcaption><b>Sofia Reyes</b><br>Sales &amp; Marketing</figcaption></figure>
+<figure><span class="frm dia"><span class="avt" style="background:#7d5a16">AK</span></span><figcaption><b>Aisha Khan</b><br>Finance</figcaption></figure>
+</div></div></div>
+
+<div class="sample"><span class="num">AVATAR 8</span><h2>The Paging Stack</h2><p class="note">On a document or project header: the overlapped faces of who owns it. Hover or tap and the stack fans out like cards, names and roles showing.</p>
+<div class="stage"><div style="border:1px solid #e6eae5;border-radius:11px;padding:14px 16px">
+<div style="font-weight:700;margin-bottom:4px">📄 Harbourgate — Homeowner Orientation Guide v3</div>
+<div class="stack" id="pgStack">
+<span class="avt" style="background:#40613a">MC</span><span class="avt" style="background:#5b84a0">RS</span><span class="avt" style="background:#8a5ba0">PF</span><span class="avt" style="background:#a06a2c">GL</span>
+<span class="stackLbl" id="pgLbl">Mei authored · Ryan edited · Priya approved · Grace published</span>
+</div></div></div></div>
+
+<div class="sample"><span class="num">AVATAR 9</span><h2>The Quick-Action Radial Menu</h2><p class="note">Tap ANY avatar, anywhere, and the actions bloom out in a circle — message, sync, see their calendar, say thanks. No page change, no hunting.</p>
+<div class="stage"><div class="radialStage" id="radialStage">
+<span id="radialCenter"><span class="avt" style="background:#40613a">MC</span></span>
+<button class="rad" data-act="💬 Message sent to Mei (demo)">💬 Message</button>
+<button class="rad" data-act="📅 Sync invite drafted with Mei (demo)">📅 Quick sync</button>
+<button class="rad" data-act="🗓 Mei is free today 2:00–3:30 (demo)">🗓 Calendar</button>
+<button class="rad" data-act="🙏 Thank-you posted to Mei (demo) — a plain post, no points">🙏 Say thanks</button>
+</div><p style="text-align:center;margin:0"><b>Mei Chen</b> — tap her photo</p>
+<div class="readout" id="radialOut">👆 Nothing yet — tap Mei's avatar to bloom the menu.</div></div></div>
+
+<div class="sample"><span class="num">AVATAR 10</span><h2>The Retro 8-Bit Pixel Avatar</h2><p class="note">A toggle on every profile: corporate headshot, or your own little pixel person — generated from your name, re-rollable until it feels like you. For the social corners of the site.</p>
+<div class="stage"><div class="pixRow">
+<div><canvas id="pixCanvas" width="18" height="18"></canvas>
+<p style="margin:8px 0 0"><span class="toggle"><button id="pixModeA" class="on">Photo</button><button id="pixModeB">8-bit</button></span></p></div>
+<div style="flex:1;min-width:220px"><b>Mei Chen</b><div style="font-size:13px;color:#66736a;line-height:1.6;margin:4px 0 12px">In photo mode you see her initials disc (a photo in the real build). Flip to 8-bit and the generator deals her a pixel face — same seed, same face every time, unless she hits re-roll and claims a new one.</div>
+<button class="btn alt" id="pixRoll">🎲 Re-roll my pixel face</button>
+<span id="pixNote" style="font-size:12.5px;color:#66736a;margin-left:8px"></span></div>
+</div></div></div>
+
+<footer>Working samples for the JV intranet avatar system — these 10 are components, not pages: they attach to the standard profile (company template C1–C10) and appear wherever avatars appear. Status ring state, department frames and milestone markers are driven by real data in production (presence, department, start date, awards). Kudos note: the radial menu's "Say thanks" sends a plain thank-you post — no points, per the owner's product-wide ruling.</footer>
+
+<script>
+// 2 · Org orbit
+(function(){var ring=document.getElementById('orbitRing'),out=document.getElementById('orbitOut');
+var people={
+ DM:{init:'DM',name:'Daniel Mercer',role:'Director, Customer Care',color:'#40613a',team:['MC','TB','AK','LT']},
+ MC:{init:'MC',name:'Mei Chen',role:'Homeowner Care Specialist',color:'#7ba05b',team:['DM','GL']},
+ TB:{init:'TB',name:'Tom Becker',role:'Systems Administrator',color:'#5b84a0',team:['DM','NW']},
+ AK:{init:'AK',name:'Aisha Khan',role:'Care Coordinator',color:'#8a5ba0',team:['DM','MC']},
+ LT:{init:'LT',name:'Lucas Tremblay',role:'Orientation Lead',color:'#a06a2c',team:['DM','MC']},
+ GL:{init:'GL',name:'Grace Liu',role:'HR Partner',color:'#12836f',team:['MC','PF']},
+ NW:{init:'NW',name:'Noah Williams',role:'IT Support',color:'#a05b8a',team:['TB']},
+ PF:{init:'PF',name:'Priya Flores',role:'CEO',color:'#33413a',team:['DM','GL']}};
+var center='DM';
+function draw(){ring.innerHTML='';var p=people[center];
+document.getElementById('ocAv').textContent=p.init;document.getElementById('ocAv').style.background=p.color;
+document.getElementById('ocName').textContent=p.name;document.getElementById('ocRole').textContent=p.role;
+p.team.forEach(function(id,i){var t=people[id];var a=(360/p.team.length)*i*Math.PI/180;
+var d=document.createElement('div');d.className='orb';d.style.left=(Math.cos(a)*118)+'px';d.style.top=(Math.sin(a)*118)+'px';
+d.innerHTML='<span class="avt" style="background:'+t.color+'">'+t.init+'</span>';
+d.title=t.name+' — '+t.role;
+d.addEventListener('click',function(){center=id;draw();
+out.textContent='🪐 Now visiting '+t.name+' ('+t.role+'). Their orbit: '+t.team.map(function(x){return people[x].name;}).join(', ')+'.';});
+ring.appendChild(d);});}
+draw();})();
+// 3 · Skill bubbles
+(function(){var w=document.getElementById('skillWrap');
+w.querySelector('.avt').addEventListener('click',function(){w.classList.toggle('open')});
+if(window.matchMedia('(hover:hover)').matches){w.addEventListener('pointerenter',function(){w.classList.add('open')});w.addEventListener('pointerleave',function(){w.classList.remove('open')});}})();
+// 4 · Flip card
+(function(){var c=document.getElementById('flipCard');
+c.addEventListener('click',function(){c.classList.toggle('flipped')});
+c.parentElement.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')c.classList.add('flipped')});
+c.parentElement.addEventListener('pointerleave',function(){c.classList.remove('flipped')});})();
+// 8 · Paging stack
+(function(){var s=document.getElementById('pgStack');
+s.addEventListener('click',function(){s.classList.toggle('fanned')});
+s.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')s.classList.add('fanned')});
+s.addEventListener('pointerleave',function(){s.classList.remove('fanned')});})();
+// 9 · Radial menu
+(function(){var st=document.getElementById('radialStage'),out=document.getElementById('radialOut'),rads=st.querySelectorAll('.rad'),open=false;
+var pos=[[-95,-70],[95,-70],[-95,70],[95,70]];
+rads.forEach(function(r,i){r.style.transform='translate('+pos[i][0]+'px,'+pos[i][1]+'px) scale(.3)';
+r.addEventListener('click',function(){out.textContent=r.dataset.act;});});
+document.getElementById('radialCenter').addEventListener('click',function(){open=!open;st.classList.toggle('open',open);
+rads.forEach(function(r,i){r.style.transform=open?('translate('+pos[i][0]+'px,'+pos[i][1]+'px) scale(1)'):('translate('+pos[i][0]+'px,'+pos[i][1]+'px) scale(.3)');});});})();
+// 10 · Pixel avatar
+(function(){var cv=document.getElementById('pixCanvas'),ctx=cv.getContext('2d'),seed=42,mode='photo';
+function rnd(){seed=(seed*1103515245+12345)%2147483648;return seed/2147483648;}
+function drawPhoto(){ctx.clearRect(0,0,18,18);ctx.fillStyle='#40613a';ctx.beginPath();ctx.arc(9,9,9,0,7);ctx.fill();
+ctx.fillStyle='#fff';ctx.font='bold 8px sans-serif';ctx.textAlign='center';ctx.fillText('MC',9,12);}
+function drawPix(){seed=seedBase;var skin=['#f2c799','#c68863','#8d5524','#ffdbac'][Math.floor(rnd()*4)],hair=['#2b2b2b','#6b4423','#b5522d','#d9d9d9','#3a5f8a'][Math.floor(rnd()*5)],shirt=['#40613a','#2471a3','#a05b8a','#b98a2f'][Math.floor(rnd()*4)];
+ctx.fillStyle='#dfe8dd';ctx.fillRect(0,0,18,18);
+for(var y=0;y<18;y++)for(var x=0;x<9;x++){var c=null;
+if(y>=13)c=shirt; else if(y>=3&&y<=11)c=skin; if(y<=4)c=hair; if(y===7&&(x===3||x===6))c='#16211b'; if(y===10&&x>=4&&x<=5)c='#a0522d';
+if(c){ctx.fillStyle=c;ctx.fillRect(x,y,1,1);ctx.fillRect(17-x,y,1,1);}}}
+var seedBase=1234;
+function draw(){if(mode==='photo')drawPhoto();else drawPix();}
+document.getElementById('pixModeA').addEventListener('click',function(){mode='photo';this.classList.add('on');document.getElementById('pixModeB').classList.remove('on');draw();});
+document.getElementById('pixModeB').addEventListener('click',function(){mode='pix';this.classList.add('on');document.getElementById('pixModeA').classList.remove('on');draw();});
+document.getElementById('pixRoll').addEventListener('click',function(){seedBase=Math.floor(Math.random()*99999);if(mode!=='pix'){mode='pix';document.getElementById('pixModeB').classList.add('on');document.getElementById('pixModeA').classList.remove('on');}
+draw();document.getElementById('pixNote').textContent='New face dealt — seed #'+seedBase+'. In the real build, this one sticks as hers until she re-rolls again.';});
+draw();})();
+</script>
+</body></html>
