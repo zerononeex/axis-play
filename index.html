@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Axis — SHAPE Intranet (Demo)</title>
+<title>SHAPE Intranet (Demo)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <style>
@@ -331,6 +331,39 @@ table th{color:#1f2426;border-bottom:1.5px solid #1f2426}
 .toast{background:#1f2426;border-radius:0}
 .canvas{background:#ece8de;border-radius:0}
 .avstack .mini{background:#2b3134;color:var(--lime);border-radius:0}
+
+/* ===== APPLE PASS (owner, 2026-11-17: no rail emojis, no rectangle highlight, clean + modern) ===== */
+#topbar{background:rgba(250,250,252,.88);backdrop-filter:blur(20px) saturate(1.5);box-shadow:1px 0 0 rgba(0,0,0,.07),16px 0 36px rgba(0,0,0,.05)}
+#topbar .brand{color:#1d1d1f;letter-spacing:2.5px}
+.navb{color:#3a3a3c;border-radius:12px;margin:1px 6px;width:calc(100% - 12px);padding:10px 12px;font-weight:600;gap:10px}
+.navb:hover{background:rgba(0,0,0,.05);color:#1d1d1f}
+.navb.on{background:#1d1d1f;color:#f5f5f7;font-weight:700;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.20)}
+.navb svg{width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.railshead{color:#86868b}
+.railsub{margin-left:32px!important}
+#topSearch{background:rgba(0,0,0,.05);border:0;border-radius:10px;color:#1d1d1f;padding:9px 12px}
+#topSearch::placeholder{color:#86868b}
+.ava{background:#1d1d1f;color:#fff;border-radius:50%}
+.btn,.signin{border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.14)}
+.btn:not(.sm)::after,.signin::after{content:""}
+.btn.gold,.greetCard .btn{background:linear-gradient(120deg,#f6cd7d,#eba94c);color:#43300a}
+.btn.alt,.sso,.door,.pillbtn,.tab,.qchips button{border:1px solid rgba(0,0,0,.09);border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.chip,.skillchip,.pill{border-radius:999px}
+.inp,select.inp,input.inp,.loginCard input,.chatIn input,.mbrow .lb{border-radius:12px!important}
+#fab{background:linear-gradient(120deg,#e2522e,#ec7a3f);border-radius:999px;box-shadow:0 14px 30px rgba(226,82,46,.38)}
+.pava{background:linear-gradient(135deg,#33755a,#17352a);color:#fff;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(242,201,121,.55)}
+.mini{background:#33755a;color:#fff;border-radius:50%}
+table th{border-bottom:1px solid rgba(0,0,0,.09);color:#86868b}
+.bar{border-radius:6px 6px 2px 2px;background:#f0d7b4}.bar.hl,.bar:hover{background:#17352a}
+.prog,.prog i{border-radius:99px}.prog i{background:#1d1d1f}
+.chg{border-radius:999px}
+.msg{border-radius:16px}
+.toast{border-radius:12px}
+.canvas{border-radius:16px}
+.band{border-radius:12px}
+.logo{color:#1d1d1f;letter-spacing:3px}
+#splash .mk{letter-spacing:4px}
+.greetCard{border-radius:24px}
 </style></head>
 <body>
 
@@ -338,7 +371,7 @@ table th{color:#1f2426;border-bottom:1.5px solid #1f2426}
 <div id="loginView">
  <div style="width:100%;max-width:400px">
   <div class="loginCard">
-   <div class="logo">AX<span>I</span>S</div>
+   <div class="logo">SHAPE</div>
    <p class="sub">SHAPE intranet — staff sign-in</p>
    <label>Work email</label><input id="liEmail" type="email" placeholder="you@jvdevelopments.example" autocomplete="off">
    <label>Password</label><input id="liPass" type="password" placeholder="••••••••">
@@ -354,14 +387,14 @@ table th{color:#1f2426;border-bottom:1.5px solid #1f2426}
     </div>
    </div>
   </div>
-  <p class="demo-note">Interactive mirror demo of the Axis build — Shape skin (PR #4) now merged into the real app.<br>Everything here is fictional. <a href="about.html" style="color:#d8c58f">About this demo</a> · <a href="samples/" style="color:#d8c58f">Samples library</a></p>
+  <p class="demo-note">Interactive mirror demo of the Axis build — SHAPE skin with the Apple-style polish pass.<br>Everything here is fictional. <a href="about.html" style="color:#d8c58f">About this demo</a> · <a href="samples/" style="color:#d8c58f">Samples library</a></p>
  </div>
 </div>
 
 <!-- ================= APP ================= -->
 <div id="app" class="hidden">
  <div id="topbar">
-  <div class="brand">AX<span>I</span>S</div>
+  <div class="brand">SHAPE</div>
   <div id="railNav"></div>
   <div class="sp"></div>
   <input id="topSearch" placeholder="Search people…" onkeydown="if(event.key==='Enter')searchPeople(this.value)">
@@ -387,7 +420,6 @@ table th{color:#1f2426;border-bottom:1.5px solid #1f2426}
    <div class="greetCard rv">
     <div style="flex:1;min-width:240px"><h2>Work's always <em>better</em> together</h2>
     <p>Harbourgate topped out three weeks early and orientations open Nov 20 — here's your whole team, and everything happening, at a glance.</p></div>
-    <div class="avstack"><div class="mini">DM</div><div class="mini">MC</div><div class="mini">RS</div><div class="mini">SL</div><div class="mini">PN</div><div class="mini" style="background:var(--gold);color:#16130c">+145</div></div>
     <button class="btn gold" onclick="go('people')">Meet the team</button>
    </div>
    <div style="height:16px"></div>
@@ -568,7 +600,7 @@ table th{color:#1f2426;border-bottom:1.5px solid #1f2426}
  </main>
 </div>
 
-<div id="splash"><div><div class="mk">AX<span>I</span>S</div><p>SHAPE · TEAM WORKSPACE</p></div></div>
+<div id="splash"><div><div class="mk">SHAPE</div><p>SHAPE · TEAM WORKSPACE</p></div></div>
 <button id="fab" class="hidden" onclick="go('askhr')">💬 Ask HR</button>
 <div class="toast" id="toast"></div>
 
@@ -908,21 +940,35 @@ function renderSettings(){
 
 /* ============ SIDE MENU BUILDER + RAIL + EDIT SITE ============ */
 let railItems = [
- {t:"item",icon:"🏠",label:"Home",nav:"home",on:1},
- {t:"item",icon:"👥",label:"People",nav:"people",on:1},
- {t:"item",icon:"🛠️",label:"Site Builder",nav:"builder",on:1},
- {t:"item",icon:"💬",label:"Ask HR",nav:"askhr",on:1},
- {t:"item",icon:"🛡️",label:"Admin",nav:"admin",on:1,min:"admin"},
- {t:"item",icon:"⚙️",label:"Settings",nav:"settings",on:1}
+ {t:"item",icon:"home",label:"Home",nav:"home",on:1},
+ {t:"item",icon:"people",label:"People",nav:"people",on:1},
+ {t:"item",icon:"builder",label:"Site Builder",nav:"builder",on:1},
+ {t:"item",icon:"askhr",label:"Ask HR",nav:"askhr",on:1},
+ {t:"item",icon:"admin",label:"Admin",nav:"admin",on:1,min:"admin"},
+ {t:"item",icon:"settings",label:"Settings",nav:"settings",on:1}
 ];
-const ICONS = ["🏠","👥","🛠️","💬","⚙️","🛡️","📁","🧩","📣","🗓️","⭐","🔗","🏢","🎉"];
+const ICONS = [["home","House"],["people","People"],["builder","Grid"],["askhr","Chat"],["admin","Shield"],["settings","Gear"],["star","Star"],["folder","Folder"],["calendar","Calendar"],["link","Link"]];
+/* Clean SF-style line icons for the rail — no emojis (owner, 2026-11-17). */
+const NAVICONS = {
+ home:'<svg viewBox="0 0 24 24"><path d="M3.5 11 12 3.8 20.5 11"/><path d="M5.8 9.3V20h12.4V9.3"/><path d="M9.8 20v-5.2h4.4V20"/></svg>',
+ people:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M3.5 19.5c.6-3 2.8-4.6 5.5-4.6s4.9 1.6 5.5 4.6"/><path d="M15.5 5.2a3.4 3.4 0 0 1 0 6.1M17.8 15.3c1.6.7 2.5 2 2.9 4.2"/></svg>',
+ builder:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>',
+ askhr:'<svg viewBox="0 0 24 24"><path d="M4 6.2A2.2 2.2 0 0 1 6.2 4h11.6A2.2 2.2 0 0 1 20 6.2v7.6a2.2 2.2 0 0 1-2.2 2.2h-6.4L7 19.4v-3.4h-.8A2.2 2.2 0 0 1 4 13.8z"/></svg>',
+ admin:'<svg viewBox="0 0 24 24"><path d="M12 3.2 19 5.6v5.2c0 4.4-2.9 7.6-7 9.4-4.1-1.8-7-5-7-9.4V5.6z"/><path d="m9.2 11.6 2 2 3.6-3.8"/></svg>',
+ settings:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.2v2.6M12 18.2v2.6M3.2 12h2.6M18.2 12h2.6M5.8 5.8l1.8 1.8M16.4 16.4l1.8 1.8M18.2 5.8l-1.8 1.8M7.6 16.4l-1.8 1.8"/></svg>',
+ star:'<svg viewBox="0 0 24 24"><path d="m12 4 2.3 4.9 5.3.7-3.9 3.7 1 5.3-4.7-2.6-4.7 2.6 1-5.3L4.4 9.6l5.3-.7z"/></svg>',
+ folder:'<svg viewBox="0 0 24 24"><path d="M3.5 6.5A1.5 1.5 0 0 1 5 5h4l2 2.5h8A1.5 1.5 0 0 1 20.5 9v8.5a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.5-1.5z"/></svg>',
+ calendar:'<svg viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>',
+ link:'<svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 1 0-5.7-5.7l-1.5 1.5"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 1 0 5.7 5.7L12.5 17"/></svg>',
+ def:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>'
+};
 function renderRail(){
  const cur = (document.querySelector(".view:not(.hidden)")||{id:"v-home"}).id.slice(2);
  let under = false, out = "";
  railItems.forEach(it=>{
   if(it.t==="header"){ under = true; if(it.on) out += `<div class="railshead">${esc(it.label)}</div>`; return; }
   if(!it.on || (it.min==="admin" && !(me==="admin"||me==="super"))) return;
-  out += `<button class="navb ${under?'railsub':''} ${it.nav===cur?'on':''}" data-nav="${it.nav||'home'}" onclick="go('${it.nav||'home'}')">${it.icon} ${esc(it.label)}</button>`;
+  out += `<button class="navb ${under?'railsub':''} ${it.nav===cur?'on':''}" data-nav="${it.nav||'home'}" onclick="go('${it.nav||'home'}')">${NAVICONS[it.icon]||NAVICONS[it.nav]||NAVICONS.def}<span>${esc(it.label)}</span></button>`;
  });
  $("railNav").innerHTML = out;
 }
@@ -930,12 +976,12 @@ const NAVOPTS = [["home","Home"],["people","People"],["builder","Site Builder"],
 function renderMenuBuilder(){
  $("menuRows").innerHTML = railItems.map((it,i)=> it.t==="header"
   ? `<div class="mbrow ${it.on?'':'off'}"><span class="pill gold">HEADER</span><input class="lb" value="${esc(it.label)}" onchange="railItems[${i}].label=this.value;renderRail()"><button class="tgl ${it.on?'on':''}" title="Show/hide" onclick="mbTgl(${i})"></button><button class="mv" onclick="mbMove(${i},-1)">↑</button><button class="mv" onclick="mbMove(${i},1)">↓</button><button class="del" onclick="mbDel(${i})">✕</button></div>`
-  : `<div class="mbrow ${it.on?'':'off'}"><select class="ic" title="Icon" onchange="railItems[${i}].icon=this.value;renderRail();renderMenuBuilder()">${ICONS.map(ic=>`<option ${ic===it.icon?'selected':''}>${ic}</option>`).join("")}</select><input class="lb" value="${esc(it.label)}" onchange="railItems[${i}].label=this.value;renderRail()"><select title="Goes to" onchange="railItems[${i}].nav=this.value;renderRail()">${NAVOPTS.map(o=>`<option value="${o[0]}" ${it.nav===o[0]?'selected':''}>→ ${o[1]}</option>`).join("")}</select><button class="tgl ${it.on?'on':''}" title="Show/hide on the rail" onclick="mbTgl(${i})"></button><button class="mv" onclick="mbMove(${i},-1)">↑</button><button class="mv" onclick="mbMove(${i},1)">↓</button><button class="del" onclick="mbDel(${i})">✕</button></div>`).join("");
+  : `<div class="mbrow ${it.on?'':'off'}"><select class="ic" title="Icon" onchange="railItems[${i}].icon=this.value;renderRail();renderMenuBuilder()">${ICONS.map(([k,l])=>`<option value="${k}" ${k===it.icon?'selected':''}>${l}</option>`).join("")}</select><input class="lb" value="${esc(it.label)}" onchange="railItems[${i}].label=this.value;renderRail()"><select title="Goes to" onchange="railItems[${i}].nav=this.value;renderRail()">${NAVOPTS.map(o=>`<option value="${o[0]}" ${it.nav===o[0]?'selected':''}>→ ${o[1]}</option>`).join("")}</select><button class="tgl ${it.on?'on':''}" title="Show/hide on the rail" onclick="mbTgl(${i})"></button><button class="mv" onclick="mbMove(${i},-1)">↑</button><button class="mv" onclick="mbMove(${i},1)">↓</button><button class="del" onclick="mbDel(${i})">✕</button></div>`).join("");
 }
 function mbTgl(i){ railItems[i].on = railItems[i].on?0:1; renderRail(); renderMenuBuilder(); }
 function mbMove(i,d){ const j=i+d; if(j<0||j>=railItems.length) return; const t=railItems[i]; railItems[i]=railItems[j]; railItems[j]=t; renderRail(); renderMenuBuilder(); }
 function mbDel(i){ railItems.splice(i,1); renderRail(); renderMenuBuilder(); toast("Removed from the rail — in the real product this change is audit-logged."); }
-function mbAdd(type){ if(type==="header") railItems.push({t:"header",icon:"",label:"New header",on:1}); else railItems.push({t:"item",icon:"⭐",label:"New item",nav:"home",on:1}); renderRail(); renderMenuBuilder(); toast(type==="header"?"Sub-header added — items under it sit indented on the rail.":"Item added to the rail — rename it, pick its icon and where it goes."); }
+function mbAdd(type){ if(type==="header") railItems.push({t:"header",icon:"",label:"New header",on:1}); else railItems.push({t:"item",icon:"star",label:"New item",nav:"home",on:1}); renderRail(); renderMenuBuilder(); toast(type==="header"?"Sub-header added — items under it sit indented on the rail.":"Item added to the rail — rename it, pick its icon and where it goes."); }
 let homeWired = false;
 function wireHomeDrag(){
  if(homeWired) return; homeWired = true;
