@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Axis — JV Developments Intranet (Demo)</title>
+<title>Axis — SHAPE Intranet (Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <style>
 :root{--green:#17352a;--green2:#1f4a3a;--gold:#b98a2f;--cream:#f7f5ef;--ink:#1c2620;--mut:#67766b;--line:#e2e7e1;--bad:#b3372c;--acc:#17352a}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#eef1ee}
@@ -292,6 +294,43 @@ body{font-size:17px}
 .door{border-radius:12px;background:rgba(255,255,255,.85)}
 .loginCard input{border-radius:12px}
 table td{padding:13px 10px}
+
+/* ===== PR #4 SYNC (Shape skin, merged into axis main 2026-11-17): after shape.ca — charcoal #1f2426, warm paper #f3f0e8,
+   chartreuse #d2dc51, orange #ec5826 for Ask HR; square edges; charcoal arrow buttons; uppercase grotesk headlines, serif card titles ===== */
+:root{--green:#1f2426;--green2:#1f2426;--acc:#1f2426;--gold:#d2dc51;--cream:#f3f0e8;--ink:#1f2426;--mut:#5b6063;--line:#e2ddd0;--lime:#d2dc51;--orange:#ec5826;--grot:"Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;--serif:"Newsreader",Georgia,serif}
+body{background:#f3f0e8;font-family:var(--grot)}
+h1,.view h1{font-family:var(--grot);font-weight:700;text-transform:uppercase;letter-spacing:-.2px;line-height:1.02;font-size:40px}
+.view h1::before{content:"";display:block;width:56px;height:6px;background:var(--lime);margin-bottom:14px}
+.card h2,.card h3,.news h3,.tcard h3,.c4rail h2{font-family:var(--serif);font-weight:500}
+.ambient{display:none}
+.card,.glass,.pcard,.tcard,.news .n,.ql a,.kpi,.stat,.sec,.blk,.c4rail,.facts div,.loginCard{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:1px solid rgba(31,36,38,.12);border-radius:0;box-shadow:none}
+.lift:hover,.pcard:hover{box-shadow:0 22px 40px -18px rgba(31,36,38,.35),inset 0 3px 0 var(--lime)}.lift::after{display:none}
+.hero{border-radius:0;box-shadow:none;background:#1f2426}.hero h2{font-family:var(--grot);text-transform:uppercase;font-weight:700}.hero p{color:rgba(255,255,255,.76)}
+.greetCard{background:#1f2426;border-radius:0;box-shadow:none}.greetCard h2{font-family:var(--grot);text-transform:uppercase}.greetCard h2 em{font-family:var(--serif);color:var(--lime);text-transform:none}
+.greetCard p{color:rgba(255,255,255,.76)}.avstack .mini{border-color:#1f2426}
+.btn,.signin{background:#1f2426;color:#fff;border-radius:0;box-shadow:none}.btn:hover,.signin:hover{background:#000}
+.btn.gold,.greetCard .btn{background:var(--lime);color:#1f2426}.btn.gold:hover{background:#fff}
+.btn.alt,.sso,.door,.pillbtn,.tab,.qchips button{background:#fff;color:#1f2426;border:1.5px solid #1f2426;border-radius:0;box-shadow:none}
+.tab.on{background:#1f2426;color:#fff;box-shadow:none}
+.btn:not(.sm)::after,.signin::after{content:" →";font-weight:400}
+.inp,select.inp,input.inp,.loginCard input,.chatIn input,.mbrow .lb{border:1px solid #cdc7b8!important;border-radius:3px!important;background:#fff}
+.chip,.skillchip,.pill{border-radius:0;background:#f3f0e8;border:0;color:#1f2426}.pill.grn{background:var(--lime)}.pill.gold{background:#ece8de}
+table th{color:#1f2426;border-bottom:1.5px solid #1f2426}
+#loginView{background:#f3f0e8}.logo span,#topbar .brand span,#splash .mk span{color:var(--lime)}.loginCard .logo span{color:#1f2426;box-shadow:inset 0 -.38em 0 var(--lime)}
+.demo-note{color:#5b6063}.demo-note a{color:#1f2426!important}
+#topbar{background:#1f2426;box-shadow:none}.navb{border-radius:0;font-weight:500}.navb:hover{background:none;color:var(--lime)}
+.navb.on{background:var(--lime);color:#1f2426;font-weight:700;box-shadow:none}
+#topSearch{background:none;border:0;border-bottom:1px solid rgba(255,255,255,.3);border-radius:0}
+.ava{background:var(--lime);color:#1f2426;border-radius:0}.pava,.mini{background:#1f2426;color:var(--lime);box-shadow:none}
+.msg{border-radius:2px}.msg.me{background:#1f2426}.cite{border-left-color:var(--lime);border-radius:0}
+#fab{background:var(--orange);color:#fff;border-radius:0;box-shadow:0 12px 26px -10px rgba(236,88,38,.7)}
+.bar{background:#b6b6b6;border-radius:0}.bar.hl,.bar:hover{background:var(--lime)}.prog,.prog i{border-radius:0}.prog i{background:#1f2426}
+.chg{border-radius:0}.chg.up{background:var(--lime);color:#1f2426}
+.band{background:#1f2426;border-radius:0}.band.foot{background:#ece8de}
+#splash{background:#1f2426}#splash p{color:rgba(255,255,255,.7)}
+.toast{background:#1f2426;border-radius:0}
+.canvas{background:#ece8de;border-radius:0}
+.avstack .mini{background:#2b3134;color:var(--lime);border-radius:0}
 </style></head>
 <body>
 
@@ -300,7 +339,7 @@ table td{padding:13px 10px}
  <div style="width:100%;max-width:400px">
   <div class="loginCard">
    <div class="logo">AX<span>I</span>S</div>
-   <p class="sub">JV Developments intranet — staff sign-in</p>
+   <p class="sub">SHAPE intranet — staff sign-in</p>
    <label>Work email</label><input id="liEmail" type="email" placeholder="you@jvdevelopments.example" autocomplete="off">
    <label>Password</label><input id="liPass" type="password" placeholder="••••••••">
    <div class="err" id="liErr"></div>
@@ -310,12 +349,12 @@ table td{padding:13px 10px}
     <div class="row">
      <button class="door" onclick="enterAs('staff')">Staff<small>Daniel Mercer — Customer Care</small></button>
      <button class="door" onclick="enterAs('editor')">Editor<small>Sofia Lindqvist — Marketing</small></button>
-     <button class="door" onclick="enterAs('admin')">Admin<small>Priya Nair — HR &amp; Admin</small></button>
+     <button class="door" onclick="enterAs('admin')">Admin<small>James — HR &amp; Admin</small></button>
      <button class="door" onclick="enterAs('super')">Super User<small>James Okafor — IT &amp; Systems</small></button>
     </div>
    </div>
   </div>
-  <p class="demo-note">Interactive mirror demo of the Axis build — Impeccable polish now merged into the real app.<br>Everything here is fictional. <a href="about.html" style="color:#d8c58f">About this demo</a> · <a href="samples/" style="color:#d8c58f">Samples library</a></p>
+  <p class="demo-note">Interactive mirror demo of the Axis build — Shape skin (PR #4) now merged into the real app.<br>Everything here is fictional. <a href="about.html" style="color:#d8c58f">About this demo</a> · <a href="samples/" style="color:#d8c58f">Samples library</a></p>
  </div>
 </div>
 
@@ -338,13 +377,13 @@ table td{padding:13px 10px}
 
  <main>
   <div id="editBar"><span>✎ Editing the whole site — everything editable has a dotted outline. Drag Home sections to reorder them.</span><span style="flex:1"></span><button class="btn sm" style="background:#fff;color:#8a5200" onclick="exitEditSite()">Done editing</button></div>
-  <div class="holiday" id="holidayBanner">🎄 JV Developments Holiday Theme is live — Holiday Party Dec 5 · Office closed Dec 25 – Jan 1 🎄</div>
+  <div class="holiday" id="holidayBanner">🎄 SHAPE Holiday Theme is live — Holiday Party Dec 5 · Office closed Dec 25 – Jan 1 🎄</div>
 
   <!-- HOME — V22 glass dashboard experience -->
   <section class="view" id="v-home">
    <div class="ambient"><i></i><i></i><i></i></div>
    <h1 id="greet">Good morning</h1>
-   <p class="lede">JV Developments — Team Workspace. News, numbers, people and answers, one home.</p>
+   <p class="lede">SHAPE — Team Workspace. News, numbers, people and answers, one home.</p>
    <div class="greetCard rv">
     <div style="flex:1;min-width:240px"><h2>Work's always <em>better</em> together</h2>
     <p>Harbourgate topped out three weeks early and orientations open Nov 20 — here's your whole team, and everything happening, at a glance.</p></div>
@@ -360,7 +399,7 @@ table td{padding:13px 10px}
    </div>
    <div style="height:16px"></div>
    <div class="grid g3">
-    <div class="glass rv" style="padding:18px 20px"><b>About JV</b><div style="height:10px"></div>
+    <div class="glass rv" style="padding:18px 20px"><b>About SHAPE</b><div style="height:10px"></div>
      <button class="pillbtn" onclick="toast('Company hub — opens in the full build')">Our story</button>
      <button class="pillbtn" onclick="go('people')">People &amp; teams</button>
      <button class="pillbtn" onclick="go('builder')">Projects</button>
@@ -507,7 +546,7 @@ table td{padding:13px 10px}
    <div style="height:16px"></div>
    <div class="grid g2">
     <div class="card"><b>Site identity</b>
-     <label style="display:block;font-size:12.5px;font-weight:700;margin:12px 0 5px">Site name</label><input class="inp" style="width:100%" value="JV Developments Intranet">
+     <label style="display:block;font-size:12.5px;font-weight:700;margin:12px 0 5px">Site name</label><input class="inp" style="width:100%" value="SHAPE Intranet">
      <label style="display:block;font-size:12.5px;font-weight:700;margin:12px 0 5px">Profile template (company-wide, applies to everyone)</label>
      <select class="inp" style="width:100%" id="profTplSel"></select>
      <p style="color:var(--mut);font-size:12.5px;line-height:1.55">One template for all 150 profiles. Once picked, the choice is locked in Settings — members can't restyle their own page.</p></div>
@@ -529,7 +568,7 @@ table td{padding:13px 10px}
  </main>
 </div>
 
-<div id="splash"><div><div class="mk">AX<span>I</span>S</div><p>JV DEVELOPMENTS · TEAM WORKSPACE</p></div></div>
+<div id="splash"><div><div class="mk">AX<span>I</span>S</div><p>SHAPE · TEAM WORKSPACE</p></div></div>
 <button id="fab" class="hidden" onclick="go('askhr')">💬 Ask HR</button>
 <div class="toast" id="toast"></div>
 
@@ -549,7 +588,7 @@ const PEOPLE = window.__PEOPLE.map(p=>({name:p.n,title:p.t,department:p.d,email:
 const ACCOUNTS = {
  staff:{email:"staff@jvdev.example", name:"Daniel Mercer", role:"Staff", dept:"Customer Care", title:"Homeowner Care Specialist", ini:"DM"},
  editor:{email:"editor@jvdev.example", name:"Sofia Lindqvist", role:"Editor", dept:"Sales & Marketing", title:"Content Editor", ini:"SL"},
- admin:{email:"admin@jvdev.example", name:"Priya Nair", role:"Admin", dept:"HR & Admin", title:"HR Manager", ini:"PN"},
+ admin:{email:"admin@jvdev.example", name:"James", role:"Admin", dept:"HR & Admin", title:"HR Manager", ini:"JA"},
  super:{email:"super@jvdev.example", name:"James Okafor", role:"Super User", dept:"IT & Systems", title:"Systems Administrator", ini:"JO"}
 };
 let me = null;               // current account key
@@ -693,14 +732,14 @@ function viewProfile(p){
     <div class="pava">${ini(p.name)}</div>
     <h2>${p.name}</h2><p class="rl">${p.title}<br>${p.department}</p>
     <div class="frow"><b>EMAIL</b>${p.email}</div>
-    <div class="frow"><b>STARTED</b>${startYr(i)} · ${yrs} years at JV</div>
+    <div class="frow"><b>STARTED</b>${startYr(i)} · ${yrs} years at SHAPE</div>
     <div class="frow"><b>SKILLS</b>${s1} · ${s2}</div>
     <div class="frow"><b>ASK ME ABOUT</b>${s3}</div>
    </div>
    <div class="c4story">
     <b style="font-size:17px">My story</b>
-    <p style="margin-top:10px">${p.name.split(" ")[0]} has been with JV Developments for ${yrs} years, working as a ${p.title} in ${p.department}. Day to day that means ${s1.toLowerCase()} and ${s2.toLowerCase()} — the unglamorous work that keeps projects moving and homeowners looked after.</p>
-    <p>Before JV, ${p.name.split(" ")[0]} built experience across the industry and joined in ${startYr(i)} for the chance to work on towers like Harbourgate from first dig to final key handover. The favourite part of the job: the people — a crew that tops out three weeks early and still shows up for each other.</p>
+    <p style="margin-top:10px">${p.name.split(" ")[0]} has been with SHAPE for ${yrs} years, working as a ${p.title} in ${p.department}. Day to day that means ${s1.toLowerCase()} and ${s2.toLowerCase()} — the unglamorous work that keeps projects moving and homeowners looked after.</p>
+    <p>Before SHAPE, ${p.name.split(" ")[0]} built experience across the industry and joined in ${startYr(i)} for the chance to work on towers like Harbourgate from first dig to final key handover. The favourite part of the job: the people — a crew that tops out three weeks early and still shows up for each other.</p>
     <b>Good to know</b><div style="height:9px"></div>
     <span class="skillchip">${s1}</span><span class="skillchip">${s2}</span><span class="skillchip">Ask me about ${s3}</span>
     <p style="color:var(--mut);font-size:13px;line-height:1.6;margin-top:8px">This profile uses the company's one default layout — the facts rail on the left, the story on the right, identical for all 150 staff. Members write their own story inside these boxes; the layout itself is set centrally in Admin settings. Nothing here is scored, ranked or gamified.</p>
@@ -744,8 +783,8 @@ function blockHTML(b,si,bi){
  return `<div class="blkwrap ${sel?'selblk':''}" style="flex:0 0 calc(${b.w||100}% - 6px);max-width:100%" onclick="selBlock(${si},${bi},event)">${blockInner(b)}<span class="rsz" title="Drag to resize" onpointerdown="rszStart(event,${si},${bi})">⤢</span></div>`;
 }
 function renderBuilder(){
- const bandTop = pageBands.header ? `<div class="band" style="margin-bottom:12px">Harbourgate Tower — JV Developments <span style="float:right;font-size:11.5px;opacity:.75">PAGE HEADER — click Header above to remove</span></div>` : "";
- const bandBot = pageBands.footer ? `<div class="band foot" style="margin-top:12px">PAGE FOOTER — © JV Developments · Harbourgate Tower · Questions? Ask Customer Care</div>` : "";
+ const bandTop = pageBands.header ? `<div class="band" style="margin-bottom:12px">Harbourgate Tower — SHAPE <span style="float:right;font-size:11.5px;opacity:.75">PAGE HEADER — click Header above to remove</span></div>` : "";
+ const bandBot = pageBands.footer ? `<div class="band foot" style="margin-top:12px">PAGE FOOTER — © SHAPE · Harbourgate Tower · Questions? Ask Customer Care</div>` : "";
  $("canvas").innerHTML = bandTop + sections.map((s,i)=>`<div class="sec ${i===selSec?'sel':''}" style="${s.vis[device]?'':'opacity:.35'}" ondragover="secOver(event)" ondragleave="this.classList.remove('dragover')" ondrop="secDrop(event,${i})" onclick="if(event.target.closest('.blkwrap,.rsz,button'))return;selSec=${i};selBlk=null;renderBuilder()">
    <div class="sechd"><span class="grip" draggable="true" ondragstart="secDrag(event,${i})" title="Drag to move this section">⠿</span><span style="font-size:11px;font-weight:800;color:var(--mut);letter-spacing:.5px">SECTION ${i+1} — ${esc(s.name).toUpperCase()} ${s.vis[device]?'':'· HIDDEN ON '+device.toUpperCase()}</span></div>
    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:9px">${s.blocks.map((b,bi)=>blockHTML(b,i,bi)).join("")}</div></div>`).join("") + bandBot;
