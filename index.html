@@ -380,8 +380,8 @@ table th{border-bottom:1px solid rgba(0,0,0,.09);color:#86868b}
    <button class="sso" onclick="toast('In production this is Microsoft Entra SSO — your Microsoft 365 login + MFA. The demo uses the accounts below.')">Sign in with Microsoft</button>
    <div class="doors"><p>DEMO LOGINS — TAP ONE TO ENTER (FICTIONAL DATA)</p>
     <div class="row">
-     <button class="door" onclick="enterAs('staff')">Staff<small>Daniel Mercer — Customer Care</small></button>
-     <button class="door" onclick="enterAs('editor')">Editor<small>Sofia Lindqvist — Marketing</small></button>
+     <button class="door" onclick="enterAs('staff')">Staff<small>James — Customer Care</small></button>
+     <button class="door" onclick="enterAs('editor')">Editor<small>James — Marketing</small></button>
      <button class="door" onclick="enterAs('admin')">Admin<small>James — HR &amp; Admin</small></button>
      <button class="door" onclick="enterAs('super')">Super User<small>James Okafor — IT &amp; Systems</small></button>
     </div>
@@ -398,7 +398,7 @@ table th{border-bottom:1px solid rgba(0,0,0,.09);color:#86868b}
   <div id="railNav"></div>
   <div class="sp"></div>
   <input id="topSearch" placeholder="Search people…" onkeydown="if(event.key==='Enter')searchPeople(this.value)">
-  <button class="ava" id="avaBtn" onclick="toggleMenu(event)"><span id="avaInit">DM</span><span class="dot"></span></button>
+  <button class="ava" id="avaBtn" onclick="toggleMenu(event)"><span id="avaInit">JA</span><span class="dot"></span></button>
  </div>
  <div id="userMenu" class="hidden">
   <div class="who"><b id="umName"></b><br><span style="color:var(--mut);font-size:12.5px" id="umRole"></span></div>
@@ -618,8 +618,8 @@ table th{border-bottom:1px solid rgba(0,0,0,.09);color:#86868b}
 /* ============ DATA ============ */
 const PEOPLE = window.__PEOPLE.map(p=>({name:p.n,title:p.t,department:p.d,email:p.e}));
 const ACCOUNTS = {
- staff:{email:"staff@jvdev.example", name:"Daniel Mercer", role:"Staff", dept:"Customer Care", title:"Homeowner Care Specialist", ini:"DM"},
- editor:{email:"editor@jvdev.example", name:"Sofia Lindqvist", role:"Editor", dept:"Sales & Marketing", title:"Content Editor", ini:"SL"},
+ staff:{email:"staff@jvdev.example", name:"James", role:"Staff", dept:"Customer Care", title:"Homeowner Care Specialist", ini:"JA"},
+ editor:{email:"editor@jvdev.example", name:"James", role:"Editor", dept:"Sales & Marketing", title:"Content Editor", ini:"JA"},
  admin:{email:"admin@jvdev.example", name:"James", role:"Admin", dept:"HR & Admin", title:"HR Manager", ini:"JA"},
  super:{email:"super@jvdev.example", name:"James Okafor", role:"Super User", dept:"IT & Systems", title:"Systems Administrator", ini:"JO"}
 };
@@ -686,9 +686,9 @@ let hrOn = [true,true,true,true];
 let audit = [
  ["Nov 6, 4:12 pm","James Okafor (Super)","Published page: Harbourgate Tower","a91f…c204"],
  ["Nov 6, 3:48 pm","Priya Nair (Admin)","Turned ON document: Benefits Guide 2026","77be…09aa"],
- ["Nov 6, 2:15 pm","Sofia Lindqvist (Editor)","Edited section: Home hero","e310…f7d2"],
+ ["Nov 6, 2:15 pm","James (Editor)","Edited section: Home hero","e310…f7d2"],
  ["Nov 6, 11:02 am","System","Ask HR index refreshed from HR folder","5c88…41b0"],
- ["Nov 5, 5:40 pm","Daniel Mercer (Staff)","Signed in","09d1…be77"]
+ ["Nov 5, 5:40 pm","James (Staff)","Signed in","09d1…be77"]
 ];
 let modQueue = [
  {who:"A field crew member", text:"“Huge shout-out to the Harbourgate crew for the early top-out 🎉”", tag:"Community post"},
