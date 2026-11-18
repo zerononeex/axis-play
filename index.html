@@ -123,10 +123,6 @@ body.dragging{user-select:none;-webkit-user-select:none}
 .prog{height:5px;background:var(--paper2);margin-top:12px}.prog i{display:block;height:100%;width:0;background:var(--char);transition:width 1.1s cubic-bezier(.22,.9,.3,1)}
 .pillbtn{border:1.5px solid var(--char);background:#fff;padding:6px 12px;font-weight:700;font-size:13px;margin:0 6px 8px 0}
 .pillbtn:hover,.pillbtn.on{background:var(--char);color:#fff}
-.bars{display:flex;align-items:flex-end;gap:9px;height:120px;margin-top:22px}
-.bar{flex:1;background:#b6b6b6;height:4%;transition:height 1s cubic-bezier(.22,.9,.3,1);position:relative}
-.bar.hl,.bar:hover{background:var(--lime)}
-.bar span{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:10.5px;color:var(--mut);font-weight:700}
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:12.5px;text-align:center;font-variant-numeric:tabular-nums}
 .cal b{color:var(--mut);font-size:10.5px}.cal span{padding:4px 0}
 .cal .ev{background:var(--paper);font-weight:800}.cal .td{background:var(--lime);font-weight:800}
@@ -139,7 +135,7 @@ body.dragging{user-select:none;-webkit-user-select:none}
 .carTrack::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:1.25fr 1fr;background:var(--char);color:#fff;cursor:pointer;min-height:330px}
 .slide .ph{background-size:cover;background-position:center;min-height:240px}
-.slide .tx{padding:28px 30px;display:flex;flex-direction:column;gap:10px}
+.slide .tx{padding:28px 72px 28px 30px;display:flex;flex-direction:column;gap:10px}
 .slide h3{font-size:27px;line-height:1.12;margin:0;font-weight:700;text-transform:uppercase;text-wrap:balance}
 .slide p{color:rgba(255,255,255,.76);line-height:1.6;margin:0;font-size:14.5px}
 .slide .meta{font-size:12.5px;color:rgba(255,255,255,.6)}
@@ -149,8 +145,6 @@ body.dragging{user-select:none;-webkit-user-select:none}
 .dots{display:flex;gap:7px;flex-wrap:wrap}
 .dots button{width:9px;height:9px;border:0;background:#cdc7b8;padding:0}
 .dots button.on{background:var(--char);width:26px}
-.arrows button{border:1.5px solid var(--char);background:#fff;width:36px;height:36px;font-weight:700}
-.arrows button:hover{background:var(--lime)}
 /* article */
 .artHero{height:min(46vh,420px);background-size:cover;background-position:center}
 .article{max-width:760px}
@@ -276,6 +270,107 @@ body.editing .tile.sel>.rz{display:block}
 body.editing .tile.sel .htmled{display:block}
 .swapPh{display:none}
 body.editing .tile.sel .swapPh{display:inline-flex}
+/* ---------- round 3 ---------- */
+.chatbox{height:calc(100vh - 250px);min-height:420px}
+.car .carArrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:46px;height:46px;border:0;background:var(--lime);color:var(--char);font-size:20px;font-weight:800;box-shadow:0 8px 20px -8px rgba(0,0,0,.5)}
+.car .carArrow:hover{background:#fff}
+.car .carArrow.prev{left:12px}.car .carArrow.next{right:12px}
+.carWrap{position:relative}
+.rates{width:100%;font-variant-numeric:tabular-nums}
+.rates td,.rates th{padding:7px 4px}.rates td:not(:first-child),.rates th:not(:first-child){text-align:right}
+.src{font-size:11.5px;color:var(--mut);margin:8px 0 0;line-height:1.5}
+.vmq{font-family:var(--serif);font-size:21px;line-height:1.35;margin:4px 0 10px}
+/* site header + footer, built in Site Builder, shown on every page */
+#siteHeader{margin-bottom:18px}
+#siteFooter{margin-top:48px;background:var(--char);color:#fff;padding:28px 26px 18px}
+#siteFooter .ttl{color:var(--lime)}
+#siteFooter a,#siteFooter button.lk{display:block;color:rgba(255,255,255,.8);text-decoration:none;font-size:14px;padding:3px 0;background:none;border:0;text-align:left}
+#siteFooter a:hover,#siteFooter button.lk:hover{color:var(--lime)}
+#siteFooter p{color:rgba(255,255,255,.7);font-size:14px;line-height:1.6;margin:0}
+.annc{background:var(--lime);color:var(--char);padding:10px 16px;font-weight:700;font-size:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
+/* org chart */
+.pmode{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.org{--gap:18px;margin-top:8px;overflow-x:auto;padding-bottom:6px}
+.orgTop{display:flex;justify-content:center;position:relative;padding-bottom:30px}
+.orgTop::after{content:"";position:absolute;left:50%;bottom:0;height:30px;border-left:2px solid var(--char)}
+.orgAside{position:absolute;left:calc(50% + 190px);top:18px;display:flex;align-items:center;gap:0}
+.orgAside::before{content:"";width:40px;border-top:2px dashed #8f9396;margin-left:-40px}
+.onode{background:#fff;border:1px solid var(--line);border-top:4px solid var(--br,var(--char));padding:12px 14px;display:flex;gap:11px;align-items:center;cursor:pointer;text-align:left;transition:transform .2s,box-shadow .2s}
+.onode:hover{transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(31,36,38,.45)}
+.onode .av{width:46px;height:46px}
+.onode b{display:block;font-size:14.5px}.onode small{color:var(--mut);font-size:12px;display:block;line-height:1.3}
+.onode.ceo{background:var(--char);color:#fff;border-top-color:var(--lime);padding:16px 20px;min-width:300px}
+.onode.ceo .av{width:64px;height:64px}.onode.ceo small{color:rgba(255,255,255,.65)}.onode.ceo b{font-size:18px}
+.orgExecs{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:var(--gap);position:relative;padding-top:30px;min-width:940px}
+.orgExecs::before{content:"";position:absolute;top:0;left:calc((100% - 3*var(--gap))/8);right:calc((100% - 3*var(--gap))/8);border-top:2px solid var(--char)}
+.orgCol{position:relative;display:flex;flex-direction:column;gap:12px}
+.orgCol::before{content:"";position:absolute;top:-30px;left:50%;height:30px;border-left:2px solid var(--char)}
+.orgCol>.onode{justify-content:flex-start}
+.odept{background:#fff;border:1px solid var(--line);margin-left:14px;position:relative}
+.odept::before{content:"";position:absolute;left:-15px;top:-13px;bottom:50%;border-left:2px solid var(--br);border-bottom:2px solid var(--br);width:14px}
+.odept header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--paper);font-weight:800;font-size:12.5px;letter-spacing:.6px;text-transform:uppercase}
+.odept header span{background:var(--br);color:var(--brt,#fff);padding:1px 7px;font-size:11px}
+.oteam{border-top:1px solid var(--line);padding:9px 12px}
+.oteam .lead{display:flex;gap:9px;align-items:center;background:none;border:0;padding:0;text-align:left;width:100%}
+.oteam .lead .av{width:34px;height:34px}.oteam .lead b{font-size:13.5px;display:block}.oteam .lead small{font-size:11.5px;color:var(--mut)}
+.ostack{display:flex;align-items:center;margin:7px 0 0 43px;background:none;border:0;padding:0}
+.ostack .av{width:24px;height:24px;margin-left:-5px;outline:2px solid #fff}.ostack .av:first-child{margin-left:0}
+.ostack em{font-style:normal;font-size:11.5px;color:var(--mut);margin-left:8px;font-weight:700}
+.omembers{margin:6px 0 0 43px;display:grid;gap:2px}
+.omembers button{display:flex;gap:7px;align-items:center;background:none;border:0;padding:3px 0;text-align:left;font-size:12.5px}
+.omembers .av{width:22px;height:22px}
+.omembers button:hover b{text-decoration:underline}
+@container (max-width:900px){.orgAside{position:static;margin-top:10px}.orgAside::before{display:none}.orgTop{flex-direction:column;align-items:center}}
+/* profile layouts */
+.plgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.plcard{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+.plcard.cur{outline:3px solid var(--lime);outline-offset:-3px}
+.plprev{height:300px;overflow:hidden;background:var(--paper2);position:relative;border-bottom:1px solid var(--line)}
+.plprev>div{position:absolute;top:0;left:0;width:1000px;transform:scale(.37);transform-origin:0 0;pointer-events:none;padding:24px;background:var(--paper)}
+.plcard .tb{padding:14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.plcard h3{margin:0;font-family:var(--serif);font-weight:500;font-size:19px}
+.plcard p{margin:0;color:var(--mut);font-size:13.5px;line-height:1.5}
+.pl-hero{background:var(--char);color:#fff;padding:28px;display:flex;gap:22px;align-items:flex-end;flex-wrap:wrap}
+.pl-hero .av{width:130px;height:130px}
+.pl-hero h2{font-size:34px;margin:0;text-transform:uppercase;font-family:var(--grot)}
+.pl-box{background:#fff;border:1px solid var(--line);padding:16px}
+.pl-box b.k{display:block;font-size:10.5px;letter-spacing:1px;color:var(--mut);margin-bottom:4px}
+.pl-grid{display:grid;gap:12px}
+.pl-blue{background:#22314f;color:#dfe8ff;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:24px 24px;padding:24px}
+.pl-blue .pl-box{background:rgba(255,255,255,.06);border:1px dashed rgba(223,232,255,.5);color:#fff}
+.pl-blue .pl-box b.k{color:#9fb3e6}
+.pl-tl{border-left:3px solid var(--lime);padding-left:18px;display:grid;gap:14px}
+.pl-tl div{position:relative}.pl-tl div::before{content:"";position:absolute;left:-26px;top:4px;width:13px;height:13px;background:var(--char);border:3px solid var(--lime)}
+.pl-stat{font-size:30px;font-weight:800}
+/* tutorials */
+#tourBlock{position:fixed;inset:0;z-index:500}
+#tourHole{position:fixed;z-index:501;pointer-events:none;box-shadow:0 0 0 200vmax rgba(20,24,26,.74);outline:2.5px dashed var(--lime);outline-offset:4px;transition:all .4s cubic-bezier(.22,.9,.3,1)}
+#tourCard{position:fixed;z-index:502;background:#fff;border-top:5px solid var(--lime);width:min(360px,calc(100vw - 32px));padding:18px;box-shadow:0 24px 50px -16px rgba(0,0,0,.6);transition:top .4s,left .4s}
+#tourCard h3{margin:4px 0 6px;font-size:18px}
+#tourCard p{margin:0 0 14px;line-height:1.55;font-size:14.5px}
+#tourCard .row{display:flex;gap:8px;align-items:center}
+@media (prefers-reduced-motion: reduce){#tourHole,#tourCard{transition:none}}
+.tuts{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.tuts button{background:#fff;border:1.5px solid var(--char);padding:12px 14px;text-align:left;font-weight:700;font-size:14px}
+.tuts button small{display:block;font-weight:400;color:var(--mut);font-size:12.5px;margin-top:3px}
+.tuts button:hover{background:var(--lime)}
+/* vision page */
+.vhero{background:var(--char);color:#fff;padding:46px 40px 40px;position:relative;overflow:hidden;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end}
+.vhero .big{font-size:clamp(46px,9cqi,128px);font-weight:800;line-height:.88;text-transform:uppercase;letter-spacing:-2px;position:relative;z-index:1}
+.vhero .big span{display:block}
+.vhero .rb{position:absolute;right:7%;bottom:0;width:14%;background:var(--lime);height:0;animation:raiseBar 1.6s .3s cubic-bezier(.22,.9,.3,1) forwards}
+.vhero .rb::after{content:"";position:absolute;left:-30%;right:-30%;top:-10px;height:10px;background:#fff}
+@keyframes raiseBar{to{height:78%}}
+@media (prefers-reduced-motion: reduce){.vhero .rb{animation:none;height:78%}}
+.vquote{font-family:var(--serif);font-size:clamp(28px,4cqi,46px);line-height:1.15;margin:0}
+.stairs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-items:end;margin-top:14px}
+.stairs>div{background:#fff;border:1px solid var(--line);border-top:6px solid var(--lime);padding:16px;display:flex;flex-direction:column;gap:6px}
+.stairs>div:nth-child(1){min-height:170px}.stairs>div:nth-child(2){min-height:220px}.stairs>div:nth-child(3){min-height:270px}.stairs>div:nth-child(4){min-height:320px;background:var(--char);color:#fff}
+.stairs .n{font-size:40px;font-weight:800;line-height:1}
+.stairs p{margin:0;font-size:14px;line-height:1.55;color:var(--mut)}.stairs>div:nth-child(4) p{color:rgba(255,255,255,.75)}
+@container (max-width:760px){.stairs{grid-template-columns:1fr 1fr}}
+.vband{background:var(--lime);padding:30px;font-size:clamp(28px,5cqi,60px);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-1px}
 </style></head>
 <body>
 
@@ -330,6 +425,7 @@ body.editing .tile.sel .swapPh{display:inline-flex}
  </div>
 
  <main>
+  <div id="siteHeader" class="hidden"><div class="bgrid"><div class="tile annc" data-name="Announcement bar" data-span="12" style="--span:12"><span class="chip" style="background:var(--char);color:var(--lime)">NOTICE</span><span>Double-click to write a site-wide announcement.</span></div></div></div>
   <div class="holiday" id="holidayBanner">SHAPE Holiday Theme is live · Holiday Party Dec 5 · Office closed Dec 25 to Jan 1</div>
 
   <!-- HOME -->
@@ -342,14 +438,16 @@ body.editing .tile.sel .swapPh{display:inline-flex}
    <div class="tile stat lift" data-name="Stat · Leased" data-span="3" style="--span:3"><div class="lb">COMMERCIAL SPACE LEASED</div><div class="vl" data-count="85">0</div><span class="chg up">↗ 2 floors this month</span><div class="prog"><i data-w="85"></i></div></div>
    <div class="tile card" data-name="Updates carousel" data-span="12" style="--span:12;padding:20px">
     <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:12px"><span class="ttl" style="margin:0">Latest across SHAPE</span><div id="carTabs"></div></div>
-    <div class="car"><div class="carTrack" id="carTrack"></div>
-     <div class="carNav"><div class="dots" id="carDots"></div><div class="arrows"><button aria-label="Previous update" onclick="carStep(-1)">←</button> <button aria-label="Next update" onclick="carStep(1)">→</button></div></div></div>
+    <div class="car"><div class="carWrap"><button class="carArrow prev" aria-label="Previous update" onclick="carStep(-1)">←</button><div class="carTrack" id="carTrack"></div><button class="carArrow next" aria-label="Next update" onclick="carStep(1)">→</button></div>
+     <div class="carNav"><div class="dots" id="carDots"></div><span class="eyebrow" id="carCount"></span></div></div>
    </div>
-   <div class="tile card" data-name="About SHAPE" data-span="4" style="--span:4"><span class="ttl">About SHAPE</span>
-    <button class="pillbtn" onclick="toast('Company hub opens in the full build')">Our story</button><button class="pillbtn" onclick="go('people')">People &amp; teams</button><button class="pillbtn" onclick="carFilter('Projects');scrollToCar()">Projects</button><button class="pillbtn" onclick="go('askhr')">HR policies</button>
-    <p style="color:var(--mut);font-size:14px;line-height:1.6;margin:8px 0 0">Harbourgate Tower topped out three weeks ahead of schedule. Northgate breaks ground in January; The Marlowe launches sales in spring.</p></div>
-   <div class="tile card" data-name="Focus this week" data-span="4" style="--span:4"><span class="ttl">Focus this week <span style="color:var(--mut);font-weight:500;letter-spacing:0;text-transform:none">· orientations per day</span></span>
-    <div class="bars" id="wkBars"><div class="bar" data-h="45"><span>Mon</span></div><div class="bar" data-h="70"><span>Tue</span></div><div class="bar" data-h="55"><span>Wed</span></div><div class="bar" data-h="88"><span>Thu</span></div><div class="bar hl" data-h="100"><span>Fri</span></div><div class="bar" data-h="38"><span>Sat</span></div><div class="bar" data-h="22"><span>Sun</span></div></div></div>
+   <div class="tile card lift" data-name="Vision &amp; mission" data-span="4" style="--span:4;cursor:pointer" onclick="go('vision')"><span class="ttl">Our vision</span>
+    <p class="vmq">Deliver financial and social value for generations.</p>
+    <p style="color:var(--mut);font-size:14px;line-height:1.6;margin:0 0 12px">We spot unseen opportunities, make clear plans to maximize value, and execute every stage ourselves.</p>
+    <button class="btn sm" onclick="go('vision')">See our vision &amp; mission</button></div>
+   <div class="tile card" data-name="Mortgage rates" data-span="4" style="--span:4"><span class="ttl">Big five bank rates · 5-year</span>
+    <table class="rates"><thead><tr><th>Bank</th><th>Fixed</th><th>Variable</th></tr></thead><tbody id="rateRows"></tbody></table>
+    <p class="src" id="rateSrc"></p></div>
    <div class="tile card" data-name="Calendar" data-span="4" style="--span:4"><span class="ttl">November 2026</span>
     <div class="cal"><b>S</b><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span class="ev">12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span class="td">18</span><span>19</span><span class="ev">20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span></div>
     <p style="color:var(--mut);font-size:12.5px;line-height:1.55;margin:10px 0 0"><b style="color:var(--ink)">12</b> All-Hands · <b style="color:var(--ink)">20</b> Harbourgate Orientation Night</p></div>
@@ -359,8 +457,9 @@ body.editing .tile.sel .swapPh{display:inline-flex}
 
   <!-- PEOPLE -->
   <section class="view hidden" id="v-people"><div class="bgrid">
-   <div class="tile" data-name="Page title" data-span="12" style="--span:12"><h1>People</h1><p class="lede">Every profile uses the one company layout: same boxes, same order, for everyone. <span id="pplCount"></span></p></div>
-   <div class="tile" data-name="Directory" data-span="12" style="--span:12"><div class="tabs" id="deptTabs"></div><div class="pgrid" id="pgrid"></div></div>
+   <div class="tile" data-name="Page title" data-span="12" style="--span:12"><h1>People</h1><p class="lede">How SHAPE is organized, from the CEO to every team. Click a team to see everyone on it, or anyone to open their profile.</p>
+    <div class="pmode"><button class="tab on" id="pmOrg" onclick="peopleMode('org')">Org chart</button><button class="tab" id="pmAll" onclick="peopleMode('all')">Everyone A–Z</button><input class="inp" id="pplFind" placeholder="Find a colleague…" style="margin-left:auto;min-width:220px" oninput="peopleMode('all');renderPeople()"></div></div>
+   <div class="tile" data-name="Org chart" data-span="12" style="--span:12"><div class="org" id="orgChart"></div><div id="pplAll" class="hidden"><p class="eyebrow" id="pplCount"></p><div class="pgrid" id="pgrid"></div></div></div>
   </div></section>
 
   <!-- PROFILE -->
@@ -383,6 +482,7 @@ body.editing .tile.sel .swapPh{display:inline-flex}
   <section class="view hidden" id="v-builder"><div class="bgrid">
    <div class="tile" data-name="Page title" data-span="12" style="--span:12"><h1>Site Builder</h1><p class="lede">These are your pages, and they are your left menu. Add a page and it appears on the menu. Press Edit to change a page right where it lives: drag any tile, resize it, add text, images, video or HTML, then publish.</p></div>
    <div class="tile card" data-name="Pages" data-span="8" style="--span:8"><span class="ttl">Your pages</span><div id="pageRows"></div>
+    <span class="ttl" style="margin-top:18px">On every page</span><div id="hfRows"></div>
     <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><input class="inp" id="newPageName" placeholder="New page name, e.g. Projects" style="flex:1;min-width:180px"><button class="btn" onclick="newPage()">Choose a layout</button></div></div>
    <div class="tile card" data-name="How it works" data-span="4" style="--span:4"><span class="ttl">How editing works</span>
     <p style="font-size:14px;line-height:1.6;margin:0 0 10px">Drag a tile by its handle and a yellow bar shows where it will land. Drag the yellow corner to resize.</p>
@@ -422,13 +522,41 @@ body.editing .tile.sel .swapPh{display:inline-flex}
     <p style="color:var(--mut);font-size:12.5px;line-height:1.55">Raw HTML is Super User only and can't be granted down.</p></div>
    <div class="tile card" data-name="Site identity" data-span="6" style="--span:6"><span class="ttl">Site identity</span>
     <label for="siteName" style="display:block;font-size:12.5px;font-weight:700;margin:0 0 5px">Site name</label><input class="inp" id="siteName" style="width:100%" value="SHAPE Intranet">
-    <label for="profTplSel" style="display:block;font-size:12.5px;font-weight:700;margin:12px 0 5px">Profile layout (company-wide)</label><select class="inp" style="width:100%" id="profTplSel"></select>
-    <p style="color:var(--mut);font-size:12.5px;line-height:1.55">One layout for every profile. Members fill in their own boxes but can't restyle them.</p></div>
+    <p style="color:var(--mut);font-size:12.5px;line-height:1.55">Shown in the browser tab and the footer.</p></div>
+   <div class="tile card" data-name="Profile layout" id="plTile" data-span="6" style="--span:6;cursor:pointer" onclick="go('layouts')"><span class="ttl">Profile layout · company-wide</span>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div class="plprev" id="plThumb" style="width:200px;height:130px;flex:none"></div>
+    <div style="flex:1;min-width:160px"><b id="plName" style="font-family:var(--serif);font-size:19px;font-weight:500"></b><p style="color:var(--mut);font-size:13px;line-height:1.5;margin:4px 0 10px">One layout for every profile. See every option as a finished profile before you choose.</p><button class="btn sm" onclick="event.stopPropagation();go('layouts')">Browse layouts</button></div></div></div>
+   <div class="tile card" data-name="Tutorials" data-span="12" style="--span:12"><span class="ttl">Tutorials</span><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 12px">Pick one and SHAPE walks you through it, one highlighted step at a time.</p><div class="tuts" id="tutList"></div></div>
    <div class="tile card" data-name="Theme" data-span="6" style="--span:6"><span class="ttl">Theme</span>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm na" onclick="setTheme('#1f2426','SHAPE Charcoal')">SHAPE Charcoal</button><button class="btn sm na" style="background:#293893;border-color:#293893" onclick="setTheme('#293893','SHAPE Navy')">SHAPE Navy</button><button class="btn sm na" style="background:#17352a;border-color:#17352a" onclick="setTheme('#17352a','Forest')">Forest</button><button class="btn sm na lime" onclick="holidayTheme()">Holiday</button></div>
     <p style="color:var(--mut);font-size:12.5px;line-height:1.55">Holiday themes can be scheduled: set December's in October and it switches itself on Dec 1 and off Jan 2.</p>
     <div style="margin-top:10px"><button class="btn" onclick="go('builder')">Edit pages in Site Builder</button></div></div>
   </div></section>
+  <!-- VISION & MISSION -->
+  <section class="view hidden" id="v-vision"><div class="bgrid">
+   <div class="tile vhero" data-name="Vision hero" data-span="12" style="--span:12"><div class="rb" aria-hidden="true"></div><span class="eyebrow" style="color:var(--lime);position:relative;z-index:1;margin-bottom:12px">SHAPE · Vision &amp; mission</span><div class="big"><span>Raising</span><span>the bar</span></div></div>
+   <div class="tile card" data-name="Vision" data-span="7" style="--span:7;padding:30px"><span class="ttl">Our vision</span><p class="vquote">Deliver financial and social value <em style="background:linear-gradient(transparent 62%,var(--lime) 62%)">for generations.</em></p></div>
+   <div class="tile card" data-name="Mission" data-span="5" style="--span:5;padding:30px;background:var(--paper2)"><span class="ttl">Our mission</span><p style="font-size:17px;line-height:1.6;margin:0">We take large, complex properties and turn unseen opportunities into a reality: clear plans to maximize value, every stage executed by our own team, and places that deliver the highest quality of life and return on investment.</p></div>
+   <div class="tile" data-name="How we raise the bar" data-span="12" style="--span:12"><span class="ttl" style="margin-top:10px">How we raise the bar</span>
+    <div class="stairs"><div><span class="n">01</span><b>Spot</b><p>We spot unseen opportunities others walk past.</p></div><div><span class="n">02</span><b>Plan</b><p>We turn large, complex properties into clear plans that maximize value.</p></div><div><span class="n">03</span><b>Execute</b><p>We execute every stage of the real estate process, in-house.</p></div><div><span class="n" style="color:var(--lime)">04</span><b>Deliver</b><p>The highest quality of life and return on investment, for generations.</p></div></div></div>
+   <div class="tile vband" data-name="Tagline" data-span="12" style="--span:12">Where ambition comes to thrive.</div>
+   <div class="tile" data-name="Note" data-span="12" style="--span:12"><p style="color:var(--mut);font-size:12.5px;margin:0">Vision and taglines are SHAPE's own words from shape.ca. The mission line is drafted from them for this demo; edit it in Site Builder.</p></div>
+  </div></section>
+
+  <!-- PROFILE LAYOUTS (Admin settings) -->
+  <section class="view hidden" id="v-layouts">
+   <button class="btn alt sm" onclick="go('settings')">← Back to Settings</button><div style="height:14px"></div>
+   <h1>Profile layouts</h1><p class="lede" style="margin-bottom:18px">Every option shown as a finished profile. Pick one and all 150 profiles re-render from the same data: same boxes, same order, for everyone. <span id="plWho"></span></p>
+   <div class="plgrid" id="plGrid"></div>
+  </section>
+
+  <footer id="siteFooter"><div class="bgrid">
+   <div class="tile" data-name="Footer · brand" data-span="4" style="--span:4"><div style="font-weight:800;letter-spacing:5px;font-size:22px;margin-bottom:8px">SHAPE</div><p>Raising the bar. The intranet for everyone at SHAPE.</p></div>
+   <div class="tile" data-name="Footer · links" data-span="3" style="--span:3"><span class="ttl">Find it fast</span><button class="lk" onclick="go('people')">People &amp; org chart</button><button class="lk" onclick="go('vision')">Vision &amp; mission</button><button class="lk" onclick="go('home');setTimeout(scrollToCar,500)">Latest updates</button><button class="lk" onclick="go('settings');setTimeout(()=>$('tutList').scrollIntoView({block:'center'}),400)">Tutorials</button></div>
+   <div class="tile" data-name="Footer · help" data-span="3" style="--span:3"><span class="ttl">Help</span><button class="lk" onclick="toggleHrPop(true)">Ask HR</button><p>IT help desk · ext. 4357</p><p>Facilities · ext. 2200</p></div>
+   <div class="tile" data-name="Footer · office" data-span="2" style="--span:2"><span class="ttl">Office</span><p>Mon–Fri<br>8:30 am – 5 pm</p></div>
+   <div class="tile" data-name="Footer · legal" data-span="12" style="--span:12;border-top:1px solid rgba(255,255,255,.15);padding-top:12px"><p style="font-size:12.5px">© 2026 SHAPE · Internal use only · Demo with fictional data</p></div>
+  </div></footer>
  </main>
 </div>
 
@@ -442,6 +570,8 @@ body.editing .tile.sel .swapPh{display:inline-flex}
 </div>
 <div class="toast" id="toast"></div>
 <div id="dropBar"></div><div id="dragTag"></div>
+<div id="tourBlock" class="hidden"></div><div id="tourHole" class="hidden"></div>
+<div id="tourCard" class="hidden" role="dialog" aria-live="polite"><span class="eyebrow" id="tourStep"></span><h3 id="tourTitle"></h3><p id="tourText"></p><div class="row"><button class="btn alt sm na" onclick="endTour()">Skip</button><span style="flex:1"></span><button class="btn alt sm na" id="tourBack" onclick="tourGo(-1)">Back</button><button class="btn sm" id="tourNext" onclick="tourGo(1)">Next</button></div></div>
 
 <div id="chooser" class="hidden"><div>
  <b style="font-size:18px">Choose a layout for <span id="chooserFor"></span></b>
@@ -461,7 +591,6 @@ const ACCOUNTS = {
 };
 const RANK = {staff:0,editor:1,admin:2,super:3};
 let me = null;
-let profileTemplate = "C4 — Facts Rail + Story";
 const DEPTS = ["All","Executive","Development","Construction","Customer Care","Sales & Marketing","Finance & Accounting","Human Resources & Admin","IT & Systems","Property Management"];
 const SK = (p,i)=>["Homeowner care","Site safety","Procore","Client relations","Budgeting","AutoCAD","Microsoft 365","Training"][(p.name.length+i)%8];
 function startYr(i){return 2015+(i*7)%10}
@@ -561,8 +690,44 @@ const POSTS = [
    "Each apprentice is paired with a journeyperson mentor and rotates through two trades in their first year.",
    "Say hello when you see a new hard hat on site, and nominate a mentor for next year's cohort through HR."],
   [["Apprentices","12"],["Sites","2"],["Mentors","12"],["Intake vs 2025","2×"]],
-  [["Rachel Carter","Our two at Harbourgate are already running the hoist checks."]])
+  [["Rachel Carter","Our two at Harbourgate are already running the hoist checks."]]),
+ P("commons-plaza","Development","Today","Harbourgate Commons plaza design unveiled","Viktor Murphy",IMG.city,
+  "A public plaza with a water feature, market stalls and a winter skating loop.",
+  ["The design for Harbourgate Commons' central plaza is final: 1.2 acres with a water feature in summer and a skating loop in winter.",
+   "Market stalls line the north edge for weekend markets, and the south edge steps down to the waterfront patio at Tidewater Coffee.",
+   "Construction starts in the spring once the podium is complete, with the plaza open for next summer."],
+  [["Plaza","1.2 acres"],["Opens","Next summer"],["Market stalls","24"],["Winter","Skating loop"]],
+  [["Ben Green","Programming ideas welcome. Movie nights?"],["Leo Smith","Renderings are in the Development folder."]]),
+ P("northgate-showhome","Projects","3 days ago","Northgate show home opens to the public","Priya Young",IMG.tower,
+  "Two fully furnished show suites and a sales centre open Saturdays and Sundays.",
+  ["The Northgate sales centre opened its doors on Saturday with two fully furnished show suites, a one-bedroom and a two-bedroom plus den.",
+   "More than 400 people came through on opening weekend, and Sales booked 61 follow-up appointments.",
+   "The centre is open weekends noon to 5 pm and weekdays by appointment. Staff are welcome to bring family for a private tour."],
+  [["Visitors","400+"],["Appointments","61"],["Show suites","2"],["Hours","Sat–Sun 12–5"]],
+  [["Noah Murphy","Best opening weekend we've had."],["Casey Mann","The new brochure printed just in time."]]),
+ P("brentmoor-market","Commercial","4 days ago","Brentmoor Village holiday market returns December 6","Harper Novak",IMG.facade,
+  "Forty local makers, live music and a tree lighting on the central plaza.",
+  ["The Brentmoor Village holiday market returns on December 6 with forty local makers, food trucks and live music.",
+   "The tree lighting is at 5 pm, and every Brentmoor tenant is running a market-night offer.",
+   "Volunteers from the office get a free market tote. Sign up through the Events page."],
+  [["Date","Dec 6"],["Makers","40"],["Tree lighting","5 pm"],["Foot traffic last year","12,000"]],
+  [["Ava Novak","Property Management has the power and lighting plan ready."]]),
+ P("riverside-leed","Sustainability","1 week ago","Riverside Exchange earns LEED Gold","Dev Kaur",IMG.city,
+  "Our first office tower to reach LEED Gold, ahead of the ESG target.",
+  ["Riverside Exchange has been certified LEED Gold, the first office building in our portfolio to reach it.",
+   "Rainwater reuse, a high-performance façade and the heat-recovery system drove the score.",
+   "Leasing is adding the certification to every proposal, and tenants get a plaque for their lobby."],
+  [["Certification","LEED Gold"],["Water saved","38%"],["Energy saved","31%"],["Target","2027"]],
+  [["Viktor Murphy","Tenants are already asking about it in tours."]]),
+ P("homeowner-portal","Customer Care","2 weeks ago","Homeowner portal pilot launches at Harbourgate","Mei Chen",IMG.hero,
+  "Homeowners can book orientations and track warranty requests online.",
+  ["Harbourgate homeowners can now book their orientation, upload deficiency photos and track warranty requests in one portal.",
+   "The pilot starts with the first 120 homes. Customer Care will gather feedback through December before rolling it out to Northgate.",
+   "Questions from homeowners go to the Customer Care inbox as before."],
+  [["Pilot homes","120"],["Rollout","Northgate next"],["Feedback","Through Dec"],["Bookings online","Yes"]],
+  [["Grace Taylor","38 homeowners signed in on day one."],["Paul Khan","Please share any feedback you hear on site."]])
 ];
+const RATES = {asOf:"Nov 16, 2026", prime:"4.70%", rows:[["RBC","4.84%","4.10%"],["TD","4.99%","4.19%"],["Scotiabank","4.99%","3.95%"],["BMO","5.19%","4.37%"],["CIBC","4.99%","4.30%"]]};
 const CATS = ["All", ...new Set(POSTS.map(p=>p.cat))];
 
 const T = (fam,name,blurb,rows)=>({fam,name,blurb,rows});
@@ -587,7 +752,6 @@ const TEMPLATES = [
  T("Creative","CD1 Before / After","Drag to compare two photos.","ba")
 ];
 const FAMS = ["Homepage","Interior","Concepts","Creative"];
-const PROF_TEMPLATES = ["C1 — The Original","C2 Cover + Avatar","C3 Business Card","C4 — Facts Rail + Story","C5 Minimal Directory","C11 Exposed Blueprint Grid","C12 Materiality Split","C16 Concierge Dossier","C17 Command Center","C19 Minimalist Gallery","C20 Skill Constellation"];
 const HRKB = [
  {k:["sick","ill","unwell"], a:"You get <b>10 paid sick days per year</b>, resetting each January. Up to 5 unused days carry into Q1 for the same illness. A doctor's note is only needed after 3 consecutive days.", cite:"Employee Handbook 2026, §3.2 Sick Leave", doc:0},
  {k:["vacation","holiday","time off","pto","annual leave"], a:"Vacation is <b>15 days per year</b> for your first 5 years, <b>20 days</b> after 5 years and <b>25 days</b> after 10. Request at least 2 weeks ahead.", cite:"Employee Handbook 2026, §2.1 Vacation", doc:0},
@@ -597,6 +761,35 @@ const HRKB = [
  {k:["parental","maternity","paternity","baby"], a:"Parental leave tops EI up to <b>85% of salary for the first 12 weeks</b>, and benefits continue throughout. Give HR 4 weeks' written notice where you can.", cite:"Employee Handbook 2026, §3.6 Parental Leave", doc:0}
 ];
 const QCHIPS = ["How many sick days do I get?","How much vacation do I have?","What are my health benefits?","How do expense claims work?","What's the wifi password?"];
+const TOURS = {
+ hr:["Ask HR a question","Get answers from the HR documents, with sources",[
+  [null,"#fab","Ask HR is always here","This button is on every page. Tap it any time to ask HR a question."],
+  [null,"#hrPop","Ask in plain words","A chat opens right where you are. Type a question like ‘How much vacation do I have?’",()=>toggleHrPop(true)],
+  [null,"#hrPop .qchips","Or start with a common one","Tap a ready-made question to get going. Every answer shows the HR document it came from.",()=>toggleHrPop(true)],
+  [null,"#railNav [data-nav=askhr]","The full Ask HR page","Want more room? Ask HR also has its own page on the left menu.",()=>toggleHrPop(false)]]],
+ people:["Find a colleague","Search for anyone by name, role or team",[
+  [null,"#railNav [data-nav=people]","People lives here","Open People from the left menu."],
+  ["people","#pplFind","Search by name or role","Start typing a name, a job title or a team and the list narrows as you type."],
+  [null,"#siteSearch","Or search the whole site","This box searches people, updates, pages and HR answers at once."]]],
+ news:["Find the latest news","Project, leasing and company updates",[
+  ["home","[data-name='Updates carousel']","Latest across SHAPE","Every update lands here first: projects, leasing, development and more."],
+  ["home","#carTabs","Filter by topic","Pick Projects, Leasing or any other topic to see only those updates."],
+  ["home",".carArrow.next","Swipe or tap through","Swipe the photo, tap the arrows or the dots. Tap an update to read the full story."]]],
+ hires:["See who just joined","Welcome the newest people",[
+  ["home","[data-name='Newest members']","Newest members","Everyone who started recently shows up here on Home, with their role and start date."],
+  ["home","#newList .act","Say hello","Tap a name in People to open their profile and learn what they do."]]],
+ org:["Read the org chart","How SHAPE is organized",[
+  [null,"#railNav [data-nav=people]","Open People","The org chart is the first thing on the People page."],
+  ["people",".onode.ceo","Start at the top","The chart starts with the CEO. The four leaders below each run a group of departments."],
+  ["people",".odept","Departments and teams","Each department lists its teams. Tap a team to see everyone on it, or tap anyone to open their profile."]]],
+ search:["Search the whole site","Find anything in one place",[
+  [null,"#siteSearch","One search box","Type anything here and press Enter."],
+  [null,"#siteSearch","Results by type","Results are grouped into pages, updates, people, HR answers and settings. Try ‘Harbourgate’.",()=>siteSearch("Harbourgate")]]],
+ edit:["Edit a page","For Editors and up",[
+  [null,"#railNav [data-nav=builder]","Site Builder","Every page on the menu is built here.",null,"editor"],
+  ["builder","#pageRows","Your pages are your menu","Add a page and it appears on the left menu. Press Edit to change any page right where it lives."],
+  ["builder","#hfRows","Header and footer","Build a footer or an announcement bar once and it shows on every page."]]]
+};
 const HRDOCS = ["Employee Handbook 2026","Benefits Guide 2026","Expense Policy","Code of Conduct"];
 let hrOn = [true,true,true,true];
 let audit = [
@@ -693,9 +886,9 @@ function currentPerson(){ const a=ACCOUNTS[me]; return {name:a.name,title:a.titl
 /* ============ PAGES + LEFT MENU (one list: Site Builder pages are the menu) ============ */
 let PAGES = [
  {id:"home",name:"Home"},{id:"people",name:"People"},{id:"builder",name:"Site Builder",min:"editor"},
- {id:"askhr",name:"Ask HR"},{id:"admin",name:"Admin",min:"admin"},{id:"settings",name:"Settings"}
+ {id:"askhr",name:"Ask HR"},{id:"admin",name:"Admin",min:"admin"},{id:"settings",name:"Settings"},{id:"vision",name:"Vision & Mission"}
 ];
-let railItems = PAGES.map(p=>({t:"item",label:p.name,nav:p.id,on:1}));
+let railItems = PAGES.map(p=>({t:"item",label:p.name,nav:p.id,on:p.id==="vision"?0:1}));
 const pageOf = id => PAGES.find(p=>p.id===id);
 const canSee = p => !p || !p.min || RANK[me]>=RANK[p.min];
 function renderRail(){
@@ -728,6 +921,7 @@ function go(v){
  document.querySelectorAll(".navb").forEach(b=>b.classList.toggle("on", b.dataset.nav===v));
  window.scrollTo({top:0});
  if(v==="settings") renderAccess();
+ if(v==="layouts") renderLayouts();
  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
  sec.classList.remove("wipeIn"); void sec.offsetWidth; if(!reduced) sec.classList.add("wipeIn");
  const kids = sec.querySelector(".bgrid:not(.free)") ? sec.querySelectorAll(".bgrid>.tile") : sec.querySelectorAll(":scope > *");
@@ -747,9 +941,10 @@ function renderCarousel(){
 }
 function carFilter(c){ carCat=c; renderCarousel(); }
 function scrollToCar(){ $("carTrack").scrollIntoView({behavior:"smooth",block:"center"}); }
-function carGo(i){ const t=$("carTrack"), n=t.children.length; carIx=(i+n)%n; t.scrollTo({left:carIx*t.clientWidth,behavior:"smooth"}); markDot(); }
+function carGo(i){ const t=$("carTrack"), n=t.children.length; if(!n) return; carIx=(i+n)%n; t.style.scrollBehavior=matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"; t.scrollLeft=carIx*t.clientWidth; markDot(); }
 function carStep(d){ carGo(carIx+d); }
-function markDot(){ [...$("carDots").children].forEach((b,i)=>b.classList.toggle("on",i===carIx)); }
+function markDot(){ [...$("carDots").children].forEach((b,i)=>b.classList.toggle("on",i===carIx)); $("carCount").textContent=(carIx+1)+" / "+$("carDots").children.length; }
+function renderRates(){ $("rateRows").innerHTML=RATES.rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join(""); $("rateSrc").innerHTML=`Prime ${RATES.prime} · rates as of ${RATES.asOf} · source: Ratehub.ca`; }
 $("carTrack").addEventListener("scroll",()=>{ const t=$("carTrack"); const i=Math.round(t.scrollLeft/Math.max(1,t.clientWidth)); if(i!==carIx){ carIx=i; markDot(); } },{passive:true});
 function renderHomeLists(){
  $("actList").innerHTML = [["Mei Chen","joined Customer Care","Monday · People"],["Sofia Lindqvist","published “Northgate launch teaser”","Yesterday · News"],["James Okafor","scheduled the Holiday theme","Yesterday · Settings"],["Julia Kim","updated the Benefits Guide in the HR folder","Nov 5 · Ask HR re-indexed"]]
@@ -765,7 +960,6 @@ function animHome(){
   const step=t=>{ const p=dur?Math.min(1,(t-t0)/dur):1; el.textContent=Math.round(target*(1-Math.pow(1-p,3))).toLocaleString()+(el.closest("[data-name='Stat · Leased']")?"%":""); if(p<1) requestAnimationFrame(step); };
   requestAnimationFrame(step);
  });
- document.querySelectorAll("#wkBars .bar").forEach((b,i)=>{ b.style.height="4%"; setTimeout(()=>{ b.style.height=b.dataset.h+"%"; }, reduced?0:120+i*70); });
 }
 
 /* ============ ARTICLE PAGES ============ */
@@ -792,31 +986,69 @@ function cmtHTML(n,t,when){ return `<div class="cmt">${av(n)}<div><b>${esc(n)}</
 function addCmt(id){ const i=$("cmtIn"), t=i.value.trim(); if(!t) return; const p=POSTS.find(x=>x.id===id); p.talk.push([ACCOUNTS[me].name,t]); $("cmts").insertAdjacentHTML("beforeend",cmtHTML(ACCOUNTS[me].name,t,"Just now")); $("cmtN").textContent=p.talk.length; i.value=""; }
 
 /* ============ PEOPLE / PROFILE ============ */
-let deptFilter="All";
-function renderDepts(){ $("deptTabs").innerHTML = DEPTS.map(d=>`<button class="tab ${d===deptFilter?'on':''}" onclick="deptFilter='${d}';renderDepts();renderPeople()">${d}</button>`).join(""); }
-function pcard(p){ const i=PEOPLE.indexOf(p); return `<div class="pcard lift" onclick="viewProfile(PEOPLE[${i}])">${av(p.name)}<h3>${p.name}</h3><p>${p.title}</p><p>${p.department}</p></div>`; }
+const BRANCHES = [
+ ["Harper Novak","var(--lime)","var(--char)",["Customer Care","Sales & Marketing","Human Resources & Admin","Property Management"]],
+ ["Lucas Petrov","var(--orange)","#fff",["Finance & Accounting","IT & Systems"]],
+ ["Viktor Murphy","var(--navy)","#fff",["Development"]],
+ ["Henry Kimura","var(--magenta)","#fff",["Construction"]]];
+const byName = n => PEOPLE.find(p=>p.name===n);
+const pIx = p => PEOPLE.indexOf(p);
+function teamsOf(dept){ const ppl=PEOPLE.filter(p=>p.department===dept&&p.department!=="Executive"); const lead=ppl[0].title, out=[]; ppl.forEach(p=>{ if(p.title===lead||!out.length) out.push([p,[]]); else out[out.length-1][1].push(p); }); return out; }
+function onode(p,cls){ return `<button class="onode ${cls||''}" onclick="viewProfile(PEOPLE[${pIx(p)}])">${av(p.name)}<span><b>${p.name}</b><small>${p.title}</small></span></button>`; }
+let openTeam=null;
+function renderOrg(){
+ const ceo=byName("Priya Flores"), ea=byName("Dev Kaur");
+ $("orgChart").innerHTML = `<div class="orgTop">${onode(ceo,"ceo")}<div class="orgAside">${onode(ea)}</div></div>
+  <div class="orgExecs">${BRANCHES.map(([n,br,brt,depts])=>`<div class="orgCol" style="--br:${br};--brt:${brt}">${onode(byName(n))}
+   ${depts.map(d=>{ const teams=teamsOf(d), cnt=teams.reduce((a,t)=>a+1+t[1].length,0);
+    return `<div class="odept"><header>${d}<span>${cnt}</span></header>${teams.map(([lead,mem],ti)=>{ const k=d+ti, open=openTeam===k;
+     return `<div class="oteam"><button class="lead" onclick="viewProfile(PEOPLE[${pIx(lead)}])">${av(lead.name)}<span><b>${lead.name}</b><small>${lead.title}</small></span></button>
+      ${mem.length?`<button class="ostack" aria-expanded="${open}" onclick="openTeam=${open?'null':`'${k}'`};renderOrg()">${mem.slice(0,6).map(m=>av(m.name)).join("")}<em>${open?"Hide team":mem.length+" on the team"}</em></button>`:""}
+      ${open?`<div class="omembers">${mem.map(m=>`<button onclick="viewProfile(PEOPLE[${pIx(m)}])">${av(m.name)}<span><b>${m.name}</b> · ${m.title}</span></button>`).join("")}</div>`:""}</div>`; }).join("")}</div>`; }).join("")}</div>`).join("")}</div>`;
+}
+function peopleMode(m){ $("orgChart").classList.toggle("hidden",m!=="org"); $("pplAll").classList.toggle("hidden",m==="org"); $("pmOrg").classList.toggle("on",m==="org"); $("pmAll").classList.toggle("on",m!=="org"); if(m==="org") $("pplFind").value=""; else renderPeople(); }
+function pcard(p){ return `<div class="pcard lift" onclick="viewProfile(PEOPLE[${pIx(p)}])">${av(p.name)}<h3>${p.name}</h3><p>${p.title}</p><p>${p.department}</p></div>`; }
 function renderPeople(){
- const list = PEOPLE.filter(p=>deptFilter==="All"||p.department===deptFilter);
- $("pplCount").textContent = "Showing "+list.length+" of "+PEOPLE.length+".";
+ const q=$("pplFind").value.toLowerCase(), list=PEOPLE.filter(p=>(p.name+" "+p.title+" "+p.department).toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
+ $("pplCount").textContent = (q?list.length+" match"+(list.length===1?"":"es"):"All "+PEOPLE.length+" people")+", A–Z";
  $("pgrid").innerHTML = list.map(pcard).join("");
 }
+function pdata(p){ const i=Math.max(0,PEOPLE.findIndex(x=>x.email===p.email)), first=p.name.split(" ")[0], yrs=2026-startYr(i);
+ return {p,first,yrs,start:startYr(i),s1:SK(p,i),s2:SK(p,i+3),s3:SK(p,i+5),
+  story:[`${first} has been with SHAPE for ${yrs} years as ${/^[AEIOU]/.test(p.title)?"an":"a"} ${p.title} in ${p.department}. Day to day that means ${SK(p,i).toLowerCase()} and ${SK(p,i+3).toLowerCase()}, the work that keeps projects moving and homeowners looked after.`,
+   `${first} joined in ${startYr(i)} for the chance to work on towers like Harbourgate from first dig to key handover.`]}; }
+const box=(k,v)=>`<div class="pl-box"><b class="k">${k}</b>${v}</div>`;
+const chips=d=>`<span class="skillchip">${d.s1}</span><span class="skillchip">${d.s2}</span><span class="skillchip">Ask me about ${d.s3}</span>`;
+const PLAYOUTS = [
+ ["C4","C4 — Facts Rail + Story","Facts down the left, their story on the right. The company default.",d=>`<div class="c4"><div class="c4rail">${av(d.p.name)}<h2>${d.p.name}</h2><p class="rl">${d.p.title}<br>${d.p.department}</p><div class="frow"><b>EMAIL</b>${d.p.email}</div><div class="frow"><b>STARTED</b>${d.start} · ${d.yrs} years at SHAPE</div><div class="frow"><b>SKILLS</b>${d.s1} · ${d.s2}</div><div class="frow"><b>ASK ME ABOUT</b>${d.s3}</div></div><div class="c4story"><span class="ttl">My story</span>${d.story.map(s=>`<p>${s}</p>`).join("")}<span class="ttl" style="margin-top:18px">Good to know</span>${chips(d)}</div></div>`],
+ ["C1","C1 — The Original","One fixed column like early social profiles: photo, facts, then story.",d=>`<div style="display:grid;grid-template-columns:200px 1fr;gap:20px"><div>${av(d.p.name).replace('class="av "','class="av" style="width:200px;height:200px"')}</div><div class="pl-grid">${box("NAME",`<b style="font-size:22px">${d.p.name}</b>`)}${box("ROLE",d.p.title+" · "+d.p.department)}${box("EMAIL",d.p.email)}${box("STARTED",d.start+" · "+d.yrs+" years")}</div></div><div class="pl-grid" style="margin-top:14px">${box("ABOUT ME",d.story.join(" "))}${box("SKILLS",chips(d))}</div>`],
+ ["C2","C2 — Cover + Avatar","A charcoal cover band with a big portrait, details in tiles below.",d=>`<div class="pl-hero">${av(d.p.name)}<div><span class="eyebrow" style="color:var(--lime)">${d.p.department}</span><h2>${d.p.name}</h2><span style="opacity:.75">${d.p.title}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(3,1fr);margin-top:12px">${box("EMAIL",d.p.email)}${box("STARTED",d.start)}${box("ASK ME ABOUT",d.s3)}</div><div class="pl-box" style="margin-top:12px"><b class="k">MY STORY</b>${d.story.map(s=>`<p style="margin:0 0 8px;line-height:1.6">${s}</p>`).join("")}${chips(d)}</div>`],
+ ["C3","C3 — Business Card","A crisp card first, the story underneath. Quick to scan.",d=>`<div style="background:#fff;border:1px solid var(--line);border-left:10px solid var(--lime);padding:24px;display:flex;gap:22px;align-items:center;max-width:720px">${av(d.p.name).replace('class="av "','class="av" style="width:110px;height:110px"')}<div><h2 style="margin:0;font-size:28px">${d.p.name}</h2><div style="color:var(--mut)">${d.p.title} · ${d.p.department}</div><div style="margin-top:10px;font-size:14px">${d.p.email}<br>At SHAPE since ${d.start}</div></div></div><div style="max-width:720px;margin-top:16px">${d.story.map(s=>`<p style="line-height:1.65">${s}</p>`).join("")}${chips(d)}</div>`],
+ ["C11","C11 — Exposed Blueprint Grid","Facts set on a blueprint grid. A nod to how we build.",d=>`<div class="pl-blue"><div style="display:flex;gap:18px;align-items:center;margin-bottom:14px">${av(d.p.name).replace('class="av "','class="av" style="width:96px;height:96px"')}<div><span class="eyebrow" style="color:#9fb3e6">DRAWING NO. ${String(d.start).slice(2)}-${d.p.name.length} · ${d.p.department.toUpperCase()}</span><h2 style="margin:4px 0;font-size:30px;color:#fff">${d.p.name}</h2><span>${d.p.title}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(4,1fr)">${box("EMAIL",d.p.email)}${box("STARTED",d.start)}${box("SKILLS",d.s1+" · "+d.s2)}${box("ASK ME ABOUT",d.s3)}</div><div class="pl-box" style="margin-top:12px"><b class="k">SPECIFICATION</b>${d.story.join(" ")}</div></div>`],
+ ["C12","C12 — Materiality Split","Half portrait panel, half warm paper with the story.",d=>`<div style="display:grid;grid-template-columns:1fr 1fr;min-height:380px"><div style="background:var(--lime);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:20px">${av(d.p.name).replace('class="av "','class="av" style="width:180px;height:180px"')}<b style="font-size:24px">${d.p.name}</b><span>${d.p.title}</span></div><div style="background:#fff;padding:26px"><span class="ttl">${d.p.department}</span>${d.story.map(s=>`<p style="line-height:1.65;font-family:var(--serif);font-size:17px">${s}</p>`).join("")}<div class="frow"><b>EMAIL</b>${d.p.email}</div><div class="frow"><b>STARTED</b>${d.start}</div>${chips(d)}</div></div>`],
+ ["C16","C16 — Concierge Dossier","Like a hotel concierge card: elegant serif, everything labelled.",d=>`<div style="background:#fff;border:1px solid var(--line);padding:30px;max-width:760px;margin:auto;text-align:center">${av(d.p.name).replace('class="av "','class="av" style="width:110px;height:110px"')}<h2 style="font-family:var(--serif);font-weight:500;font-size:34px;margin:12px 0 2px">${d.p.name}</h2><div class="eyebrow">${d.p.title} · ${d.p.department}</div><div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:18px 0;padding:12px;display:flex;justify-content:space-around;font-size:14px"><span><b class="eyebrow">Since</b><br>${d.start}</span><span><b class="eyebrow">Skills</b><br>${d.s1}</span><span><b class="eyebrow">Ask me about</b><br>${d.s3}</span></div>${d.story.map(s=>`<p style="font-family:var(--serif);font-size:17px;line-height:1.65">${s}</p>`).join("")}<div style="font-size:14px">${d.p.email}</div></div>`],
+ ["C17","C17 — Command Center","Numbers first: tenure, skills and contacts as a dashboard.",d=>`<div style="display:flex;gap:16px;align-items:center;margin-bottom:12px">${av(d.p.name).replace('class="av "','class="av" style="width:80px;height:80px"')}<div><h2 style="margin:0;font-size:28px">${d.p.name}</h2><span style="color:var(--mut)">${d.p.title} · ${d.p.department}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(4,1fr)">${box("YEARS AT SHAPE",`<span class="pl-stat">${d.yrs}</span>`)}${box("STARTED",`<span class="pl-stat">${d.start}</span>`)}${box("TOP SKILL",`<b>${d.s1}</b>`)}${box("ASK ME ABOUT",`<b>${d.s3}</b>`)}</div><div class="pl-grid" style="grid-template-columns:2fr 1fr;margin-top:12px">${box("BRIEFING",d.story.join(" "))}${box("CONTACT",d.p.email)}</div>`],
+ ["C18","C18 — Chronicle Timeline","Their time at SHAPE as a timeline, facts beside it.",d=>`<div style="display:grid;grid-template-columns:260px 1fr;gap:24px"><div>${av(d.p.name).replace('class="av "','class="av" style="width:150px;height:150px"')}<h2 style="margin:10px 0 2px">${d.p.name}</h2><p style="color:var(--mut);margin:0 0 10px">${d.p.title}</p><div class="frow"><b>EMAIL</b>${d.p.email}</div></div><div class="pl-tl"><div><b>${d.start}</b> · Joined SHAPE in ${d.p.department}</div><div><b>${d.start+Math.ceil(d.yrs/2)}</b> · Took on ${d.s1.toLowerCase()}</div><div><b>2026</b> · ${d.p.title}</div><div>${d.story[0]}</div><div>${chips(d)}</div></div></div>`],
+ ["C19","C19 — Minimalist Gallery","A big portrait and lots of white space. Quiet and modern.",d=>`<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center">${av(d.p.name).replace('class="av "','class="av" style="width:100%;height:auto;aspect-ratio:1"')}<div><span class="eyebrow">${d.p.department}</span><h2 style="font-size:46px;line-height:1;margin:10px 0;text-transform:uppercase">${d.p.name}</h2><p style="color:var(--mut)">${d.p.title} · since ${d.start}</p><p style="line-height:1.7">${d.story[0]}</p>${chips(d)}</div></div>`]
+];
+let profileTemplate="C4";
+const playout = id => PLAYOUTS.find(l=>l[0]===id)||PLAYOUTS[0];
 function viewProfile(p){
- const i = Math.max(0,PEOPLE.findIndex(x=>x.email===p.email));
- const s1=SK(p,i), s2=SK(p,i+3), s3=SK(p,i+5), yrs=2026-startYr(i), first=p.name.split(" ")[0];
- $("profAdmin").innerHTML = RANK[me]>=2 && PEOPLE.includes(p) ? `<button class="btn sm" onclick="openAccess('${esc(p.name)}')">Manage ${esc(first)}'s access</button>` : "";
- $("profCard").innerHTML = `<div class="c4">
-   <div class="c4rail">${av(p.name)}<h2>${p.name}</h2><p class="rl">${p.title}<br>${p.department}</p>
-    <div class="frow"><b>EMAIL</b>${p.email}</div><div class="frow"><b>STARTED</b>${startYr(i)} · ${yrs} years at SHAPE</div>
-    <div class="frow"><b>SKILLS</b>${s1} · ${s2}</div><div class="frow"><b>ASK ME ABOUT</b>${s3}</div></div>
-   <div class="c4story"><span class="ttl">My story</span>
-    <p>${first} has been with SHAPE for ${yrs} years as ${/^[AEIOU]/.test(p.title)?"an":"a"} ${p.title} in ${p.department}. Day to day that means ${s1.toLowerCase()} and ${s2.toLowerCase()}, the work that keeps projects moving and homeowners looked after.</p>
-    <p>${first} joined in ${startYr(i)} for the chance to work on towers like Harbourgate from first dig to key handover.</p>
-    <span class="ttl" style="margin-top:18px">Good to know</span><span class="skillchip">${s1}</span><span class="skillchip">${s2}</span><span class="skillchip">Ask me about ${s3}</span></div></div>`;
+ $("profAdmin").innerHTML = RANK[me]>=2 && PEOPLE.includes(p) ? `<button class="btn sm" onclick="openAccess('${esc(p.name)}')">Manage ${esc(p.name.split(" ")[0])}'s access</button>` : "";
+ $("profCard").innerHTML = playout(profileTemplate)[3](pdata(p));
  go("profile");
 }
+function renderLayouts(){
+ const sample=byName("Harper Novak"), admin=RANK[me]>=2;
+ $("plWho").textContent = admin ? "" : "Only Admins and Super Users can change it.";
+ $("plGrid").innerHTML = PLAYOUTS.map(([id,name,blurb,fn])=>`<div class="plcard ${id===profileTemplate?'cur':''}"><div class="plprev"><div>${fn(pdata(sample))}</div></div><div class="tb"><h3>${name}</h3><p>${blurb}</p><div style="margin-top:auto;display:flex;gap:8px;flex-wrap:wrap">${id===profileTemplate?'<span class="chip lime">In use for everyone</span>':admin?`<button class="btn sm" onclick="useLayout('${id}')">Use for every profile</button>`:''}<button class="btn alt sm na" onclick="previewLayout('${id}')">Open full sample</button></div></div></div>`).join("");
+}
+function useLayout(id){ profileTemplate=id; logAudit("Profile layout set for everyone: "+playout(id)[1]); renderLayouts(); renderPlTile(); toast("Every profile now uses "+playout(id)[1]+"."); }
+function previewLayout(id){ const keep=profileTemplate; profileTemplate=id; viewProfile(byName("Harper Novak")); profileTemplate=keep; $("profAdmin").innerHTML=`<span class="chip lime" style="align-self:center">Sample: ${playout(id)[1]}</span><button class="btn alt sm" onclick="go('layouts')">Back to layouts</button>`; }
+function renderPlTile(){ const l=playout(profileTemplate); $("plName").textContent=l[1]; $("plThumb").innerHTML=`<div style="transform:scale(.2)">${l[3](pdata(byName("Harper Novak")))}</div>`; $("plTile").classList.toggle("hidden",RANK[me]<2); }
 
 /* ============ SITE SEARCH ============ */
-const SETTINGS_INDEX = [["People & access","Change any colleague's role and permissions","settings"],["Left menu","Rename, reorder and hide menu items","settings"],["Theme","Colours and the holiday theme","settings"],["Profile layout","The one company-wide profile layout","settings"],["Audit log","Every change, hash-chained","admin"],["Moderation queue","Posts waiting for review","admin"],["HR documents","Files that feed Ask HR","admin"]];
+const SETTINGS_INDEX = [["Tutorials","Step-by-step walkthroughs of the site","settings"],["Profile layouts","See every profile layout as a finished sample","settings"],["Header & footer","Build a footer or announcement bar for every page","builder"],["Org chart","How SHAPE is organized","people"],["People & access","Change any colleague's role and permissions","settings"],["Left menu","Rename, reorder and hide menu items","settings"],["Theme","Colours and the holiday theme","settings"],["Profile layout","The one company-wide profile layout","settings"],["Audit log","Every change, hash-chained","admin"],["Moderation queue","Posts waiting for review","admin"],["HR documents","Files that feed Ask HR","admin"]];
 function siteSearch(q){
  q=(q||"").trim(); $("siteSearch").value=q; $("searchBox").value=q;
  if(!q){ go("search"); $("searchOut").innerHTML=""; return; }
@@ -839,6 +1071,7 @@ function siteSearch(q){
 function botSay(box,html,cite){ const d=document.createElement("div"); d.className="msg bot"; d.innerHTML=html+(cite?`<div class="cite">Source: <b>${cite}</b>, quoted from the live HR folder.</div>`:""); $(box).appendChild(d); $(box).scrollTop=1e6; }
 function ask(q,box,input){
  q=(q||"").trim(); if(!q) return; if(input) input.value="";
+ const qc=document.querySelector(`.qchips[data-for="${box}"]`); if(qc) qc.classList.add("hidden");
  const m=document.createElement("div"); m.className="msg me"; m.textContent=q; $(box).appendChild(m); $(box).scrollTop=1e6;
  const hit=HRKB.find(h=>h.k.some(k=>q.toLowerCase().includes(k)));
  setTimeout(()=>{
@@ -848,7 +1081,7 @@ function ask(q,box,input){
  },450);
 }
 function toggleHrPop(open){
- const pop=$("hrPop"), show = open===true ? true : pop.classList.contains("hidden");
+ const pop=$("hrPop"), show = typeof open==="boolean" ? open : pop.classList.contains("hidden");
  pop.classList.toggle("hidden",!show); $("fab").setAttribute("aria-expanded",show);
  if(show) setTimeout(()=>$("popText").focus(),50);
 }
@@ -903,8 +1136,8 @@ function bulkRole(){ const r=$("bulkRole").value, sel=[...document.querySelector
 function openAccess(name){ accQ=name||""; accDept="All"; accOpen = name ? PEOPLE.findIndex(p=>p.name===name) : null; go("settings"); setTimeout(()=>$("accessCard").scrollIntoView({behavior:"smooth",block:"start"}),120); }
 
 function renderSettings(){
- $("profTplSel").innerHTML = PROF_TEMPLATES.map(t=>`<option ${t===profileTemplate?'selected':''}>${t}</option>`).join("");
- $("profTplSel").onchange = e=>{ profileTemplate=e.target.value; toast("Profile layout set for every profile: "+profileTemplate); };
+ renderPlTile();
+ $("tutList").innerHTML = Object.entries(TOURS).filter(([k,t])=>k!=="edit"||RANK[me]>=1).map(([k,[n,s]])=>`<button onclick="startTour('${k}')">${n}<small>${s}</small></button>`).join("");
  renderMenuBuilder();
  $("permRows").innerHTML = CAPS.map(([c,l])=>`<tr><td>${l}</td>${Object.keys(ROLECAPS).map((r,ri)=>`<td>${c==="html"&&ri<3?'<span class="pill red">locked</span>':`<button class="tgl ${ROLECAPS[r].includes(c)?'on':''}" aria-label="${l} for ${r}" onclick="this.classList.toggle('on')"></button>`}</td>`).join("")}</tr>`).join("");
 }
@@ -918,6 +1151,8 @@ function renderPages(){
    <button class="btn alt sm na" onclick="go('${p.id}')">View</button><button class="btn sm na" onclick="startEdit('${p.id}')">Edit</button>
    ${p.custom?`<button class="btn alt sm na" onclick="delPage('${p.id}')">Delete</button>`:""}</div>`; }).join("");
  $("kpiPages").textContent = 32+PAGES.length;
+ $("hfRows").innerHTML = [["siteHeader","Site header","An announcement bar above every page"],["siteFooter","Site footer","Links, help and contacts below every page"]].map(([id,n,s])=>{ const on=!$(id).classList.contains("hidden");
+  return `<div class="layrow"><span><b>${n}</b><br><small style="color:var(--mut)">${s}</small></span><button class="tgl ${on?'on':''}" aria-label="Show ${n}" onclick="$('${id}').classList.toggle('hidden');renderPages();toast('${n} '+($('${id}').classList.contains('hidden')?'hidden on':'shown on')+' every page.')"></button><button class="btn sm na" onclick="editBand('${id}','${n}')">Edit</button></div>`; }).join("");
 }
 let pendingName="";
 function newPage(){ const n=$("newPageName").value.trim(); if(!n) return toast("Give the page a name first."); pendingName=n; $("chooserFor").textContent="“"+n+"”"; $("chooser").classList.remove("hidden"); renderChooser(); }
@@ -936,7 +1171,7 @@ function createPage(t){
  const rows=t.rows.split("|");
  sec.innerHTML = `<div class="bgrid"><div class="tile" data-name="Page title" data-span="12" style="--span:12"><h1>${esc(name)}</h1><p class="lede">Double-click to write an introduction for this page.</p></div>${
   rows.map(r=>`<div class="tile" data-name="${ROWNAMES[r]||'Section'}" data-span="${ROWSPAN[r]||12}" style="--span:${ROWSPAN[r]||12}"><div class="phbox">${ROWNAMES[r]||"Section"} placeholder<br><small style="font-weight:500">Select it, then fill it or replace it from the toolbar</small></div></div>`).join("")}</div>`;
- document.querySelector("main").appendChild(sec);
+ $("siteFooter").before(sec);
  closeChooser(); $("newPageName").value=""; renderRail(); renderMenuBuilder(); renderPages();
  logAudit("Created page: "+name); startEdit(id);
  toast("“"+name+"” is on the left menu. It loads empty: fill the placeholders, then Publish.");
@@ -959,14 +1194,23 @@ function miniRow(r){
 
 /* ============ SITE BUILDER: edit any page in place ============ */
 let editing=null, snap=true, selTile=null, zTop=10;
+let editName="";
 function startEdit(id){
  if(RANK[me]<1) return toast("Editing pages needs the Editor role or higher. Use Switch demo role.");
- go(id); const g=$("v-"+id).querySelector(".bgrid"); if(!g) return;
- editing=g; snap=!g.classList.contains("free"); syncSnapBtn();
- $("ebName").textContent="EDITING · "+pageOf(id).name.toUpperCase();
+ go(id); editGrid($("v-"+id).querySelector(".bgrid"), pageOf(id).name);
+}
+function editBand(id,name){
+ if(RANK[me]<1) return toast("Editing needs the Editor role or higher.");
+ if(editing) endEdit(false);
+ $(id).classList.remove("hidden"); renderPages();
+ editGrid($(id).querySelector(".bgrid"), name); setTimeout(()=>$(id).scrollIntoView({behavior:"smooth",block:"center"}),100);
+}
+function editGrid(g,name){
+ if(!g) return; editing=g; editName=name; snap=!g.classList.contains("free"); syncSnapBtn();
+ $("ebName").textContent="EDITING · "+name.toUpperCase();
  document.body.classList.add("editing");
  g.querySelectorAll(":scope>.tile").forEach(decorate);
- toast("Editing "+pageOf(id).name+". Drag tiles by ⠿, resize from the yellow corner, double-click text to rewrite it.");
+ toast("Editing "+name+". Drag tiles by ⠿, resize from the yellow corner, double-click text to rewrite it.");
 }
 function endEdit(publish){
  if(!editing) return;
@@ -975,7 +1219,7 @@ function endEdit(publish){
  g.querySelectorAll(".sel").forEach(e=>e.classList.remove("sel"));
  g.querySelectorAll("[contenteditable]").forEach(e=>e.removeAttribute("contenteditable"));
  selTile=null;
- const name=pageOf(g.parentElement.id.slice(2)).name;
+ const name=editName;
  if(publish){ logAudit("Published page: "+name); toast("Published “"+name+"”. Audit-logged, with one-click rollback."); }
  else toast("Left editing. Your changes stay as a draft on this page.");
 }
@@ -1096,6 +1340,31 @@ function addTile(kind){
 }
 function swapPhoto(b){ const box=b.closest(".phbox"); const i=((+box.dataset.i||-1)+1)%PHOTOS.length; box.dataset.i=i; box.style.backgroundImage=`url(${PHOTOS[i]})`; box.classList.add("has"); }
 
-function renderAll(){ renderRail(); renderDepts(); renderPeople(); renderSettings(); renderAdmin(); renderPages(); renderHomeLists(); renderCarousel(); seedChat(); }
+/* ============ TUTORIALS: spotlight walkthroughs ============ */
+let tour=null, tix=0;
+function startTour(k){ tour=TOURS[k][2].filter(s=>!s[5]||RANK[me]>=RANK[s[5]]); tix=0; ["tourBlock","tourHole","tourCard"].forEach(i=>$(i).classList.remove("hidden")); showStep(); }
+function endTour(){ tour=null; ["tourBlock","tourHole","tourCard"].forEach(i=>$(i).classList.add("hidden")); toggleHrPop(false); }
+function tourGo(d){ tix+=d; if(tix>=tour.length) return endTour(); if(tix<0) tix=0; showStep(); }
+function showStep(){
+ const [view,sel,title,text,fn]=tour[tix];
+ if(view && $("v-"+view).classList.contains("hidden")) go(view);
+ if(fn) fn();
+ $("tourStep").textContent="STEP "+(tix+1)+" OF "+tour.length; $("tourTitle").textContent=title; $("tourText").textContent=text;
+ $("tourBack").disabled=tix===0; $("tourNext").textContent=tix===tour.length-1?"Done":"Next";
+ setTimeout(()=>{
+  const el=document.querySelector(sel); if(!el) return;
+  const fixed=getComputedStyle(el).position==="fixed"||el.closest("#rail,#hrPop,#fab");
+  if(!fixed) el.scrollIntoView({block:"center"});
+  setTimeout(()=>{ const r=el.getBoundingClientRect(), H=$("tourHole"), C=$("tourCard"), pad=6;
+   Object.assign(H.style,{left:r.left-pad+"px",top:r.top-pad+"px",width:r.width+pad*2+"px",height:r.height+pad*2+"px"});
+   const cw=C.offsetWidth, ch=C.offsetHeight;
+   let left=r.right+18, top=r.top;
+   if(left+cw>innerWidth-12){ left=Math.max(12,Math.min(r.left,innerWidth-cw-12)); top=r.bottom+18; if(top+ch>innerHeight-12) top=Math.max(12,r.top-ch-18); }
+   C.style.left=left+"px"; C.style.top=Math.max(12,Math.min(top,innerHeight-ch-12))+"px"; $("tourNext").focus(); }, fixed?60:380);
+ }, view?520:80);
+}
+document.addEventListener("keydown",e=>{ if(tour&&e.key==="Escape") endTour(); });
+
+function renderAll(){ renderRail(); renderOrg(); renderSettings(); renderAdmin(); renderPages(); renderHomeLists(); renderCarousel(); renderRates(); seedChat(); }
 </script>
 </body></html>
