@@ -52,29 +52,48 @@ td{border-bottom:1px solid var(--line);padding:10px 8px;vertical-align:middle}
 
 /* ---------- login ---------- */
 #loginView{min-height:100vh;background:var(--paper)}
-.lv{position:relative;overflow:hidden;color:var(--char)}
-.lvBg{position:absolute;inset:0;background:var(--paper)}.lvBg>img,.lvBg>video{width:100%;height:100%;object-fit:cover;display:block}
-.lvBg .col{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:100%;background:var(--char)}
-.lvBg .col img{width:100%;height:100%;object-fit:cover;min-height:0}.lvBg .col img:first-child{grid-row:span 2}
-.lvBg .dim{position:absolute;inset:0;background:#1f2426}
-.lvGrid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1fr auto 1fr;min-height:100vh;padding:32px;gap:24px}
-.lvCard{width:100%;max-width:420px;align-self:center;justify-self:center}
-.lvText{max-width:520px;align-self:center}.lvText:empty{display:none}
-.lvText h2{font-size:clamp(34px,4vw,58px);line-height:.95;text-transform:uppercase;margin:0 0 14px;letter-spacing:-.5px}
-.lvText p{font-size:17px;line-height:1.55;margin:0;white-space:pre-line}
-.lv.dark .lvText{color:#fff}.lv.dark .demo-note,.lv.dark .demo-note a{color:#e8e5dc}
-@media(max-width:760px){.lvGrid{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:22px}.lvText{text-align:center}}
-.lePrev{background:var(--paper2);border:1px solid var(--line);overflow:hidden;position:relative}
-.lePrev .lv{width:1280px;transform-origin:0 0;pointer-events:none}.lePrev .lvGrid{min-height:760px;height:760px}
-.leGrid{display:grid;grid-template-columns:320px minmax(0,1fr);gap:18px;align-items:start}.leGrid>*{min-width:0}
+.lv{position:relative;overflow-x:clip;color:var(--char)}
+.lvBg{position:absolute;inset:0;background:var(--paper);overflow:hidden}.lvBg>img,.lvBg>video{width:100%;height:100%;object-fit:cover;display:block}
+.lvBg .dim{position:absolute;inset:0;background:#1f2426;opacity:0}
+.lvStage{position:relative;min-height:100vh}
+.lvCard,.lvL{position:absolute;transform:translateX(-50%)}
+.lvCard{width:420px}.lvCard>*{zoom:var(--z,1)}
+.lvL img,.lvL video{width:100%;display:block;-webkit-user-drag:none}
+.lvL .framed{border:8px solid #fff;box-shadow:0 24px 50px -20px rgba(0,0,0,.55)}
+.lvTx{line-height:1.05;white-space:pre-line;letter-spacing:-.3px}
+.lv.dark .lvTx{color:#fff}.lv.dark .demo-note,.lv.dark .demo-note a{color:#e8e5dc}
+@media(max-width:760px){#loginView .lvStage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:22px}#loginView .lvCard,#loginView .lvL{position:static;transform:none;width:100%!important;max-width:420px}#loginView .lvTx{font-size:min(1em,40px)}}
+.lePrev{background:var(--paper2);border:1px solid var(--line);overflow:hidden;position:relative;touch-action:none}
+.lePrev .lv{width:1280px;transform-origin:0 0}.lePrev .lvStage{min-height:760px;height:760px}
+.lePrev .lv *{pointer-events:none}.lePrev .lvCard,.lePrev .lvL,.lePrev .lvRz{pointer-events:auto;cursor:grab}
+.lePrev .lvCard:hover,.lePrev .lvL:hover{outline:2px dashed rgba(210,220,81,.9);outline-offset:3px}
+.lePrev .sel{outline:3px dashed var(--lime)!important;outline-offset:4px}
+.lvRz{display:none;position:absolute;right:-12px;bottom:-12px;width:22px;height:22px;background:var(--lime);border:2px solid var(--char);cursor:nwse-resize!important;z-index:5}
+.lePrev .sel>.lvRz{display:block}
+.guide{display:none;position:absolute;background:var(--lime);z-index:99}.gx{left:50%;top:0;bottom:0;width:2px}
+#leBar{background:var(--char);color:#fff;font-size:13px;font-weight:600;padding:9px 12px;margin-bottom:8px;transition:background .15s}
+#leBar.on{background:var(--lime);color:var(--char)}
+.leGrid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:18px;align-items:start}.leGrid>*{min-width:0}
 @media(max-width:1000px){.leGrid{grid-template-columns:1fr}}
-.lePanel{background:#fff;border:1px solid var(--line);padding:18px;position:sticky;top:14px}
+.lePanel{background:#fff;border:1px solid var(--line);padding:18px;position:sticky;top:14px;max-height:calc(100vh - 28px);overflow:auto}
 .lePanel label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin:16px 0 6px}.lePanel label:first-child{margin-top:0}
-.lePanel .inp,.lePanel textarea{width:100%}
-.pos9{display:grid;grid-template-columns:repeat(3,38px);gap:4px}.pos9 button{height:28px;border:1.5px solid var(--char);background:#fff;padding:0}
-.pos9 button.on{background:var(--char)}.pos9 button.on::after{content:"";display:block;width:12px;height:8px;margin:auto;background:var(--lime)}
-.segs{display:flex;flex-wrap:wrap;gap:4px}.segs button{border:1.5px solid var(--char);background:#fff;font-weight:700;font-size:12.5px;padding:5px 9px}.segs button.on{background:var(--char);color:#fff}
-.imgPick{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.imgPick button{padding:0;border:3px solid transparent;aspect-ratio:4/3;background:center/cover}.imgPick button.on{border-color:var(--lime);outline:1.5px solid var(--char)}
+.lePanel .inp,.lePanel textarea{width:100%}.lePanel .hint{font-size:12px;color:var(--mut);margin:4px 0 0}
+.segs{display:flex;flex-wrap:wrap;gap:4px}.segs button{border:1.5px solid var(--char);background:#fff;font-weight:700;font-size:12.5px;padding:5px 9px}.segs button.on,.segs button:hover{background:var(--char);color:#fff}
+.imgPick{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:6px}.imgPick button{padding:0;border:3px solid transparent;aspect-ratio:4/3;background:center/cover;position:relative;overflow:hidden}.imgPick button.on{border-color:var(--lime);outline:1.5px solid var(--char)}
+.imgPick .vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.imgPick .vid span{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:18px;text-shadow:0 1px 4px #000}
+.leLayers .lrow{display:flex;align-items:center;gap:4px;border:1px solid var(--line);padding:5px 8px;margin-bottom:4px;cursor:pointer;font-size:13px}
+.leLayers .lrow span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.leLayers .lrow.on{border-color:var(--char);background:var(--lime)}
+.leLayers button{border:1px solid var(--line);background:#fff;padding:2px 7px;font-weight:800}
+.leProps{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.libGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.libItem{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column}
+.lth{aspect-ratio:16/10;background:var(--paper2);position:relative;overflow:hidden;display:grid;place-items:center}.lth img,.lth video{width:100%;height:100%;object-fit:cover}
+.vbadge{position:absolute;left:8px;bottom:8px;background:var(--char);color:#fff;font-size:11px;font-weight:800;padding:3px 7px}
+.dbadge{font-weight:800;font-size:20px;letter-spacing:1px;border:2px solid var(--char);padding:10px 14px;background:#fff}
+.ltx{padding:10px 12px;display:flex;flex-direction:column;gap:3px;flex:1}.ltx b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ltx small{color:var(--mut);font-size:12px}
+.lact{display:flex;gap:6px;margin-top:auto;padding-top:8px}
+.mbrow{flex-wrap:wrap}.mbrow .vis{flex:1 1 100%;font-size:12.5px}
+.grp{border:1px solid var(--line);background:#fff;padding:10px 12px;margin-bottom:8px}.grp .avs{display:flex;gap:3px;flex-wrap:wrap;margin-top:6px}.grp .av{width:26px;height:26px}
 .loginCard{background:#fff;border:1px solid var(--line);width:100%;max-width:420px;padding:34px 30px 26px}
 .logo{font-size:34px;letter-spacing:6px;font-weight:800;text-align:center}
 .logo span{box-shadow:inset 0 -.38em 0 var(--lime)}
@@ -139,6 +158,15 @@ body.dragging{user-select:none;-webkit-user-select:none}
 .greetCard h2{margin:0;font-size:28px;font-weight:700;text-transform:uppercase;line-height:1.1}
 .greetCard h2 em{font-family:var(--serif);color:var(--lime);text-transform:none;font-weight:400}
 .greetCard p{margin:8px 0 0;color:rgba(255,255,255,.76);font-size:14.5px;line-height:1.6;max-width:620px}
+.greetCard{display:flex;gap:28px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.gtx{flex:1;min-width:260px}
+.gstairs{display:grid;grid-template-columns:repeat(4,74px);gap:6px;align-items:end;background:none;border:0;padding:0;cursor:pointer;color:var(--char)}
+.gstairs span{display:flex;flex-direction:column;justify-content:flex-start;background:#fff;border-top:4px solid var(--lime);padding:7px 8px;font-size:11.5px;font-weight:700;text-align:left;transform-origin:bottom}
+.gstairs b{font-size:19px;line-height:1.1}
+.gstairs span:nth-child(1){height:52px}.gstairs span:nth-child(2){height:72px}.gstairs span:nth-child(3){height:92px}.gstairs span:nth-child(4){height:112px;background:var(--lime);border-top-color:#fff}
+.gstairs:hover span{transform:translateY(-3px)}.gstairs span{transition:transform .2s}
+#v-home.wipeIn .gstairs span{animation:vStep .6s cubic-bezier(.22,.9,.3,1) both}
+#v-home.wipeIn .gstairs span:nth-child(1){animation-delay:.45s}#v-home.wipeIn .gstairs span:nth-child(2){animation-delay:.6s}#v-home.wipeIn .gstairs span:nth-child(3){animation-delay:.75s}#v-home.wipeIn .gstairs span:nth-child(4){animation-delay:.9s}
+@container (max-width:620px){.gstairs{grid-template-columns:repeat(4,1fr);width:100%}}
 .stat{background:#fff;border:1px solid var(--line);padding:18px;height:100%}
 .stat .lb{font-size:11.5px;font-weight:700;letter-spacing:1px;color:var(--mut)}
 .stat .vl{font-size:34px;font-weight:800;margin:6px 0 4px;font-variant-numeric:tabular-nums}
@@ -150,6 +178,10 @@ body.dragging{user-select:none;-webkit-user-select:none}
 .cal b{color:var(--mut);font-size:10.5px}.cal span{padding:4px 0}
 .cal .ev{background:var(--paper);font-weight:800}.cal .td{background:var(--lime);font-weight:800}
 .act{display:flex;gap:11px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.act:last-child{border-bottom:0}
+button.act{width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left;color:inherit;font:inherit;font-size:14px;cursor:pointer}
+button.act:last-child{border-bottom:0}button.act .go{margin-left:auto;opacity:0;transition:opacity .2s,transform .2s;font-weight:800}
+button.act:hover{background:var(--paper)}button.act:hover .go{opacity:1;transform:translateX(3px)}
+.flash{animation:flash 1.6s ease}@keyframes flash{0%,40%{box-shadow:0 0 0 4px var(--lime)}100%{box-shadow:0 0 0 0 transparent}}
 .act .av{width:40px;height:40px}
 .act small{color:var(--mut);font-size:12.5px}
 /* updates carousel */
@@ -165,7 +197,7 @@ body.dragging{user-select:none;-webkit-user-select:none}
 .slide .more{margin-top:auto;color:var(--lime);font-weight:700}
 @container (max-width:760px){.slide{grid-template-columns:1fr}.slide h3{font-size:21px}}
 .carNav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
-.dots{display:flex;gap:7px;flex-wrap:wrap}
+.dots{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.dots .dgrp{display:flex;gap:5px}
 .dots button{width:9px;height:9px;border:0;background:#cdc7b8;padding:0}
 .dots button.on{background:var(--char);width:26px}
 /* article */
@@ -323,7 +355,7 @@ body.editing .tile.sel .swapPh{display:inline-flex}
 .vmq{font-family:var(--serif);font-size:21px;line-height:1.35;margin:4px 0 10px}
 /* site header + footer, built in Site Builder, shown on every page */
 #siteHeader{margin-bottom:18px}
-#siteFooter{margin-top:48px;background:var(--char);color:#fff;padding:28px 26px 18px}
+#siteFooter{margin-top:40px;background:var(--char);color:#fff;padding:18px 26px 12px}
 #siteFooter .ttl{color:var(--lime)}
 #siteFooter a,#siteFooter button.lk{display:block;color:rgba(255,255,255,.8);text-decoration:none;font-size:14px;padding:3px 0;background:none;border:0;text-align:left}
 #siteFooter a:hover,#siteFooter button.lk:hover{color:var(--lime)}
@@ -337,6 +369,16 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
 .orgTop::after{content:"";position:absolute;left:50%;bottom:0;height:30px;border-left:2px solid var(--char)}
 .orgAside{position:absolute;left:calc(50% + 190px);top:18px;display:flex;align-items:center;gap:0}
 .orgAside::before{content:"";width:40px;border-top:2px dashed #8f9396;margin-left:-40px}
+.orgMini{margin-top:22px;border-top:1px solid var(--line);padding-top:16px}
+.omHead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.omRow{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.omLine{display:block;width:2px;height:16px;background:var(--char);margin:0 auto}
+.mnode{background:#fff;border:1px solid var(--line);padding:7px 10px;display:flex;gap:8px;align-items:center;text-align:left;width:210px;cursor:pointer;font-size:12.5px}
+.mnode .av{width:32px;height:32px}.mnode small{display:block;color:var(--mut);font-size:11.5px;line-height:1.25}.mnode b{font-size:13px}
+.mnode.me{border:2px solid var(--char);background:var(--lime);cursor:default}.mnode.up{border-top:4px solid var(--char)}
+.mnode.empty{visibility:hidden}.mnode.more{justify-content:center;color:var(--mut);font-weight:700;cursor:default;width:auto}
+.omRow.down .mnode{width:180px}.omMore{display:block;text-align:center;color:var(--mut);margin-top:6px}
+@media(max-width:700px){.mnode.empty{display:none}.mnode{width:100%}}
 .onode{background:#fff;border:1px solid var(--line);border-top:4px solid var(--br,var(--char));padding:12px 14px;display:flex;gap:11px;align-items:center;cursor:pointer;text-align:left;transition:transform .2s,box-shadow .2s}
 .onode:hover{transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(31,36,38,.45)}
 .onode .av{width:46px;height:46px}
@@ -437,7 +479,7 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
 <body>
 
 <!-- ================= LOGIN ================= -->
-<div id="loginView" class="lv"><div class="lvBg"></div><div class="lvGrid"><div class="lvText"></div>
+<div id="loginView" class="lv"><div class="lvBg"></div><div class="lvStage">
  <div class="lvCard">
   <div class="loginCard">
    <div class="logo"><span>SHAPE</span></div>
@@ -493,7 +535,8 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
   <!-- HOME -->
   <section class="view" id="v-home"><div class="bgrid">
    <div class="tile" data-name="Greeting" data-span="12" style="--span:12"><h1 id="greet">Good morning</h1><p class="lede">SHAPE team workspace. Updates, numbers, people and answers in one place.</p></div>
-   <div class="tile greetCard" data-name="Banner" data-span="12" style="--span:12"><h2>Ready to <em>raise the bar</em> today?</h2><p>Harbourgate topped out three weeks early and orientations open Nov 20. Here is everything happening across SHAPE at a glance.</p></div>
+   <div class="tile greetCard" data-name="Banner" data-span="12" style="--span:12"><div class="gtx"><h2>Ready to <em>raise the bar</em> today?</h2><p>Harbourgate topped out three weeks early and orientations open Nov 20. Here is everything happening across SHAPE at a glance.</p></div>
+    <button class="gstairs" onclick="go('vision')" aria-label="How we raise the bar: Spot, Plan, Execute, Deliver. Open Vision and mission"><span><b>01</b>Spot</span><span><b>02</b>Plan</span><span><b>03</b>Execute</span><span><b>04</b>Deliver</span></button></div>
    <div class="tile stat lift" data-name="Stat · Homes closing" data-span="3" style="--span:3"><div class="lb">HOMES CLOSING · NOV</div><div class="vl" data-count="24">0</div><span class="chg up">↗ 12% vs Oct</span><div class="prog"><i data-w="80"></i></div></div>
    <div class="tile stat lift" data-name="Stat · Orientations" data-span="3" style="--span:3"><div class="lb">ORIENTATIONS BOOKED</div><div class="vl" data-count="38">0</div><span class="chg up">↗ 8% vs Oct</span><div class="prog"><i data-w="63"></i></div></div>
    <div class="tile stat lift" data-name="Stat · Deficiencies" data-span="3" style="--span:3"><div class="lb">OPEN DEFICIENCIES</div><div class="vl" data-count="17">0</div><span class="chg dn">↘ 23%, clearing fast</span><div class="prog"><i data-w="34"></i></div></div>
@@ -567,6 +610,9 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
    <div class="tile kpi" data-name="KPI" data-span="3" style="--span:3"><b id="kpiMod">2</b><span>posts awaiting moderation</span></div>
    <div class="tile card" data-name="Moderation" data-span="6" style="--span:6"><span class="ttl">Moderation queue</span><div id="modQueue"></div></div>
    <div class="tile card" data-name="HR documents" data-span="6" style="--span:6"><span class="ttl">HR documents feeding Ask HR</span><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 10px">HR owns these in one SharePoint folder. Turning one off removes it from Ask HR instantly.</p><div id="hrDocs"></div></div>
+   <div class="tile card" data-name="Groups & departments" data-span="12" style="--span:12"><span class="ttl">Groups &amp; departments</span><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 12px">Use these to show a menu item to only some people (Settings → Left menu → Visible to). Departments sync from HR records (Microsoft Entra ID in production). Custom groups are yours to make.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px"><div><b style="font-size:13px">DEPARTMENTS</b><div id="deptList" style="margin-top:8px"></div></div><div><b style="font-size:13px">CUSTOM GROUPS</b><div id="grpList" style="margin-top:8px"></div>
+     <div class="grp"><input class="inp" id="grpName" placeholder="New group name, e.g. Northgate sales team" style="width:100%"><input class="inp" id="grpAdd" list="pplNames" placeholder="Add people: start typing a name…" style="width:100%;margin-top:6px" onchange="grpPick(this)"><datalist id="pplNames"></datalist><div id="grpDraft" class="avs" style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px"></div><button class="btn sm" style="margin-top:8px" onclick="grpCreate()">Create group</button></div></div></div></div>
    <div class="tile card" data-name="Access shortcut" data-span="12" style="--span:12;display:flex;align-items:center;gap:14px;flex-wrap:wrap"><div style="flex:1;min-width:220px"><span class="ttl" style="margin-bottom:4px">People &amp; access</span><span style="color:var(--mut);font-size:14px">Roles and permissions for every colleague live in Settings.</span></div><button class="btn" onclick="openAccess()">Manage access</button></div>
    <div class="tile card" data-name="Audit log" data-span="12" style="--span:12"><span class="ttl">Audit log <span class="pill lime" style="margin-left:6px">hash chain intact</span></span><button class="btn alt sm" style="float:right;margin-top:-34px" onclick="toast('Chain verified: every entry\'s hash matches the one before it.')">Verify chain</button>
     <p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 6px">Append-only. Every entry carries a hash of the entry before it, so an edited entry fails verification.</p>
@@ -588,6 +634,8 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
    <div class="tile card" data-name="Profile layout" id="plTile" data-span="6" style="--span:6;cursor:pointer" onclick="go('layouts')"><span class="ttl">Profile layout · company-wide</span>
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div class="plprev" id="plThumb" style="width:200px;height:130px;flex:none"></div>
     <div style="flex:1;min-width:160px"><b id="plName" style="font-family:var(--serif);font-size:19px;font-weight:500"></b><p style="color:var(--mut);font-size:13px;line-height:1.5;margin:4px 0 10px">One layout for every profile. See every option as a finished profile before you choose.</p><button class="btn sm" onclick="event.stopPropagation();go('layouts')">Browse layouts</button></div></div></div>
+   <div class="tile card" data-name="Library" id="libTile" data-span="6" style="--span:6"><span class="ttl">Library</span><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 12px">All images, videos and documents: PDFs, decks, spreadsheets. Upload once, use anywhere on the site.</p><button class="btn sm" onclick="go('library')">Open the Library</button></div>
+   <div class="tile card" data-name="Change tracker" id="ctTile" data-span="6" style="--span:6"><span class="ttl">Change tracker</span><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 12px">Every sign-in and every change anyone makes, logged and tamper-evident. Filter, search and export.</p><button class="btn sm" onclick="go('changes')">Open the change tracker</button></div>
    <div class="tile card" data-name="Login page" id="loginTile" data-span="12" style="--span:12"><span class="ttl">Login page</span>
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0;flex:1;min-width:220px">The sign-in page is the one page everyone sees first, before they log in. Admins and Super Users can design it like a landing page: move and resize the sign-in box, add a photo, a collage or a video, and add your own words. Everything behind the login stays private.</p><button class="btn sm" onclick="go('loginedit')">Design the login page</button></div></div>
    <div class="tile card" data-name="Tutorials" data-span="12" style="--span:12"><span class="ttl">Tutorials</span><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 12px">Pick one and SHAPE walks you through it, one highlighted step at a time.</p><div class="tuts" id="tutList"></div></div>
@@ -613,20 +661,34 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
   <section class="view hidden" id="v-layouts">
    <button class="btn alt sm" onclick="go('settings')">← Back to Settings</button><div style="height:14px"></div>
    <h1>Profile layouts</h1><p class="lede" style="margin-bottom:18px">Every option shown as a finished profile. Pick one and all 150 profiles re-render from the same data: same boxes, same order, for everyone. <span id="plWho"></span></p>
+   <div class="card" style="display:flex;gap:14px;align-items:center;margin-bottom:16px;padding:14px 18px"><button class="tgl on" id="orgTgl" aria-label="Show where they sit on every profile" onclick="toggleOrgMini()"></button><div><b>Where they sit</b><br><span style="color:var(--mut);font-size:13.5px">A small org chart on every profile, in every layout: who they report to, the colleagues either side, and who reports to them.</span></div></div>
    <div class="plgrid" id="plGrid"></div>
   </section>
 
   <section class="view hidden" id="v-loginedit">
    <button class="btn alt sm" onclick="go('settings')">← Back to Settings</button><div style="height:14px"></div>
    <h1>Login page</h1><p class="lede" style="margin-bottom:18px">Design the first page everyone sees. Changes show in the preview as you make them; nothing goes live until you publish. <span id="leWho"></span></p>
-   <div class="leGrid"><div class="lePanel" id="lePanel"></div><div><div class="lePrev" id="lePrev"></div><p style="color:var(--mut);font-size:12.5px;margin:8px 0 0">Preview at desktop size. On phones the sign-in box always sits in the middle with your text above it.</p></div></div>
+   <div class="leGrid"><div class="lePanel" id="lePanel"></div><div><div id="leBar"></div><div class="lePrev" id="lePrev"></div><p style="color:var(--mut);font-size:12.5px;margin:8px 0 0">Preview at desktop size. On phones everything stacks in a single column, top to bottom, with the sign-in box full width.</p></div></div>
+  </section>
+
+  <section class="view hidden" id="v-library">
+   <button class="btn alt sm" onclick="go('settings')">← Back to Settings</button><div style="height:14px"></div>
+   <h1>Library</h1><p class="lede" style="margin-bottom:14px">Every image, video and document on the intranet, in one place. Files open through signed links that expire, and only for people allowed to see them.</p>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div id="libTabs" style="display:flex;gap:6px;flex-wrap:wrap"></div><input class="inp" placeholder="Search files…" style="margin-left:auto;min-width:200px" oninput="libQ=this.value;renderLibrary()"><label id="libUpWrap" class="btn sm" style="cursor:pointer">Upload files<input type="file" multiple hidden onchange="addFiles(this.files,renderLibrary)"></label></div>
+   <div class="libGrid" id="libGrid"></div>
+  </section>
+
+  <section class="view hidden" id="v-changes">
+   <button class="btn alt sm" onclick="go('settings')">← Back to Settings</button><div style="height:14px"></div>
+   <h1>Change tracker</h1><p class="lede" style="margin-bottom:14px">Every sign-in and every change on the intranet: who, what and when. Entries can't be edited or deleted. Each one carries a hash of the one before it, so tampering shows. <span class="pill lime">hash chain intact</span></p>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div id="ctTabs" style="display:flex;gap:6px;flex-wrap:wrap"></div><input class="inp" placeholder="Search changes…" style="margin-left:auto;min-width:200px" oninput="ctQ=this.value;renderTracker()"><button class="btn sm" onclick="ctExport()">Export CSV</button></div>
+   <p class="eyebrow" id="ctCount" style="margin:14px 0 6px"></p>
+   <div class="card" style="padding:0;overflow-x:auto"><table><thead><tr><th>When</th><th>Who</th><th>Type</th><th>Change</th><th>Hash</th></tr></thead><tbody id="ctRows"></tbody></table></div>
   </section>
 
   <footer id="siteFooter"><div class="bgrid">
-   <div class="tile" data-name="Footer · brand" data-span="4" style="--span:4"><div style="font-weight:800;letter-spacing:5px;font-size:22px;margin-bottom:8px">SHAPE</div><p>Raising the bar. The intranet for everyone at SHAPE.</p></div>
-   <div class="tile" data-name="Footer · links" data-span="3" style="--span:3"><span class="ttl">Find it fast</span><button class="lk" onclick="go('people')">People &amp; org chart</button><button class="lk" onclick="go('vision')">Vision &amp; mission</button><button class="lk" onclick="go('home');setTimeout(scrollToCar,500)">Latest updates</button><button class="lk" onclick="go('settings');setTimeout(()=>$('tutList').scrollIntoView({block:'center'}),400)">Tutorials</button></div>
-   <div class="tile" data-name="Footer · help" data-span="3" style="--span:3"><span class="ttl">Help</span><button class="lk" onclick="toggleHrPop(true)">Ask HR</button><p>IT help desk · ext. 4357</p><p>Facilities · ext. 2200</p></div>
-   <div class="tile" data-name="Footer · office" data-span="2" style="--span:2"><span class="ttl">Office</span><p>Mon–Fri<br>8:30 am – 5 pm</p></div>
+   <div class="tile" data-name="Footer · brand" data-span="7" style="--span:7"><div style="font-weight:800;letter-spacing:5px;font-size:22px;margin-bottom:8px">SHAPE</div><p>Raising the bar. The intranet for everyone at SHAPE.</p></div>
+   <div class="tile" data-name="Footer · help" data-span="5" style="--span:5"><span class="ttl">Help</span><p><button class="lk" style="display:inline;padding:0;font-size:14px;text-decoration:underline" onclick="toggleHrPop(true)">Ask HR</button> · IT help desk ext. 4357 · Facilities ext. 2200</p></div>
    <div class="tile" data-name="Footer · legal" data-span="12" style="--span:12;border-top:1px solid rgba(255,255,255,.15);padding-top:12px"><p style="font-size:12.5px">© 2026 SHAPE · Internal use only · Demo with fictional data</p></div>
   </div></footer>
  </main>
@@ -656,10 +718,10 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
 /* ============ DATA (all fictional) ============ */
 const PEOPLE = window.__PEOPLE.map(p=>({name:p.n,title:p.t,department:p.d,email:p.e}));
 const ACCOUNTS = {
- staff:{email:"staff@jvdev.example", name:"James", role:"Staff", dept:"Customer Care", title:"Homeowner Care Specialist"},
- editor:{email:"editor@jvdev.example", name:"James", role:"Editor", dept:"Sales & Marketing", title:"Content Editor"},
- admin:{email:"admin@jvdev.example", name:"James", role:"Admin", dept:"HR & Admin", title:"HR Manager"},
- super:{email:"super@jvdev.example", name:"James Okafor", role:"Super User", dept:"IT & Systems", title:"Systems Administrator"}
+ staff:{pdept:"Customer Care",email:"staff@jvdev.example", name:"James", role:"Staff", dept:"Customer Care", title:"Homeowner Care Specialist"},
+ editor:{pdept:"Sales & Marketing",email:"editor@jvdev.example", name:"James", role:"Editor", dept:"Sales & Marketing", title:"Content Editor"},
+ admin:{pdept:"Human Resources & Admin",email:"admin@jvdev.example", name:"James", role:"Admin", dept:"HR & Admin", title:"HR Manager"},
+ super:{pdept:"IT & Systems",email:"super@jvdev.example", name:"James Okafor", role:"Super User", dept:"IT & Systems", title:"Systems Administrator"}
 };
 const RANK = {staff:0,editor:1,admin:2,super:3};
 let me = null;
@@ -809,19 +871,19 @@ const TEMPLATES = [
  T("Homepage","Mosaic Cards","Big visual cards for announcements.","mosaic|news"),
  T("Homepage","Department Hub","One department, everything in one place.","hero|ql|cards"),
  T("Homepage","News Magazine","Editorial front page.","mag|news"),
- T("Interior","B1 Classic Article","Title, hero image, clean text column.","hero|text"),
- T("Interior","B2 Zigzag Feature","Alternating photo and text rows.","zig|zig|zig"),
- T("Interior","B7 Department Landing","Intro, links, team strip.","hero|ql|team"),
- T("Interior","B8 Project Update","Progress, photos, milestones.","hero|bars|news"),
- T("Interior","B10 FAQ","Questions that expand.","faq|faq|faq"),
- T("Interior","B14 Timeline","Milestones on a line.","time|time"),
- T("Interior","B15 Blank Canvas","Nothing. Your call entirely.","blank"),
- T("Concepts","S6 Shelves","Rows you scroll sideways.","shelf|shelf"),
- T("Concepts","S8 Live News Ticker","Breaking strip + bulletin board.","ticker|news"),
- T("Concepts","S10 Bento Box Grid","Everything in tidy boxes.","bento"),
- T("Creative","CD2 Masonry Wall","Photo wall.","masonry"),
- T("Creative","CD4 Story Reel","Tap-through story cards.","reel"),
- T("Creative","CD1 Before / After","Drag to compare two photos.","ba")
+ T("Interior","Classic Article","Title, hero image, clean text column.","hero|text"),
+ T("Interior","Zigzag Feature","Alternating photo and text rows.","zig|zig|zig"),
+ T("Interior","Department Landing","Intro, links, team strip.","hero|ql|team"),
+ T("Interior","Project Update","Progress, photos, milestones.","hero|bars|news"),
+ T("Interior","FAQ","Questions that expand.","faq|faq|faq"),
+ T("Interior","Timeline","Milestones on a line.","time|time"),
+ T("Interior","Blank Canvas","Nothing. Your call entirely.","blank"),
+ T("Concepts","Shelves","Rows you scroll sideways.","shelf|shelf"),
+ T("Concepts","Live News Ticker","Breaking strip + bulletin board.","ticker|news"),
+ T("Concepts","Bento Box Grid","Everything in tidy boxes.","bento"),
+ T("Creative","Masonry Wall","Photo wall.","masonry"),
+ T("Creative","Story Reel","Tap-through story cards.","reel"),
+ T("Creative","Before / After","Drag to compare two photos.","ba")
 ];
 const FAMS = ["Homepage","Interior","Concepts","Creative"];
 const HRKB = [
@@ -845,7 +907,7 @@ const TOURS = {
   [null,"#siteSearch","Or search the whole site","This box searches people, updates, pages and HR answers at once."]]],
  news:["Find the latest news","Project, leasing and company updates",[
   ["home","[data-name='Updates carousel']","Latest across SHAPE","Every update lands here first: projects, leasing, development and more."],
-  ["home","#carTabs","Filter by topic","Pick Projects, Leasing or any other topic to see only those updates."],
+  ["home","#carTabs","Jump to a topic","Updates are grouped by topic. Tap Leasing, Acquisitions or any other topic to jump straight to it. The highlighted topic shows where you are."],
   ["home",".carArrow.next","Swipe or tap through","Swipe the photo, tap the arrows or the dots. Tap an update to read the full story."]]],
  hires:["See who just joined","Welcome the newest people",[
   ["home","[data-name='Newest members']","Newest members","Everyone who started recently shows up here on Home, with their role and start date."],
@@ -865,6 +927,8 @@ const TOURS = {
 const HRDOCS = ["Employee Handbook 2026","Benefits Guide 2026","Expense Policy","Code of Conduct"];
 let hrOn = [true,true,true,true];
 let audit = [
+ ["Nov 17, 4:31 pm","Julia Kim (Admin)","Signed in (Microsoft Entra)","3c0d…be19"],
+ ["Nov 17, 4:16 pm","James Okafor (Super)","Signed in (Microsoft Entra)","5e7a…01c3"],
  ["Nov 17, 4:12 pm","James Okafor (Super)","Published page: Home","a91f…c204"],
  ["Nov 17, 3:48 pm","Julia Kim (Admin)","Turned ON document: Benefits Guide 2026","77be…09aa"],
  ["Nov 17, 2:15 pm","James (Editor)","Edited tile: Home banner","e310…f7d2"],
@@ -938,7 +1002,7 @@ function enterAs(key){
  const h=new Date().getHours();
  $("greet").textContent = "Good "+(h<12?"morning":h<18?"afternoon":"evening")+", "+a.name.split(" ")[0];
  $("umSwitch").textContent = "Switch demo role (now "+a.role+")";
- renderAll(); go("home");
+ logAudit("Signed in (demo login)"); renderAll(); go("home");
  const sp=$("splash"); sp.style.display="flex"; setTimeout(()=>{ sp.style.display="none"; animHome(); },1000);
  toast("Signed in as "+a.name+", "+a.role+" (demo)");
 }
@@ -949,7 +1013,7 @@ function doLogin(){
  const er=$("liErr"); er.style.display="block";
  er.textContent = key ? "Wrong password for the demo. It's axis-demo." : "No demo account with that email. Try a demo login below, e.g. staff@jvdev.example / axis-demo.";
 }
-function logout(){ if(editing) endEdit(false); scrollTo(0,0); me=null; $("app").classList.add("hidden"); $("fab").classList.add("hidden"); $("hrPop").classList.add("hidden"); $("loginView").classList.remove("hidden"); $("userMenu").classList.add("hidden"); }
+function logout(){ if(editing) endEdit(false); scrollTo(0,0); if(me) logAudit("Signed out"); me=null; $("app").classList.add("hidden"); $("fab").classList.add("hidden"); $("hrPop").classList.add("hidden"); $("loginView").classList.remove("hidden"); $("userMenu").classList.add("hidden"); }
 function toggleMenu(ev){ if(ev)ev.stopPropagation(); $("userMenu").classList.toggle("hidden"); }
 document.addEventListener("click",e=>{ if(!$("userMenu").classList.contains("hidden") && !e.target.closest("#userMenu") && !e.target.closest("#avaBtn")) $("userMenu").classList.add("hidden") });
 $("umSwitch").onclick = ()=>{ const order=["staff","editor","admin","super"]; enterAs(order[(order.indexOf(me)+1)%4]); };
@@ -963,12 +1027,21 @@ let PAGES = [
 let railItems = PAGES.map(p=>({t:"item",label:p.name,nav:p.id,on:p.id==="vision"?0:1}));
 const pageOf = id => PAGES.find(p=>p.id===id);
 const canSee = p => !p || !p.min || RANK[me]>=RANK[p.min];
+const ODEPTS = DEPTS.filter(d=>d!=="All"&&d!=="Executive");
+let GROUPS = [{id:"g1",name:"Harbourgate launch team",members:["Henry Kimura","Elena Baker","Priya Mann","Sam Hall","Julia Kim","@staff"]},{id:"g2",name:"Safety committee",members:["Henry Kimura","Ana Wilson","Viktor Park","@super"]}];
+const inGroup = (g,key) => g.members.includes("@"+key);
+function seesItem(it){ const v=it.vis||"all", [k,x]=v.split(":");
+ if(k==="all"||RANK[me]>=2) return true;
+ if(k==="role") return RANK[me]>=RANK[x];
+ if(k==="dept") return ACCOUNTS[me].pdept===x;
+ if(k==="group"){ const g=GROUPS.find(g=>g.id===x); return !!g&&inGroup(g,me); } return true; }
+function visLabel(v){ const [k,x]=(v||"all").split(":"); return k==="all"?"Everyone":k==="role"?{editor:"Editors and up",admin:"Admins and up",super:"Super Users only"}[x]:k==="dept"?x+" only":"Group: "+((GROUPS.find(g=>g.id===x)||{}).name||"deleted group"); }
 function renderRail(){
  const cur = (document.querySelector("main .view:not(.hidden)")||{id:"v-home"}).id.slice(2);
  let under=false, out="";
  railItems.forEach((it,i)=>{
   if(it.t==="header"){ under=true; if(it.on) out+=`<div class="railshead">${esc(it.label)}</div>`; return; }
-  if(!it.on || !pageOf(it.nav) || !canSee(pageOf(it.nav))) return;
+  if(!it.on || !pageOf(it.nav) || !canSee(pageOf(it.nav)) || !seesItem(it)) return;
   out += `<button class="navb ${under?'railsub':''} ${it.nav===cur?'on':''}" data-nav="${it.nav}" onclick="go('${it.nav}')">${esc(it.label)}</button>`;
  });
  $("railNav").innerHTML = out;
@@ -977,11 +1050,14 @@ function renderMenuBuilder(){
  const opts = it => PAGES.map(p=>`<option value="${p.id}" ${it.nav===p.id?'selected':''}>→ ${esc(p.name)}</option>`).join("");
  $("menuRows").innerHTML = railItems.map((it,i)=> it.t==="header"
   ? `<div class="mbrow ${it.on?'':'off'}"><span class="pill lime">HEADER</span><input class="inp lb" value="${esc(it.label)}" aria-label="Header label" onchange="railItems[${i}].label=this.value;renderRail()"><button class="tgl ${it.on?'on':''}" title="Show or hide" onclick="mbTgl(${i})"></button><button class="mv" onclick="mbMove(${i},-1)">↑</button><button class="mv" onclick="mbMove(${i},1)">↓</button><button class="del" onclick="mbDel(${i})">✕</button></div>`
-  : `<div class="mbrow ${it.on?'':'off'}"><input class="inp lb" value="${esc(it.label)}" aria-label="Menu label" onchange="railItems[${i}].label=this.value;renderRail()"><select class="inp" title="Goes to" onchange="railItems[${i}].nav=this.value;renderRail()">${opts(it)}</select><button class="tgl ${it.on?'on':''}" title="Show or hide on the menu" onclick="mbTgl(${i})"></button><button class="mv" onclick="mbMove(${i},-1)">↑</button><button class="mv" onclick="mbMove(${i},1)">↓</button><button class="del" onclick="mbDel(${i})">✕</button></div>`).join("");
+  : `<div class="mbrow ${it.on?'':'off'}"><input class="inp lb" value="${esc(it.label)}" aria-label="Menu label" onchange="railItems[${i}].label=this.value;renderRail()"><select class="inp" title="Goes to" onchange="railItems[${i}].nav=this.value;renderRail();logAudit('Menu item “'+railItems[${i}].label+'” now goes to '+pageOf(this.value).name)">${opts(it)}</select><button class="tgl ${it.on?'on':''}" title="Show or hide on the menu" onclick="mbTgl(${i})"></button><button class="mv" onclick="mbMove(${i},-1)">↑</button><button class="mv" onclick="mbMove(${i},1)">↓</button><button class="del" onclick="mbDel(${i})">✕</button><select class="inp vis" title="Who sees it" onchange="mbVis(${i},this.value)">${visOpts(it.vis)}</select></div>`).join("");
 }
-function mbTgl(i){ railItems[i].on = railItems[i].on?0:1; renderRail(); renderMenuBuilder(); renderPages(); }
+function visOpts(cur){ cur=cur||"all"; const o=(v,l)=>`<option value="${v}" ${cur===v?'selected':''}>Visible to: ${l}</option>`;
+ return o("all","Everyone")+`<optgroup label="By role">${o("role:editor","Editors and up")}${o("role:admin","Admins and up")}${o("role:super","Super Users only")}</optgroup><optgroup label="By department">${ODEPTS.map(d=>o("dept:"+d,d+" only")).join("")}</optgroup><optgroup label="Custom groups">${GROUPS.map(g=>o("group:"+g.id,g.name)).join("")}</optgroup>`; }
+function mbVis(i,v){ railItems[i].vis=v; logAudit("Menu item “"+railItems[i].label+"” visible to: "+visLabel(v)); renderRail(); toast("“"+railItems[i].label+"” is now visible to "+visLabel(v).toLowerCase().replace(/^group: /,"the group ")+". Admins always see every item so they can manage it."); }
+function mbTgl(i){ railItems[i].on = railItems[i].on?0:1; logAudit((railItems[i].on?"Showed":"Hid")+" menu item “"+railItems[i].label+"”"); renderRail(); renderMenuBuilder(); renderPages(); }
 function mbMove(i,d){ const j=i+d; if(j<0||j>=railItems.length) return; [railItems[i],railItems[j]]=[railItems[j],railItems[i]]; renderRail(); renderMenuBuilder(); }
-function mbDel(i){ railItems.splice(i,1); renderRail(); renderMenuBuilder(); renderPages(); toast("Removed from the menu. The page itself still exists in Site Builder."); }
+function mbDel(i){ logAudit("Removed menu item “"+railItems[i].label+"”"); railItems.splice(i,1); renderRail(); renderMenuBuilder(); renderPages(); toast("Removed from the menu. The page itself still exists in Site Builder."); }
 function mbAdd(type){ railItems.push(type==="header"?{t:"header",label:"New header",on:1}:{t:"item",label:"New item",nav:"home",on:1}); renderRail(); renderMenuBuilder(); toast(type==="header"?"Sub-header added. Items under it are indented on the menu.":"Item added. Rename it and pick the page it goes to."); }
 
 /* ============ NAV ============ */
@@ -995,6 +1071,8 @@ function go(v){
  if(v==="settings") renderAccess();
  if(v==="layouts") renderLayouts();
  if(v==="loginedit") renderLoginEdit();
+ if(v==="library") renderLibrary();
+ if(v==="changes") renderTracker();
  if(v==="vision") playVision();
  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
  sec.classList.remove("wipeIn"); void sec.offsetWidth; if(!reduced) sec.classList.add("wipeIn");
@@ -1004,28 +1082,36 @@ function go(v){
 }
 
 /* ============ HOME ============ */
-let carCat="All", carIx=0;
-function carPosts(){ return POSTS.filter(p=>carCat==="All"||p.cat===carCat); }
+let carIx=0;
+const CAR_CATS = CATS.filter(c=>c!=="All");
+function carPosts(){ return CAR_CATS.flatMap(c=>POSTS.filter(p=>p.cat===c)); }
 function renderCarousel(){
- $("carTabs").innerHTML = CATS.map(c=>`<button class="pillbtn ${c===carCat?'on':''}" style="margin:0 4px 4px 0;padding:4px 10px;font-size:12px" onclick="carFilter('${c}')">${c}</button>`).join("");
+ $("carTabs").innerHTML = CAR_CATS.map(c=>`<button class="pillbtn" data-cat="${c}" style="margin:0 4px 4px 0;padding:4px 10px;font-size:12px" onclick="carFilter('${c}')">${c}</button>`).join("");
  const list=carPosts();
  $("carTrack").innerHTML = list.map(p=>`<article class="slide" onclick="openPost('${p.id}')"><div class="ph" style="background-image:url(${p.img})"></div><div class="tx"><span class="chip lime" style="align-self:flex-start;color:var(--char)">${p.cat}</span><h3>${esc(p.title)}</h3><p>${esc(p.dek)}</p><span class="meta">${p.when} · ${p.by}</span><span class="more">Read the update →</span></div></article>`).join("");
- $("carDots").innerHTML = list.map((p,i)=>`<button aria-label="Show update ${i+1}" onclick="carGo(${i})"></button>`).join("");
+ $("carDots").innerHTML = CAR_CATS.map(c=>`<span class="dgrp" title="${c}">${list.map((p,i)=>p.cat===c?`<button aria-label="Show update ${i+1}: ${esc(p.title)}" onclick="carGo(${i})"></button>`:"").join("")}</span>`).join("");
  carIx=0; $("carTrack").scrollLeft=0; markDot();
 }
-function carFilter(c){ carCat=c; renderCarousel(); }
+function carFilter(c){ carGo(carPosts().findIndex(p=>p.cat===c)); }
 function scrollToCar(){ $("carTrack").scrollIntoView({behavior:"smooth",block:"center"}); }
 function carGo(i){ const t=$("carTrack"), n=t.children.length; if(!n) return; carIx=(i+n)%n; t.style.scrollBehavior=matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"; t.scrollLeft=carIx*t.clientWidth; markDot(); }
 function carStep(d){ carGo(carIx+d); }
-function markDot(){ [...$("carDots").children].forEach((b,i)=>b.classList.toggle("on",i===carIx)); $("carCount").textContent=(carIx+1)+" / "+$("carDots").children.length; }
+function markDot(){ const dots=[...$("carDots").querySelectorAll("button")], cat=(carPosts()[carIx]||{}).cat;
+ dots.forEach((b,i)=>b.classList.toggle("on",i===carIx)); $("carCount").textContent=cat+" · "+(carIx+1)+" / "+dots.length;
+ $("carTabs").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.cat===cat)); }
 function renderRates(){ $("rateRows").innerHTML=RATES.rows.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join(""); $("rateSrc").innerHTML=`Prime ${RATES.prime} · rates as of ${RATES.asOf} · source: Ratehub.ca`; }
 $("carTrack").addEventListener("scroll",()=>{ const t=$("carTrack"); const i=Math.round(t.scrollLeft/Math.max(1,t.clientWidth)); if(i!==carIx){ carIx=i; markDot(); } },{passive:true});
+const ACTIVITY = [["Priya Mann","joined Customer Care","Monday · People","viewProfile(byName('Priya Mann'))"],
+ ["Elena Baker","published “Northgate show home opens to the public”","Yesterday · News","openPost('northgate-showhome')"],
+ ["Henry Kimura","posted “Harbourgate Tower tops out three weeks early”","Today · Projects","openPost('harbourgate-tops-out')"],
+ ["Dev Hill","scheduled the Holiday theme","Yesterday · Settings","goTile('settings','Theme')"],
+ ["Julia Kim","updated the Benefits Guide in the HR folder","Nov 5 · Ask HR re-indexed","goTile('admin','HR documents')"]];
+const NEWEST = [["Priya Mann","Nov 3"],["Sam Hall","Nov 3"],["Amara Rossi","Oct 27"],["Robin Osei","Oct 20"]];
 function renderHomeLists(){
- $("actList").innerHTML = [["Mei Chen","joined Customer Care","Monday · People"],["Sofia Lindqvist","published “Northgate launch teaser”","Yesterday · News"],["James Okafor","scheduled the Holiday theme","Yesterday · Settings"],["Julia Kim","updated the Benefits Guide in the HR folder","Nov 5 · Ask HR re-indexed"]]
-  .map(([n,w,m])=>`<div class="act">${av(n)}<div><b>${n}</b> ${w}<br><small>${m}</small></div></div>`).join("");
- $("newList").innerHTML = [["Mei Chen","Homeowner Care Specialist · started Nov 3"],["Ryan Scott","Field Engineer · started Nov 3"],["Amara Rossi","Payroll Specialist · started Oct 27"],["Robin Osei","Tenant Services Coordinator · started Oct 20"]]
-  .map(([n,m])=>`<div class="act">${av(n)}<div><b>${n}</b><br><small>${m}</small></div></div>`).join("");
+ $("actList").innerHTML = ACTIVITY.filter(a=>!/^goTile\('admin'/.test(a[3])||RANK[me]>=2).map(([n,w,m,f])=>`<button class="act" onclick="${f}">${av(n)}<div><b>${n}</b> ${esc(w)}<br><small>${m}</small></div><span class="go">→</span></button>`).join("");
+ $("newList").innerHTML = NEWEST.map(([n,d])=>{ const p=byName(n); return `<button class="act" onclick="viewProfile(PEOPLE[${pIx(p)}])">${av(n)}<div><b>${n}</b><br><small>${p.title} · started ${d}</small></div><span class="go">→</span></button>`; }).join("");
 }
+function goTile(v,name){ go(v); setTimeout(()=>{ const t=document.querySelector(`#v-${v} [data-name="${name}"]`); if(!t) return; t.scrollIntoView({behavior:"smooth",block:"center"}); t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); },350); }
 function animHome(){
  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
  document.querySelectorAll("#v-home .prog i").forEach(el=>{ el.style.width="0%"; setTimeout(()=>{ el.style.width=el.dataset.w+"%"; }, reduced?0:300); });
@@ -1080,15 +1166,15 @@ function renderOrg(){
       ${mem.length?`<button class="ostack" aria-expanded="${open}" onclick="openTeam=${open?'null':`'${k}'`};renderOrg()">${mem.slice(0,6).map(m=>av(m.name)).join("")}<em>${open?"Hide team":mem.length+" on the team"}</em></button>`:""}
       ${open?`<div class="omembers">${mem.map(m=>`<button onclick="viewProfile(PEOPLE[${pIx(m)}])">${av(m.name)}<span><b>${m.name}</b> · ${m.title}</span></button>`).join("")}</div>`:""}</div>`; }).join("")}</div>`; }).join("")}</div>`).join("")}</div>`;
 }
-function peopleMode(m){ $("orgChart").classList.toggle("hidden",m!=="org"); $("pplAll").classList.toggle("hidden",m==="org"); $("pmOrg").classList.toggle("on",m==="org"); $("pmAll").classList.toggle("on",m!=="org"); if(m==="org") $("pplFind").value=""; else renderPeople(); }
+function peopleMode(m){ $("meetBox").classList.add("hidden"); $("orgChart").classList.toggle("hidden",m!=="org"); $("pplAll").classList.toggle("hidden",m==="org"); $("pmOrg").classList.toggle("on",m==="org"); $("pmAll").classList.toggle("on",m!=="org"); if(m==="org") $("pplFind").value=""; else renderPeople(); }
 function pcard(p){ return `<div class="pcard lift" onclick="viewProfile(PEOPLE[${pIx(p)}])">${av(p.name)}<h3>${p.name}</h3><p>${p.title}</p><p>${p.department}</p></div>`; }
 let pview="grid";
 function setPView(v){ pview=v; $("pgrid").classList.toggle("list",v==="list"); $("pvList").classList.toggle("on",v==="list"); $("pvGrid").classList.toggle("on",v==="grid"); }
 function meetSomeone(){
  const pool=PEOPLE, pick=[];
  while(pick.length<2){ const p=pool[Math.floor(Math.random()*pool.length)]; if(!pick.includes(p)) pick.push(p); }
- const b=$("meetBox"); b.classList.remove("hidden");
- b.innerHTML=`<div class="mhead"><span class="ttl" style="margin:0">Meet someone new</span><span style="color:var(--mut);font-size:13px">Two colleagues picked at random. Say hi!</span><button class="btn alt sm" style="margin-left:auto" onclick="meetSomeone()">Shuffle again</button><button class="btn alt sm" onclick="$('meetBox').classList.add('hidden')">Close</button></div>
+ const b=$("meetBox"); b.classList.remove("hidden"); ["orgChart","pplAll"].forEach(i=>$(i).classList.add("hidden")); $("pmOrg").classList.remove("on"); $("pmAll").classList.remove("on"); $("pplFind").value="";
+ b.innerHTML=`<div class="mhead"><span class="ttl" style="margin:0">Meet someone new</span><span style="color:var(--mut);font-size:13px">Two colleagues picked at random. Say hi!</span><button class="btn alt sm" style="margin-left:auto" onclick="meetSomeone()">Shuffle again</button><button class="btn alt sm" onclick="peopleMode('all')">Close</button></div>
   <div class="meetGrid">${pick.map((p,k)=>`<div class="meetCard" style="animation-delay:${k*250}ms"><div>${playout(profileTemplate)[3](pdata(p))}</div><button class="btn teamsBtn" onclick="toast('Demo: in the live site this opens a Teams chat with ${esc(p.name)}.')">Message ${esc(p.name.split(" ")[0])} on Teams</button></div>`).join("")}</div>`;
  b.querySelectorAll(".meetCard").forEach((c,k)=>c.querySelectorAll(".c4rail>*,.c4story>*,.meetCard>div>*:not(.c4)").forEach((el,i)=>el.style.animationDelay=(k*250+120+i*90)+"ms"));
  b.scrollIntoView({behavior:"smooth",block:"start"});
@@ -1105,88 +1191,201 @@ function pdata(p){ const i=Math.max(0,PEOPLE.findIndex(x=>x.email===p.email)), f
 const box=(k,v)=>`<div class="pl-box"><b class="k">${k}</b>${v}</div>`;
 const chips=d=>`<span class="skillchip">${d.s1}</span><span class="skillchip">${d.s2}</span><span class="skillchip">Ask me about ${d.s3}</span>`;
 const PLAYOUTS = [
- ["C4","C4 — Facts Rail + Story","Facts down the left, their story on the right. The company default.",d=>`<div class="c4"><div class="c4rail">${av(d.p.name)}<h2>${d.p.name}</h2><p class="rl">${d.p.title}<br>${d.p.department}</p><div class="frow"><b>EMAIL</b>${d.p.email}</div><div class="frow"><b>STARTED</b>${d.start} · ${d.yrs} years at SHAPE</div><div class="frow"><b>SKILLS</b>${d.s1} · ${d.s2}</div><div class="frow"><b>ASK ME ABOUT</b>${d.s3}</div></div><div class="c4story"><span class="ttl">My story</span>${d.story.map(s=>`<p>${s}</p>`).join("")}<span class="ttl" style="margin-top:18px">Good to know</span>${chips(d)}</div></div>`],
- ["C1","C1 — The Original","One fixed column like early social profiles: photo, facts, then story.",d=>`<div style="display:grid;grid-template-columns:200px 1fr;gap:20px"><div>${av(d.p.name).replace('class="av "','class="av" style="width:200px;height:200px"')}</div><div class="pl-grid">${box("NAME",`<b style="font-size:22px">${d.p.name}</b>`)}${box("ROLE",d.p.title+" · "+d.p.department)}${box("EMAIL",d.p.email)}${box("STARTED",d.start+" · "+d.yrs+" years")}</div></div><div class="pl-grid" style="margin-top:14px">${box("ABOUT ME",d.story.join(" "))}${box("SKILLS",chips(d))}</div>`],
- ["C2","C2 — Cover + Avatar","A charcoal cover band with a big portrait, details in tiles below.",d=>`<div class="pl-hero">${av(d.p.name)}<div><span class="eyebrow" style="color:var(--lime)">${d.p.department}</span><h2>${d.p.name}</h2><span style="opacity:.75">${d.p.title}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(3,1fr);margin-top:12px">${box("EMAIL",d.p.email)}${box("STARTED",d.start)}${box("ASK ME ABOUT",d.s3)}</div><div class="pl-box" style="margin-top:12px"><b class="k">MY STORY</b>${d.story.map(s=>`<p style="margin:0 0 8px;line-height:1.6">${s}</p>`).join("")}${chips(d)}</div>`],
- ["C3","C3 — Business Card","A crisp card first, the story underneath. Quick to scan.",d=>`<div style="background:#fff;border:1px solid var(--line);border-left:10px solid var(--lime);padding:24px;display:flex;gap:22px;align-items:center;max-width:720px">${av(d.p.name).replace('class="av "','class="av" style="width:110px;height:110px"')}<div><h2 style="margin:0;font-size:28px">${d.p.name}</h2><div style="color:var(--mut)">${d.p.title} · ${d.p.department}</div><div style="margin-top:10px;font-size:14px">${d.p.email}<br>At SHAPE since ${d.start}</div></div></div><div style="max-width:720px;margin-top:16px">${d.story.map(s=>`<p style="line-height:1.65">${s}</p>`).join("")}${chips(d)}</div>`],
- ["C11","C11 — Exposed Blueprint Grid","Facts set on a blueprint grid. A nod to how we build.",d=>`<div class="pl-blue"><div style="display:flex;gap:18px;align-items:center;margin-bottom:14px">${av(d.p.name).replace('class="av "','class="av" style="width:96px;height:96px"')}<div><span class="eyebrow" style="color:#9fb3e6">DRAWING NO. ${String(d.start).slice(2)}-${d.p.name.length} · ${d.p.department.toUpperCase()}</span><h2 style="margin:4px 0;font-size:30px;color:#fff">${d.p.name}</h2><span>${d.p.title}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(4,1fr)">${box("EMAIL",d.p.email)}${box("STARTED",d.start)}${box("SKILLS",d.s1+" · "+d.s2)}${box("ASK ME ABOUT",d.s3)}</div><div class="pl-box" style="margin-top:12px"><b class="k">SPECIFICATION</b>${d.story.join(" ")}</div></div>`],
- ["C12","C12 — Materiality Split","Half portrait panel, half warm paper with the story.",d=>`<div style="display:grid;grid-template-columns:1fr 1fr;min-height:380px"><div style="background:var(--lime);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:20px">${av(d.p.name).replace('class="av "','class="av" style="width:180px;height:180px"')}<b style="font-size:24px">${d.p.name}</b><span>${d.p.title}</span></div><div style="background:#fff;padding:26px"><span class="ttl">${d.p.department}</span>${d.story.map(s=>`<p style="line-height:1.65;font-family:var(--serif);font-size:17px">${s}</p>`).join("")}<div class="frow"><b>EMAIL</b>${d.p.email}</div><div class="frow"><b>STARTED</b>${d.start}</div>${chips(d)}</div></div>`],
- ["C16","C16 — Concierge Dossier","Like a hotel concierge card: elegant serif, everything labelled.",d=>`<div style="background:#fff;border:1px solid var(--line);padding:30px;max-width:760px;margin:auto;text-align:center">${av(d.p.name).replace('class="av "','class="av" style="width:110px;height:110px"')}<h2 style="font-family:var(--serif);font-weight:500;font-size:34px;margin:12px 0 2px">${d.p.name}</h2><div class="eyebrow">${d.p.title} · ${d.p.department}</div><div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:18px 0;padding:12px;display:flex;justify-content:space-around;font-size:14px"><span><b class="eyebrow">Since</b><br>${d.start}</span><span><b class="eyebrow">Skills</b><br>${d.s1}</span><span><b class="eyebrow">Ask me about</b><br>${d.s3}</span></div>${d.story.map(s=>`<p style="font-family:var(--serif);font-size:17px;line-height:1.65">${s}</p>`).join("")}<div style="font-size:14px">${d.p.email}</div></div>`],
- ["C17","C17 — Command Center","Numbers first: tenure, skills and contacts as a dashboard.",d=>`<div style="display:flex;gap:16px;align-items:center;margin-bottom:12px">${av(d.p.name).replace('class="av "','class="av" style="width:80px;height:80px"')}<div><h2 style="margin:0;font-size:28px">${d.p.name}</h2><span style="color:var(--mut)">${d.p.title} · ${d.p.department}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(4,1fr)">${box("YEARS AT SHAPE",`<span class="pl-stat">${d.yrs}</span>`)}${box("STARTED",`<span class="pl-stat">${d.start}</span>`)}${box("TOP SKILL",`<b>${d.s1}</b>`)}${box("ASK ME ABOUT",`<b>${d.s3}</b>`)}</div><div class="pl-grid" style="grid-template-columns:2fr 1fr;margin-top:12px">${box("BRIEFING",d.story.join(" "))}${box("CONTACT",d.p.email)}</div>`],
- ["C18","C18 — Chronicle Timeline","Their time at SHAPE as a timeline, facts beside it.",d=>`<div style="display:grid;grid-template-columns:260px 1fr;gap:24px"><div>${av(d.p.name).replace('class="av "','class="av" style="width:150px;height:150px"')}<h2 style="margin:10px 0 2px">${d.p.name}</h2><p style="color:var(--mut);margin:0 0 10px">${d.p.title}</p><div class="frow"><b>EMAIL</b>${d.p.email}</div></div><div class="pl-tl"><div><b>${d.start}</b> · Joined SHAPE in ${d.p.department}</div><div><b>${d.start+Math.ceil(d.yrs/2)}</b> · Took on ${d.s1.toLowerCase()}</div><div><b>2026</b> · ${d.p.title}</div><div>${d.story[0]}</div><div>${chips(d)}</div></div></div>`],
- ["C19","C19 — Minimalist Gallery","A big portrait and lots of white space. Quiet and modern.",d=>`<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center">${av(d.p.name).replace('class="av "','class="av" style="width:100%;height:auto;aspect-ratio:1"')}<div><span class="eyebrow">${d.p.department}</span><h2 style="font-size:46px;line-height:1;margin:10px 0;text-transform:uppercase">${d.p.name}</h2><p style="color:var(--mut)">${d.p.title} · since ${d.start}</p><p style="line-height:1.7">${d.story[0]}</p>${chips(d)}</div></div>`]
+ ["C4","Facts Rail + Story","Facts down the left, their story on the right.",d=>`<div class="c4"><div class="c4rail">${av(d.p.name)}<h2>${d.p.name}</h2><p class="rl">${d.p.title}<br>${d.p.department}</p><div class="frow"><b>EMAIL</b>${d.p.email}</div><div class="frow"><b>STARTED</b>${d.start} · ${d.yrs} years at SHAPE</div><div class="frow"><b>SKILLS</b>${d.s1} · ${d.s2}</div><div class="frow"><b>ASK ME ABOUT</b>${d.s3}</div></div><div class="c4story"><span class="ttl">My story</span>${d.story.map(s=>`<p>${s}</p>`).join("")}<span class="ttl" style="margin-top:18px">Good to know</span>${chips(d)}</div></div>`],
+ ["C1","The Original","One fixed column like early social profiles: photo, facts, then story.",d=>`<div style="display:grid;grid-template-columns:200px 1fr;gap:20px"><div>${av(d.p.name).replace('class="av "','class="av" style="width:200px;height:200px"')}</div><div class="pl-grid">${box("NAME",`<b style="font-size:22px">${d.p.name}</b>`)}${box("ROLE",d.p.title+" · "+d.p.department)}${box("EMAIL",d.p.email)}${box("STARTED",d.start+" · "+d.yrs+" years")}</div></div><div class="pl-grid" style="margin-top:14px">${box("ABOUT ME",d.story.join(" "))}${box("SKILLS",chips(d))}</div>`],
+ ["C2","Cover + Avatar","A charcoal cover band with a big portrait, details in tiles below.",d=>`<div class="pl-hero">${av(d.p.name)}<div><span class="eyebrow" style="color:var(--lime)">${d.p.department}</span><h2>${d.p.name}</h2><span style="opacity:.75">${d.p.title}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(3,1fr);margin-top:12px">${box("EMAIL",d.p.email)}${box("STARTED",d.start)}${box("ASK ME ABOUT",d.s3)}</div><div class="pl-box" style="margin-top:12px"><b class="k">MY STORY</b>${d.story.map(s=>`<p style="margin:0 0 8px;line-height:1.6">${s}</p>`).join("")}${chips(d)}</div>`],
+ ["C3","Business Card","A crisp card first, the story underneath. Quick to scan.",d=>`<div style="background:#fff;border:1px solid var(--line);border-left:10px solid var(--lime);padding:24px;display:flex;gap:22px;align-items:center;max-width:720px">${av(d.p.name).replace('class="av "','class="av" style="width:110px;height:110px"')}<div><h2 style="margin:0;font-size:28px">${d.p.name}</h2><div style="color:var(--mut)">${d.p.title} · ${d.p.department}</div><div style="margin-top:10px;font-size:14px">${d.p.email}<br>At SHAPE since ${d.start}</div></div></div><div style="max-width:720px;margin-top:16px">${d.story.map(s=>`<p style="line-height:1.65">${s}</p>`).join("")}${chips(d)}</div>`],
+ ["C11","Exposed Blueprint Grid","Facts set on a blueprint grid. A nod to how we build.",d=>`<div class="pl-blue"><div style="display:flex;gap:18px;align-items:center;margin-bottom:14px">${av(d.p.name).replace('class="av "','class="av" style="width:96px;height:96px"')}<div><span class="eyebrow" style="color:#9fb3e6">DRAWING NO. ${String(d.start).slice(2)}-${d.p.name.length} · ${d.p.department.toUpperCase()}</span><h2 style="margin:4px 0;font-size:30px;color:#fff">${d.p.name}</h2><span>${d.p.title}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(4,1fr)">${box("EMAIL",d.p.email)}${box("STARTED",d.start)}${box("SKILLS",d.s1+" · "+d.s2)}${box("ASK ME ABOUT",d.s3)}</div><div class="pl-box" style="margin-top:12px"><b class="k">SPECIFICATION</b>${d.story.join(" ")}</div></div>`],
+ ["C12","Materiality Split","Half portrait panel, half warm paper with the story.",d=>`<div style="display:grid;grid-template-columns:1fr 1fr;min-height:380px"><div style="background:var(--lime);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:20px">${av(d.p.name).replace('class="av "','class="av" style="width:180px;height:180px"')}<b style="font-size:24px">${d.p.name}</b><span>${d.p.title}</span></div><div style="background:#fff;padding:26px"><span class="ttl">${d.p.department}</span>${d.story.map(s=>`<p style="line-height:1.65;font-family:var(--serif);font-size:17px">${s}</p>`).join("")}<div class="frow"><b>EMAIL</b>${d.p.email}</div><div class="frow"><b>STARTED</b>${d.start}</div>${chips(d)}</div></div>`],
+ ["C16","Concierge Dossier","Like a hotel concierge card: elegant serif, everything labelled.",d=>`<div style="background:#fff;border:1px solid var(--line);padding:30px;max-width:760px;margin:auto;text-align:center">${av(d.p.name).replace('class="av "','class="av" style="width:110px;height:110px"')}<h2 style="font-family:var(--serif);font-weight:500;font-size:34px;margin:12px 0 2px">${d.p.name}</h2><div class="eyebrow">${d.p.title} · ${d.p.department}</div><div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:18px 0;padding:12px;display:flex;justify-content:space-around;font-size:14px"><span><b class="eyebrow">Since</b><br>${d.start}</span><span><b class="eyebrow">Skills</b><br>${d.s1}</span><span><b class="eyebrow">Ask me about</b><br>${d.s3}</span></div>${d.story.map(s=>`<p style="font-family:var(--serif);font-size:17px;line-height:1.65">${s}</p>`).join("")}<div style="font-size:14px">${d.p.email}</div></div>`],
+ ["C17","Command Center","Numbers first: tenure, skills and contacts as a dashboard.",d=>`<div style="display:flex;gap:16px;align-items:center;margin-bottom:12px">${av(d.p.name).replace('class="av "','class="av" style="width:80px;height:80px"')}<div><h2 style="margin:0;font-size:28px">${d.p.name}</h2><span style="color:var(--mut)">${d.p.title} · ${d.p.department}</span></div></div><div class="pl-grid" style="grid-template-columns:repeat(4,1fr)">${box("YEARS AT SHAPE",`<span class="pl-stat">${d.yrs}</span>`)}${box("STARTED",`<span class="pl-stat">${d.start}</span>`)}${box("TOP SKILL",`<b>${d.s1}</b>`)}${box("ASK ME ABOUT",`<b>${d.s3}</b>`)}</div><div class="pl-grid" style="grid-template-columns:2fr 1fr;margin-top:12px">${box("BRIEFING",d.story.join(" "))}${box("CONTACT",d.p.email)}</div>`],
+ ["C18","Chronicle Timeline","Their time at SHAPE as a timeline, facts beside it.",d=>`<div style="display:grid;grid-template-columns:260px 1fr;gap:24px"><div>${av(d.p.name).replace('class="av "','class="av" style="width:150px;height:150px"')}<h2 style="margin:10px 0 2px">${d.p.name}</h2><p style="color:var(--mut);margin:0 0 10px">${d.p.title}</p><div class="frow"><b>EMAIL</b>${d.p.email}</div></div><div class="pl-tl"><div><b>${d.start}</b> · Joined SHAPE in ${d.p.department}</div><div><b>${d.start+Math.ceil(d.yrs/2)}</b> · Took on ${d.s1.toLowerCase()}</div><div><b>2026</b> · ${d.p.title}</div><div>${d.story[0]}</div><div>${chips(d)}</div></div></div>`],
+ ["C19","Minimalist Gallery","A big portrait and lots of white space. Quiet and modern.",d=>`<div style="display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center">${av(d.p.name).replace('class="av "','class="av" style="width:100%;height:auto;aspect-ratio:1"')}<div><span class="eyebrow">${d.p.department}</span><h2 style="font-size:46px;line-height:1;margin:10px 0;text-transform:uppercase">${d.p.name}</h2><p style="color:var(--mut)">${d.p.title} · since ${d.start}</p><p style="line-height:1.7">${d.story[0]}</p>${chips(d)}</div></div>`]
 ];
-let profileTemplate="C4";
+let profileTemplate="C16", showOrgMini=true;
+function orgRel(p){
+ const ceo=byName("Priya Flores"), execs=BRANCHES.map(b=>byName(b[0]));
+ if(p===ceo) return {up:null,peers:[],down:execs};
+ if(execs.includes(p)){ const br=BRANCHES.find(b=>b[0]===p.name); return {up:ceo,peers:execs.filter(x=>x!==p),down:br[3].map(d=>teamsOf(d)[0][0])}; }
+ if(p.department==="Executive") return {up:ceo,peers:[],down:[]};
+ const d=p.department, teams=teamsOf(d), heads=teams.map(t=>t[0]), br=BRANCHES.find(b=>b[3].includes(d)), exec=byName(br[0]);
+ const ti=heads.indexOf(p);
+ if(ti===0) return {up:exec,peers:br[3].filter(x=>x!==d).map(x=>teamsOf(x)[0][0]),down:[...heads.slice(1),...teams[0][1]]};
+ if(ti>0) return {up:heads[0],peers:heads.slice(1).filter(x=>x!==p),down:teams[ti][1]};
+ const t=teams.find(t=>t[1].includes(p)); return {up:t[0],peers:t[1].filter(x=>x!==p),down:[]};
+}
+function orgMini(p){
+ const r=orgRel(p), all=[...r.peers], i=PEOPLE.indexOf(p);
+ const sorted=[...r.peers,p].sort((a,b)=>PEOPLE.indexOf(a)-PEOPLE.indexOf(b)), k=sorted.indexOf(p), L=sorted[k-1], R=sorted[k+1];
+ const nd=(x,cls)=>x?`<button class="mnode ${cls||''}" onclick="viewProfile(PEOPLE[${pIx(x)}])">${av(x.name)}<span><b>${x.name}</b><small>${x.title}</small></span></button>`:`<span class="mnode empty"></span>`;
+ const more=r.peers.length-(L?1:0)-(R?1:0), down=r.down.slice(0,5);
+ return `<div class="orgMini"><div class="omHead"><span class="ttl" style="margin:0">Where ${esc(p.name.split(" ")[0])} sits</span><button class="btn alt sm" onclick="go('people');peopleMode('org')">Open the full org chart</button></div>
+  ${r.up?`<div class="omRow">${nd(r.up,"up")}</div><i class="omLine"></i>`:""}
+  <div class="omRow mid">${nd(L)}${nd(p,"me")}${nd(R)}</div>${more>0?`<small class="omMore">+${more} more ${r.down.length||!r.up?"peers":"on the team"}</small>`:""}
+  ${down.length?`<i class="omLine"></i><div class="omRow down">${down.map(x=>nd(x)).join("")}${r.down.length>5?`<span class="mnode more">+${r.down.length-5} more</span>`:""}</div>`:""}</div>`;
+}
+function profileHTML(p,id){ return playout(id)[3](pdata(p)) + (showOrgMini?orgMini(p):""); }
+function toggleOrgMini(){ if(RANK[me]<2) return toast("Only Admins and Super Users can change profile settings."); showOrgMini=!showOrgMini; $("orgTgl").classList.toggle("on",showOrgMini); logAudit((showOrgMini?"Turned on":"Turned off")+" ‘Where they sit’ on profiles"); renderLayouts(); toast(showOrgMini?"Every profile now shows where they sit.":"The mini org chart is off on every profile."); }
 const playout = id => PLAYOUTS.find(l=>l[0]===id)||PLAYOUTS[0];
 function viewProfile(p){
  $("profAdmin").innerHTML = RANK[me]>=2 && PEOPLE.includes(p) ? `<button class="btn sm" onclick="openAccess('${esc(p.name)}')">Manage ${esc(p.name.split(" ")[0])}'s access</button>` : "";
- $("profCard").innerHTML = playout(profileTemplate)[3](pdata(p));
+ $("profCard").innerHTML = profileHTML(p,profileTemplate);
  go("profile");
 }
 function renderLayouts(){
  const sample=byName("Harper Novak"), admin=RANK[me]>=2;
  $("plWho").textContent = admin ? "" : "Only Admins and Super Users can change it.";
- $("plGrid").innerHTML = PLAYOUTS.map(([id,name,blurb,fn])=>`<div class="plcard ${id===profileTemplate?'cur':''}"><div class="plprev"><div>${fn(pdata(sample))}</div></div><div class="tb"><h3>${name}</h3><p>${blurb}</p><div style="margin-top:auto;display:flex;gap:8px;flex-wrap:wrap">${id===profileTemplate?'<span class="chip lime">In use for everyone</span>':admin?`<button class="btn sm" onclick="useLayout('${id}')">Use for every profile</button>`:''}<button class="btn alt sm na" onclick="previewLayout('${id}')">Open full sample</button></div></div></div>`).join("");
+ $("plGrid").innerHTML = PLAYOUTS.map(([id,name,blurb,fn])=>`<div class="plcard ${id===profileTemplate?'cur':''}"><div class="plprev"><div>${profileHTML(sample,id)}</div></div><div class="tb"><h3>${name}</h3><p>${blurb}</p><div style="margin-top:auto;display:flex;gap:8px;flex-wrap:wrap">${id===profileTemplate?'<span class="chip lime">In use for everyone</span>':admin?`<button class="btn sm" onclick="useLayout('${id}')">Use for every profile</button>`:''}<button class="btn alt sm na" onclick="previewLayout('${id}')">Open full sample</button></div></div></div>`).join("");
 }
 function useLayout(id){ profileTemplate=id; logAudit("Profile layout set for everyone: "+playout(id)[1]); renderLayouts(); renderPlTile(); toast("Every profile now uses "+playout(id)[1]+"."); }
 function previewLayout(id){ const keep=profileTemplate; profileTemplate=id; viewProfile(byName("Harper Novak")); profileTemplate=keep; $("profAdmin").innerHTML=`<span class="chip lime" style="align-self:center">Sample: ${playout(id)[1]}</span><button class="btn alt sm" onclick="go('layouts')">Back to layouts</button>`; }
 function renderPlTile(){ const l=playout(profileTemplate); $("plName").textContent=l[1]; $("plThumb").innerHTML=`<div style="transform:scale(.2)">${l[3](pdata(byName("Harper Novak")))}</div>`; $("plTile").classList.toggle("hidden",RANK[me]<2); }
 
+/* ============ LIBRARY (all files) ============ */
+const MEDIA = [
+ ...[["tower","Glass towers, looking up"],["crane","Cranes at dusk"],["site","Site crew on the pour"],["city","Vancouver skyline"],["facade","Facade detail"],["hero","Harbourgate Tower"]].map(([k,n],i)=>({id:k,kind:"image",name:n,src:IMG[k],size:["115 KB","68 KB","42 KB","125 KB","47 KB","96 KB"][i],by:"Elena Baker",when:"Oct "+(12+i)})),
+ {id:"reel",kind:"video",name:"SHAPE site reel",src:"media/site-reel.mp4",size:"0.9 MB",by:"Elena Baker",when:"Nov 10"},
+ ...HRDOCS.map((n,i)=>({id:"hr"+i,kind:"doc",ext:"PDF",name:n,size:["2.4 MB","1.1 MB","380 KB","640 KB"][i],by:"Julia Kim",when:"Nov "+(1+i)})),
+ {id:"brand",kind:"doc",ext:"PDF",name:"Brand guidelines 2026",size:"8.2 MB",by:"Elena Baker",when:"Sep 30"},
+ {id:"safety",kind:"doc",ext:"PDF",name:"Site safety manual",size:"5.6 MB",by:"Henry Kimura",when:"Aug 18"},
+ {id:"orient",kind:"doc",ext:"PPTX",name:"Harbourgate orientation deck",size:"12.1 MB",by:"Mei Chen",when:"Nov 12"},
+ {id:"orgx",kind:"doc",ext:"XLSX",name:"Org chart Q4",size:"210 KB",by:"Julia Kim",when:"Oct 2"}];
+let libKind="all", libQ="";
+const kb = n => n>1e6 ? (n/1e6).toFixed(1)+" MB" : Math.max(1,Math.round(n/1e3))+" KB";
+function addFiles(files, then){
+ [...files].forEach(f=>{ const kind=f.type.startsWith("image/")?"image":f.type.startsWith("video/")?"video":"doc", it={id:"u"+Date.now()+Math.random().toString(16).slice(2,6),kind,name:f.name.replace(/\.[^.]+$/,""),ext:(f.name.split(".").pop()||"").toUpperCase(),size:kb(f.size),by:ACCOUNTS[me].name,when:"Just now"};
+  MEDIA.unshift(it); logAudit("Uploaded to the Library: "+f.name);
+  if(kind==="image"){ const r=new FileReader(); r.onload=()=>{ it.src=r.result; then&&then(); }; r.readAsDataURL(f); } else { it.src=URL.createObjectURL(f); } });
+ toast(files.length+" file"+(files.length===1?"":"s")+" added to the Library."); then&&then();
+}
+function renderLibrary(){
+ const can=RANK[me]>=1, list=MEDIA.filter(m=>(libKind==="all"||m.kind===libKind)&&m.name.toLowerCase().includes(libQ.toLowerCase()));
+ $("libTabs").innerHTML=[["all","All"],["image","Images"],["video","Videos"],["doc","Documents"]].map(([k,l])=>`<button class="tab ${libKind===k?'on':''}" onclick="libKind='${k}';renderLibrary()">${l} <span style="opacity:.6">${k==="all"?MEDIA.length:MEDIA.filter(m=>m.kind===k).length}</span></button>`).join("");
+ $("libUpWrap").classList.toggle("hidden",!can);
+ $("libGrid").innerHTML = list.length ? list.map(m=>`<div class="libItem"><div class="lth">${m.kind==="image"?`<img src="${esc(m.src||"")}" alt="">`:m.kind==="video"?`<video src="${esc(m.src)}#t=2" preload="metadata" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()"></video><span class="vbadge">▶ Video</span>`:`<span class="dbadge">${m.ext}</span>`}</div>
+  <div class="ltx"><b title="${esc(m.name)}">${esc(m.name)}</b><small>${m.kind==="doc"?m.ext+" · ":""}${m.size} · ${esc(m.by)} · ${m.when}</small>
+  <div class="lact"><button class="btn alt sm" onclick="toast('Signed link copied. It expires in 15 minutes and only works for people who can open this file.')">Copy link</button>${RANK[me]>=2?`<button class="btn alt sm" onclick="libDel('${m.id}')">Delete</button>`:""}</div></div></div>`).join("") : `<p style="color:var(--mut)">Nothing matches.</p>`;
+}
+function libDel(id){ const i=MEDIA.findIndex(m=>m.id===id); if(i<0) return; logAudit("Deleted from the Library: "+MEDIA[i].name); MEDIA.splice(i,1); renderLibrary(); toast("Deleted. The change tracker has a record of it."); }
+
+/* ============ CHANGE TRACKER ============ */
+let ctKind="All", ctQ="";
+const CT_KINDS=["All","Sign-ins","Pages & content","People & access","Settings","Files"];
+function ctKindOf(a){ return /^Signed (in|out)|sign-in/i.test(a)?"Sign-ins":/Library|Uploaded|document/i.test(a)?"Files":/Role|access|Deactivated|Re-activated|permission|group/i.test(a)?"People & access":/page|tile|post|banner/i.test(a)?"Pages & content":"Settings"; }
+function renderTracker(){
+ $("ctTabs").innerHTML=CT_KINDS.map(k=>`<button class="tab ${ctKind===k?'on':''}" onclick="ctKind='${k}';renderTracker()">${k}</button>`).join("");
+ const rows=audit.filter(a=>(ctKind==="All"||ctKindOf(a[2])===ctKind)&&(a.join(" ").toLowerCase().includes(ctQ.toLowerCase())));
+ $("ctCount").textContent=rows.length+" of "+audit.length+" changes";
+ $("ctRows").innerHTML=rows.map(a=>`<tr><td style="white-space:nowrap">${a[0]}</td><td>${esc(a[1])}</td><td><span class="pill">${ctKindOf(a[2])}</span></td><td>${esc(a[2])}</td><td class="hash">${a[3]}</td></tr>`).join("");
+}
+function ctExport(){ const csv=[["When","Who","Type","Change","Hash"],...audit.map(a=>[a[0],a[1],ctKindOf(a[2]),a[2],a[3]])].map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(",")).join("\n");
+ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"})); a.download="shape-change-log.csv"; a.click(); logAudit("Exported the change log"); }
+
 /* ============ LOGIN PAGE DESIGNER ============ */
-const LOGIN_DEFAULT={pos:"mc",size:100,bg:"paper",img:"hero",collage:["tower","crane","city"],video:"",dim:40,head:"",body:""};
-let LOGIN={...LOGIN_DEFAULT}, leDraft=null;
-try{ Object.assign(LOGIN, JSON.parse(localStorage.getItem("shapeLogin")||"{}")); }catch(e){}
-const SPOTS={t:1,m:2,b:3,l:1,c:2,r:3}, MIRROR={l:"r",r:"l",c:"c",t:"b",b:"t",m:"t"};
+const LOGIN_DEFAULT={bg:"paper",bgSrc:IMG.hero,dim:40,layers:[{id:"card",type:"card",cx:50,y:5,size:100,z:10}]};
+const clone = o => JSON.parse(JSON.stringify(o));
+let LOGIN=clone(LOGIN_DEFAULT), leDraft=null, leSel="card", leN=1;
+try{ const s=JSON.parse(localStorage.getItem("shapeLogin2")||"null"); if(s&&s.layers) LOGIN=s; }catch(e){}
+const LTYPE={card:"Sign-in box",text:"Text box",img:"Image",video:"Video"};
+const lname = L => L.type==="text" ? "“"+(L.text||"Text").slice(0,22)+"”" : LTYPE[L.type];
 function applyLogin(root,c){
- const src=k=>IMG[k]||k, media=c.bg==="image"||c.bg==="collage"||(c.bg==="video"&&c.video);
- const bg = c.bg==="image" ? `<img src="${esc(src(c.img))}" alt="">`
-  : c.bg==="collage" ? `<div class="col">${c.collage.slice(0,5).map(k=>`<img src="${esc(src(k))}" alt="">`).join("")}</div>`
-  : c.bg==="video" && c.video ? `<video src="${esc(c.video)}" autoplay muted loop playsinline></video>` : "";
- const bgEl=root.querySelector(".lvBg");
- bgEl.innerHTML = bg + (media?`<div class="dim" style="opacity:${c.dim/100}"></div>`:"");
+ const dark=["char","image","video"].includes(c.bg), bgEl=root.querySelector(".lvBg");
+ const key=c.bg+"|"+c.bgSrc;
+ if(bgEl.dataset.key!==key){ bgEl.dataset.key=key; bgEl.innerHTML = c.bg==="image" ? `<img src="${esc(c.bgSrc)}" alt="">` : c.bg==="video" ? `<video src="${esc(c.bgSrc)}" autoplay muted loop playsinline></video>` : ""; bgEl.insertAdjacentHTML("beforeend",'<div class="dim"></div>'); }
+ bgEl.querySelector(".dim").style.opacity = (c.bg==="image"||c.bg==="video") ? c.dim/100 : 0;
  bgEl.style.background = {paper:"var(--paper)",char:"var(--char)",lime:"var(--lime)"}[c.bg]||"var(--char)";
- root.classList.toggle("dark", media||c.bg==="char");
- const [r,col]=c.pos, card=root.querySelector(".lvCard"), tx=root.querySelector(".lvText");
- root.querySelector(".lvGrid").style.gridTemplateRows = r==="m" ? "1fr auto 1fr" : "auto 1fr auto";
- card.style.gridArea=SPOTS[r]+"/"+SPOTS[col]; card.style.zoom=c.size/100;
- card.style.justifySelf={l:"start",c:"center",r:"end"}[col]; card.style.alignSelf={t:"start",m:"center",b:"end"}[r];
- const tr = col==="c" ? MIRROR[r] : r, tc = col==="c" ? "c" : MIRROR[col];
- tx.style.gridArea=SPOTS[tr]+"/"+SPOTS[tc]; tx.style.textAlign={l:"left",c:"center",r:"right"}[tc]; tx.style.justifySelf={l:"start",c:"center",r:"end"}[tc];
- tx.style.alignSelf = col==="c" ? {t:"start",b:"end"}[tr] : {t:"start",m:"center",b:"end"}[tr];
- tx.innerHTML = (c.head?`<h2>${esc(c.head)}</h2>`:"")+(c.body?`<p>${esc(c.body)}</p>`:"");
+ root.classList.toggle("dark",dark);
+ const stage=root.querySelector(".lvStage"), ids=new Set(c.layers.map(L=>L.id));
+ stage.querySelectorAll(".lvL").forEach(el=>{ if(!ids.has(el.dataset.id)) el.remove(); });
+ c.layers.forEach(L=>{
+  let el = L.type==="card" ? stage.querySelector(".lvCard") : stage.querySelector(`.lvL[data-id="${L.id}"]`);
+  if(!el){ el=document.createElement("div"); el.className="lvL"; el.dataset.id=L.id; stage.appendChild(el); }
+  const k = L.type==="text" ? L.text+L.size+L.weight+L.color+L.align : L.type==="card" ? "" : L.src+(L.frame?1:0);
+  if(L.type!=="card" && el.dataset.key!==k){ el.dataset.key=k;
+   el.innerHTML = L.type==="text" ? `<div class="lvTx" style="font-size:${L.size}px;font-weight:${L.weight};text-align:${L.align};${L.color!=="auto"?"color:"+({char:"var(--char)",white:"#fff",lime:"var(--lime)"}[L.color]):""}">${esc(L.text)}</div>`
+    : L.type==="img" ? `<img src="${esc(L.src)}" alt="" class="${L.frame?'framed':''}" draggable="false">` : `<video src="${esc(L.src)}" autoplay muted loop playsinline class="${L.frame?'framed':''}"></video>`; }
+  el.dataset.id=L.id;
+  Object.assign(el.style,{left:L.cx+"%",top:L.y+"%",zIndex:L.z,order:Math.round(L.y*10)});
+  if(L.type==="card") el.style.setProperty("--z",L.size/100); else el.style.width=L.w+"%";
+ });
 }
+function leDefaultsFor(type){ const z=Math.max(...leDraft.layers.map(L=>L.z))+1, id=type+(leN++)+Date.now()%1e4;
+ const img=MEDIA.find(m=>m.kind==="image"), vid=MEDIA.find(m=>m.kind==="video");
+ return type==="head" ? {id,type:"text",text:"Raising the bar",size:64,weight:800,color:"auto",align:"left",cx:24,y:30,w:36,z}
+  : type==="text" ? {id,type:"text",text:"Welcome to the SHAPE intranet. Sign in with your work account.",size:18,weight:400,color:"auto",align:"left",cx:24,y:52,w:32,z}
+  : type==="img" ? {id,type:"img",src:img.src,w:26,cx:78,y:18,frame:true,z}
+  : {id,type:"video",src:vid?vid.src:"",w:34,cx:78,y:30,frame:true,z}; }
+function leAdd(type){
+ if(type==="collage"){ ["tower","crane","city"].forEach((k,i)=>{ const L=leDefaultsFor("img"); L.src=IMG[k]; L.cx=[74,86,72][i]; L.y=[8,30,52][i]; L.w=[24,20,22][i]; leDraft.layers.push(L); leSel=L.id; }); }
+ else { const L=leDefaultsFor(type); leDraft.layers.push(L); leSel=L.id; }
+ renderLoginEdit();
+}
+const leLayer = id => leDraft.layers.find(L=>L.id===id);
+function leZ(id,d){ const ls=[...leDraft.layers].sort((a,b)=>a.z-b.z), i=ls.findIndex(L=>L.id===id), j=i+d; if(j<0||j>=ls.length) return; [ls[i].z,ls[j].z]=[ls[j].z,ls[i].z]; renderLoginEdit(); }
+function leDel(id){ leDraft.layers=leDraft.layers.filter(L=>L.id!==id); leSel="card"; renderLoginEdit(); }
+function leProp(k,v,re){ const L=leLayer(leSel); L[k]=v; if(re) renderLoginEdit(); else lePreview(); }
 function renderLoginEdit(){
- const ok=RANK[me]>=2; if(!leDraft) leDraft=JSON.parse(JSON.stringify(LOGIN));
+ const ok=RANK[me]>=2; if(!leDraft) leDraft=clone(LOGIN);
  $("leWho").textContent = ok ? "" : "Only Admins and Super Users can change it.";
- const d=leDraft, seg=(k,opts)=>`<div class="segs">${opts.map(([v,l])=>`<button class="${d[k]===v?'on':''}" onclick="leSet('${k}','${v}')">${l}</button>`).join("")}</div>`;
- const thumbs=(multi)=>`<div class="imgPick">${Object.keys(IMG).map(k=>`<button class="${(multi?d.collage.includes(k):d.img===k)?'on':''}" style="background-image:url('${IMG[k]}')" aria-label="${k}" onclick="${multi?`leCol('${k}')`:`leSet('img','${k}')`}"></button>`).join("")}</div>`;
+ const d=leDraft, S=leLayer(leSel)||leLayer("card");  leSel=S.id;
+ const pick=(kind,cur,fn)=>`<div class="imgPick">${MEDIA.filter(m=>m.kind===kind&&m.src).map(m=>kind==="image"?`<button class="${cur===m.src?'on':''}" style="background-image:url('${m.src}')" title="${esc(m.name)}" onclick="(${fn})(MEDIA.find(x=>x.id==='${m.id}').src)"></button>`:`<button class="vid ${cur===m.src?'on':''}" title="${esc(m.name)}" onclick="(${fn})(MEDIA.find(x=>x.id==='${m.id}').src)"><video src="${esc(m.src)}#t=2" preload="metadata" muted></video><span>▶</span></button>`).join("")}</div>`;
+ const segs=(cur,opts,fn)=>`<div class="segs">${opts.map(([v,l])=>`<button class="${cur===v?'on':''}" onclick="(${fn})('${v}')">${l}</button>`).join("")}</div>`;
+ const props = S.type==="card" ? `<label for="leSize">Size · <span id="leSizeV">${S.size}%</span></label><input type="range" id="leSize" min="70" max="140" step="5" value="${S.size}" style="width:100%" oninput="leProp('size',+this.value);$('leSizeV').textContent=this.value+'%'">`
+  : S.type==="text" ? `<label for="leTxt">Text</label><textarea class="inp" id="leTxt" rows="3" maxlength="300" oninput="leProp('text',this.value)">${esc(S.text)}</textarea>
+    <label>Style</label>${segs(String(S.weight),[["800","Headline"],["400","Body"]],"v=>leProp('weight',+v,1)")}
+    <label for="leFs">Text size · <span id="leFsV">${S.size}px</span></label><input type="range" id="leFs" min="12" max="110" value="${S.size}" style="width:100%" oninput="leProp('size',+this.value);$('leFsV').textContent=this.value+'px'">
+    <label>Colour</label>${segs(S.color,[["auto","Auto"],["char","Charcoal"],["white","White"],["lime","Lime"]],"v=>leProp('color',v,1)")}
+    <label>Align</label>${segs(S.align,[["left","Left"],["center","Centre"],["right","Right"]],"v=>leProp('align',v,1)")}`
+  : `<label>${S.type==="img"?"Photo":"Video"} · from the Library</label>${pick(S.type==="img"?"image":"video",S.src,"v=>leProp('src',v,1)")}
+    <label><input type="checkbox" ${S.frame?"checked":""} onchange="leProp('frame',this.checked,1)" style="width:auto;margin-right:6px">White frame and shadow</label>`;
  $("lePanel").innerHTML = !ok ? `<p style="margin:0;color:var(--mut)">Ask an Admin if the login page needs a change.</p>` : `
-  <label>Sign-in box position</label><div class="pos9">${["tl","tc","tr","ml","mc","mr","bl","bc","br"].map(k=>`<button class="${d.pos===k?'on':''}" aria-label="Position ${k}" onclick="leSet('pos','${k}')"></button>`).join("")}</div>
-  <label for="leSize">Sign-in box size · <span id="leSizeV">${d.size}%</span></label><input type="range" id="leSize" min="80" max="140" step="5" value="${d.size}" style="width:100%" oninput="leDraft.size=+this.value;$('leSizeV').textContent=this.value+'%';lePreview()">
-  <label>Background</label>${seg("bg",[["paper","Paper"],["char","Charcoal"],["lime","Lime"],["image","Photo"],["collage","Collage"],["video","Video"]])}
-  ${d.bg==="image"?`<label>Photo</label>${thumbs(false)}<label for="leUp" style="margin-top:8px">Or upload your own</label><input type="file" id="leUp" accept="image/*" onchange="leUpload(this,'img')">`:""}
-  ${d.bg==="collage"?`<label>Collage photos · pick up to 5</label>${thumbs(true)}`:""}
-  ${d.bg==="video"?`<label for="leVid">Video link (MP4)</label><input class="inp" id="leVid" placeholder="https://…/video.mp4" value="${esc(d.video.startsWith('blob:')?'':d.video)}" onchange="leDraft.video=this.value;lePreview()"><label for="leVUp" style="margin-top:8px">Or upload a video file</label><input type="file" id="leVUp" accept="video/*" onchange="leUpload(this,'video')"><p style="font-size:12px;color:var(--mut);margin:6px 0 0">Plays muted on a loop behind the sign-in box.</p>`:""}
-  ${["image","collage","video"].includes(d.bg)?`<label for="leDim">Darken background · <span id="leDimV">${d.dim}%</span></label><input type="range" id="leDim" min="0" max="80" step="5" value="${d.dim}" style="width:100%" oninput="leDraft.dim=+this.value;$('leDimV').textContent=this.value+'%';lePreview()">`:""}
-  <label for="leHead">Headline</label><input class="inp" id="leHead" maxlength="60" placeholder="e.g. Raising the bar" value="${esc(d.head)}" oninput="leDraft.head=this.value;lePreview()">
-  <label for="leBody">Text</label><textarea class="inp" id="leBody" rows="3" maxlength="280" placeholder="A welcome line, a reminder, a link to IT help…" oninput="leDraft.body=this.value;lePreview()">${esc(d.body)}</textarea>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn sm" onclick="lePublish()">Publish</button><button class="btn alt sm" onclick="leDraft={...LOGIN_DEFAULT,collage:[...LOGIN_DEFAULT.collage]};renderLoginEdit()">Start over</button><button class="btn alt sm" onclick="leDraft=null;renderLoginEdit()">Discard changes</button></div>`;
- if(!$("lePrev").firstChild){ const c=$("loginView").cloneNode(true); c.removeAttribute("id"); c.classList.remove("hidden"); c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id")); $("lePrev").appendChild(c); }
- lePreview();
+  <label>Background</label>${segs(d.bg,[["paper","Paper"],["char","Charcoal"],["lime","Lime"],["image","Photo"],["video","Video"]],"leBg")}
+  ${d.bg==="image"?pick("image",d.bgSrc,"v=>{leDraft.bgSrc=v;renderLoginEdit()}"):""}${d.bg==="video"?pick("video",d.bgSrc,"v=>{leDraft.bgSrc=v;renderLoginEdit()}"):""}
+  ${["image","video"].includes(d.bg)?`<label for="leDim">Darken · <span id="leDimV">${d.dim}%</span></label><input type="range" id="leDim" min="0" max="80" step="5" value="${d.dim}" style="width:100%" oninput="leDraft.dim=+this.value;$('leDimV').textContent=this.value+'%';lePreview()">`:""}
+  <label>Add to the page</label><div class="segs"><button onclick="leAdd('head')">+ Headline</button><button onclick="leAdd('text')">+ Text box</button><button onclick="leAdd('img')">+ Image</button><button onclick="leAdd('video')">+ Video</button><button onclick="leAdd('collage')">+ Collage</button></div>
+  <label for="leUp">Upload images or videos</label><input type="file" id="leUp" accept="image/*,video/*" multiple onchange="addFiles(this.files,renderLoginEdit)"><p class="hint">Uploads go to the Library, so you can reuse them anywhere.</p>
+  <label>Layers · top first</label><div class="leLayers">${[...d.layers].sort((a,b)=>b.z-a.z).map(L=>`<div class="lrow ${L.id===leSel?'on':''}" onclick="leSel='${L.id}';renderLoginEdit()"><span>${esc(lname(L))}</span><button title="Bring forward" onclick="event.stopPropagation();leZ('${L.id}',1)">↑</button><button title="Send back" onclick="event.stopPropagation();leZ('${L.id}',-1)">↓</button>${L.type==="card"?"":`<button title="Delete" onclick="event.stopPropagation();leDel('${L.id}')">✕</button>`}</div>`).join("")}</div>
+  <div class="leProps"><span class="ttl" style="margin:0 0 4px">${esc(lname(S))}</span>${props}</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn sm" onclick="lePublish()">Publish</button><button class="btn alt sm" onclick="leDraft=clone(LOGIN_DEFAULT);leSel='card';renderLoginEdit()">Start over</button><button class="btn alt sm" onclick="leDraft=null;renderLoginEdit()">Discard changes</button></div>`;
+ if(!$("lePrev").firstChild){ const c=$("loginView").cloneNode(true); c.removeAttribute("id"); c.classList.remove("hidden"); c.classList.add("editing"); c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id")); c.querySelector(".lvCard").dataset.id="card"; c.querySelector(".lvStage").insertAdjacentHTML("beforeend",'<i class="guide gx"></i><i class="guide gy"></i>'); $("lePrev").appendChild(c); }
+ lePreview(); leBar();
 }
-function lePreview(){ const f=$("lePrev"), v=f.firstChild; applyLogin(v,leDraft); const k=f.clientWidth/1280; v.style.transform=`scale(${k})`; f.style.height=760*k+"px"; }
-function leSet(k,v){ leDraft[k]=v; renderLoginEdit(); }
-function leCol(k){ const c=leDraft.collage, i=c.indexOf(k); if(i>=0){ if(c.length>1) c.splice(i,1); } else if(c.length<5) c.push(k); renderLoginEdit(); }
-function leUpload(inp,k){ const f=inp.files[0]; if(!f) return;
- if(k==="video"){ leDraft.video=URL.createObjectURL(f); return renderLoginEdit(); }
- const r=new FileReader(); r.onload=()=>{ leDraft.img=r.result; renderLoginEdit(); }; r.readAsDataURL(f); }
-function lePublish(){ LOGIN=JSON.parse(JSON.stringify(leDraft)); applyLogin($("loginView"),LOGIN);
- try{ localStorage.setItem("shapeLogin",JSON.stringify(LOGIN)); }catch(e){}
+function leBg(v){ leDraft.bg=v; if(v==="image"&&!/\.(jpe?g|png|webp)|^data:image/.test(leDraft.bgSrc)) leDraft.bgSrc=IMG.hero; if(v==="video"&&!/\.mp4|^blob:|^data:video/.test(leDraft.bgSrc)) leDraft.bgSrc=(MEDIA.find(m=>m.kind==="video")||{}).src||""; renderLoginEdit(); }
+function lePreview(){ const f=$("lePrev"), v=f.firstChild; if(!v) return; applyLogin(v,leDraft); const k=f.clientWidth/1280; v.style.transform=`scale(${k})`; f.style.height=760*k+"px";
+ v.querySelectorAll(".lvL,.lvCard").forEach(el=>{ el.classList.toggle("sel",el.dataset.id===leSel); if(!el.querySelector(".lvRz")) el.insertAdjacentHTML("beforeend",'<b class="lvRz" title="Drag to resize"></b>'); }); }
+function leBar(msg,on){ const b=$("leBar"); if(!b) return; b.classList.toggle("on",!!on); b.textContent = msg || "Click anything in the preview to select it. Drag to move it (it snaps into place), pull the lime corner to resize. Layers can overlap."; }
+let leDrag=null;
+$("lePrev").addEventListener("pointerdown",e=>{
+ const el=e.target.closest(".lvL,.lvCard"); if(!el||RANK[me]<2) return; e.preventDefault();
+ const L=leLayer(el.dataset.id); if(!L) return; leSel=L.id;
+ const k=$("lePrev").clientWidth/1280;
+ leDrag={L,rz:e.target.classList.contains("lvRz"),x0:e.clientX,y0:e.clientY,cx:L.cx,y:L.y,w:L.w,size:L.size,k,elW:el.offsetWidth};
+ $("lePrev").setPointerCapture(e.pointerId); document.body.classList.add("dragging"); lePreview();
+});
+$("lePrev").addEventListener("pointermove",e=>{ if(!leDrag) return;
+ const D=leDrag, L=D.L, dx=(e.clientX-D.x0)/D.k, dy=(e.clientY-D.y0)/D.k, g=$("lePrev").firstChild;
+ if(D.rz){
+  if(L.type==="card"){ L.size=Math.max(70,Math.min(140,Math.round((D.size*(D.elW+dx*2)/D.elW)/5)*5)); leBar("Resizing the sign-in box · "+L.size+"% · let go to set the size.",1); }
+  else { L.w=Math.max(6,Math.min(100,Math.round((D.w+dx*2/12.8)*2)/2)); leBar("Resizing "+lname(L)+" · "+L.w+"% of the page wide · let go to set the size.",1); }
+ } else {
+  let cx=D.cx+dx/12.8, y=D.y+dy/7.6, snapped="snapped to the grid";
+  cx=Math.round(cx/2.5)*2.5; y=Math.round(y/2.5)*2.5;
+  const cen=Math.abs(cx-50)<3; if(cen){ cx=50; snapped="snapped to the centre"; }
+  L.cx=Math.max(0,Math.min(100,cx)); L.y=Math.max(-10,Math.min(95,y));
+  g.querySelector(".gx").style.display=cen?"block":"none";
+  leBar("Moving "+lname(L)+" · "+snapped+" · let go to drop it here.",1);
+ }
+ lePreview();
+});
+function leDrop(){ if(!leDrag) return; leDrag=null; document.body.classList.remove("dragging"); const g=$("lePrev").firstChild; g&&(g.querySelector(".gx").style.display="none"); renderLoginEdit(); }
+$("lePrev").addEventListener("pointerup",leDrop); $("lePrev").addEventListener("pointercancel",leDrop);
+function lePublish(){ LOGIN=clone(leDraft); applyLogin($("loginView"),LOGIN);
+ try{ localStorage.setItem("shapeLogin2",JSON.stringify(LOGIN)); }catch(e){ toast("Published. Uploaded files are too big to remember after a reload in this demo."); }
  logAudit("Login page published"); toast("Login page published. Sign out to see it as everyone will."); }
-addEventListener("resize",()=>{ if(leDraft&&$("lePrev").firstChild&&!$("v-loginedit").classList.contains("hidden")) lePreview(); });
+addEventListener("resize",()=>{ if(leDraft&&!$("v-loginedit").classList.contains("hidden")) lePreview(); });
 
 /* ============ SITE SEARCH ============ */
-const SETTINGS_INDEX = [["Login page","Design the sign-in page: position, size, photos, video, text","loginedit"],["Tutorials","Step-by-step walkthroughs of the site","settings"],["Profile layouts","See every profile layout as a finished sample","settings"],["Header & footer","Build a footer or announcement bar for every page","builder"],["Org chart","How SHAPE is organized","people"],["People & access","Change any colleague's role and permissions","settings"],["Left menu","Rename, reorder and hide menu items","settings"],["Theme","Colours and the holiday theme","settings"],["Profile layout","The one company-wide profile layout","settings"],["Audit log","Every change, hash-chained","admin"],["Moderation queue","Posts waiting for review","admin"],["HR documents","Files that feed Ask HR","admin"]];
+const SETTINGS_INDEX = [["Library","All images, videos and documents","library"],["Change tracker","Every sign-in and change, logged","changes"],["Groups & departments","Custom groups for menu visibility","admin"],["Login page","Design the sign-in page: position, size, photos, video, text","loginedit"],["Tutorials","Step-by-step walkthroughs of the site","settings"],["Profile layouts","See every profile layout as a finished sample","settings"],["Header & footer","Build a footer or announcement bar for every page","builder"],["Org chart","How SHAPE is organized","people"],["People & access","Change any colleague's role and permissions","settings"],["Left menu","Rename, reorder and hide menu items","settings"],["Theme","Colours and the holiday theme","settings"],["Profile layout","The one company-wide profile layout","settings"],["Audit log","Every change, hash-chained","admin"],["Moderation queue","Posts waiting for review","admin"],["HR documents","Files that feed Ask HR","admin"]];
 function siteSearch(q){
  q=(q||"").trim(); $("siteSearch").value=q; $("searchBox").value=q;
  if(!q){ go("search"); $("searchOut").innerHTML=""; return; }
@@ -1232,8 +1431,19 @@ function seedChat(){
 function renderAudit(){ $("auditRows").innerHTML = audit.map(a=>`<tr><td>${a[0]}</td><td>${esc(a[1])}</td><td>${esc(a[2])}</td><td class="hash">${a[3]}</td></tr>`).join(""); }
 function renderAdmin(){
  $("hrDocs").innerHTML = HRDOCS.map((d,i)=>`<div class="layrow"><span>${d}</span><button class="tgl ${hrOn[i]?'on':''}" aria-label="${d} feeds Ask HR" onclick="hrOn[${i}]=!hrOn[${i}];this.classList.toggle('on');toast('${d} '+(hrOn[${i}]?'is back on for Ask HR':'is off: Ask HR stops quoting it immediately'))"></button></div>`).join("");
- renderAudit(); renderMod();
+ renderAudit(); renderMod(); renderGroups();
 }
+let grpDraft=[];
+const memberName = m => m[0]==="@" ? ACCOUNTS[m.slice(1)].name+" ("+ACCOUNTS[m.slice(1)].role+" demo login)" : m;
+function renderGroups(){
+ $("deptList").innerHTML = ODEPTS.map(d=>{ const n=PEOPLE.filter(p=>p.department===d).length; return `<div class="layrow"><span>${d}</span><small style="color:var(--mut)">${n} people</small></div>`; }).join("");
+ $("grpList").innerHTML = GROUPS.map(g=>`<div class="grp"><div style="display:flex;align-items:center;gap:8px"><b style="flex:1">${esc(g.name)}</b><small style="color:var(--mut)">${g.members.length} members</small><button class="btn alt sm" onclick="grpDel('${g.id}')">Delete</button></div><div class="avs">${g.members.map(m=>`<span title="${esc(memberName(m))}">${av(m[0]==="@"?ACCOUNTS[m.slice(1)].name:m)}</span>`).join("")}</div></div>`).join("");
+ $("pplNames").innerHTML = [...Object.keys(ACCOUNTS).map(k=>"@"+k),...PEOPLE.map(p=>p.name)].map(m=>`<option value="${esc(memberName(m))}">`).join("");
+ $("grpDraft").innerHTML = grpDraft.map((m,i)=>`<span class="chip">${esc(memberName(m))} <button style="border:0;background:none;font-weight:800" onclick="grpDraft.splice(${i},1);renderGroups()">✕</button></span>`).join("");
+}
+function grpPick(inp){ const v=inp.value, m=Object.keys(ACCOUNTS).map(k=>"@"+k).find(k=>memberName(k)===v) || (byName(v)&&v); if(m&&!grpDraft.includes(m)) grpDraft.push(m); inp.value=""; renderGroups(); }
+function grpCreate(){ const n=$("grpName").value.trim(); if(!n) return toast("Name the group first."); if(!grpDraft.length) return toast("Add at least one person."); GROUPS.push({id:"g"+Date.now(),name:n,members:grpDraft}); grpDraft=[]; $("grpName").value=""; logAudit("Created group: "+n); renderGroups(); renderMenuBuilder(); toast("Group created. Pick it under Settings → Left menu → Visible to."); }
+function grpDel(id){ const g=GROUPS.find(g=>g.id===id); GROUPS=GROUPS.filter(x=>x.id!==id); logAudit("Deleted group: "+g.name); renderGroups(); renderMenuBuilder(); renderRail(); }
 function renderMod(){
  $("kpiMod").textContent = modQueue.length;
  $("modQueue").innerHTML = modQueue.length ? modQueue.map((m,i)=>`<div style="border:1px solid var(--line);padding:11px 13px;margin-bottom:8px"><span class="pill">${m.tag}</span><p style="margin:7px 0;font-size:14px">${m.text}</p><small style="color:var(--mut)">${m.who}</small><div style="margin-top:8px;display:flex;gap:6px"><button class="btn sm na" onclick="modAct(${i},1)">Approve</button><button class="btn alt sm na" onclick="modAct(${i},0)">Remove</button></div></div>`).join("") : "<p style='color:var(--mut)'>Queue clear.</p>";
@@ -1274,7 +1484,7 @@ function bulkRole(){ const r=$("bulkRole").value, sel=[...document.querySelector
 function openAccess(name){ accQ=name||""; accDept="All"; accOpen = name ? PEOPLE.findIndex(p=>p.name===name) : null; go("settings"); setTimeout(()=>$("accessCard").scrollIntoView({behavior:"smooth",block:"start"}),120); }
 
 function renderSettings(){
- renderPlTile(); $("loginTile").classList.toggle("hidden",RANK[me]<2);
+ renderPlTile(); ["loginTile","ctTile"].forEach(i=>$(i).classList.toggle("hidden",RANK[me]<2)); $("libTile").classList.toggle("hidden",RANK[me]<1);
  $("tutList").innerHTML = Object.entries(TOURS).filter(([k,t])=>k!=="edit"||RANK[me]>=1).map(([k,[n,s]])=>`<button onclick="startTour('${k}')">${n}<small>${s}</small></button>`).join("");
  renderMenuBuilder();
  $("permRows").innerHTML = CAPS.map(([c,l])=>`<tr><td>${l}</td>${Object.keys(ROLECAPS).map((r,ri)=>`<td>${c==="html"&&ri<3?'<span class="pill red">locked</span>':`<button class="tgl ${ROLECAPS[r].includes(c)?'on':''}" aria-label="${l} for ${r}" onclick="this.classList.toggle('on')"></button>`}</td>`).join("")}</tr>`).join("");
