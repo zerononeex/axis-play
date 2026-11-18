@@ -51,7 +51,30 @@ td{border-bottom:1px solid var(--line);padding:10px 8px;vertical-align:middle}
 .av svg{width:100%;height:100%;display:block}
 
 /* ---------- login ---------- */
-#loginView{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:22px;background:var(--paper)}
+#loginView{min-height:100vh;background:var(--paper)}
+.lv{position:relative;overflow:hidden;color:var(--char)}
+.lvBg{position:absolute;inset:0;background:var(--paper)}.lvBg>img,.lvBg>video{width:100%;height:100%;object-fit:cover;display:block}
+.lvBg .col{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:100%;background:var(--char)}
+.lvBg .col img{width:100%;height:100%;object-fit:cover;min-height:0}.lvBg .col img:first-child{grid-row:span 2}
+.lvBg .dim{position:absolute;inset:0;background:#1f2426}
+.lvGrid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1fr auto 1fr;min-height:100vh;padding:32px;gap:24px}
+.lvCard{width:100%;max-width:420px;align-self:center;justify-self:center}
+.lvText{max-width:520px;align-self:center}.lvText:empty{display:none}
+.lvText h2{font-size:clamp(34px,4vw,58px);line-height:.95;text-transform:uppercase;margin:0 0 14px;letter-spacing:-.5px}
+.lvText p{font-size:17px;line-height:1.55;margin:0;white-space:pre-line}
+.lv.dark .lvText{color:#fff}.lv.dark .demo-note,.lv.dark .demo-note a{color:#e8e5dc}
+@media(max-width:760px){.lvGrid{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:22px}.lvText{text-align:center}}
+.lePrev{background:var(--paper2);border:1px solid var(--line);overflow:hidden;position:relative}
+.lePrev .lv{width:1280px;transform-origin:0 0;pointer-events:none}.lePrev .lvGrid{min-height:760px;height:760px}
+.leGrid{display:grid;grid-template-columns:320px minmax(0,1fr);gap:18px;align-items:start}.leGrid>*{min-width:0}
+@media(max-width:1000px){.leGrid{grid-template-columns:1fr}}
+.lePanel{background:#fff;border:1px solid var(--line);padding:18px;position:sticky;top:14px}
+.lePanel label{display:block;font-size:11.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;margin:16px 0 6px}.lePanel label:first-child{margin-top:0}
+.lePanel .inp,.lePanel textarea{width:100%}
+.pos9{display:grid;grid-template-columns:repeat(3,38px);gap:4px}.pos9 button{height:28px;border:1.5px solid var(--char);background:#fff;padding:0}
+.pos9 button.on{background:var(--char)}.pos9 button.on::after{content:"";display:block;width:12px;height:8px;margin:auto;background:var(--lime)}
+.segs{display:flex;flex-wrap:wrap;gap:4px}.segs button{border:1.5px solid var(--char);background:#fff;font-weight:700;font-size:12.5px;padding:5px 9px}.segs button.on{background:var(--char);color:#fff}
+.imgPick{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.imgPick button{padding:0;border:3px solid transparent;aspect-ratio:4/3;background:center/cover}.imgPick button.on{border-color:var(--lime);outline:1.5px solid var(--char)}
 .loginCard{background:#fff;border:1px solid var(--line);width:100%;max-width:420px;padding:34px 30px 26px}
 .logo{font-size:34px;letter-spacing:6px;font-weight:800;text-align:center}
 .logo span{box-shadow:inset 0 -.38em 0 var(--lime)}
@@ -157,10 +180,28 @@ body.dragging{user-select:none;-webkit-user-select:none}
 .cmt p{margin:4px 0 0;line-height:1.55;font-size:15px}
 .cmt small{color:var(--mut)}
 /* people */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
-.pcard{background:#fff;border:1px solid var(--line);padding:18px 14px;text-align:center;cursor:pointer}
-.pcard .av{width:84px;height:84px;margin-bottom:10px}
-.pcard h3{margin:0;font-size:15.5px}.pcard p{margin:3px 0 0;color:var(--mut);font-size:12.5px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:10px;margin-top:12px}
+.pcard{background:#fff;border:1px solid var(--line);padding:12px 10px;text-align:center;cursor:pointer}
+.pcard .av{width:52px;height:52px;margin-bottom:6px}
+.pcard h3{margin:0;font-size:13.5px}.pcard p{margin:2px 0 0;color:var(--mut);font-size:11.5px;line-height:1.3}
+.pgrid.list{display:block;background:#fff;border:1px solid var(--line)}
+.pgrid.list .pcard{display:grid;grid-template-columns:36px 1.2fr 1.4fr 1fr;gap:14px;align-items:center;text-align:left;border:0;border-bottom:1px solid var(--line);padding:7px 14px}
+.pgrid.list .pcard:hover{transform:none;box-shadow:none;background:var(--paper)}
+.pgrid.list .pcard .av{width:36px;height:36px;margin:0}.pgrid.list .pcard p{margin:0;font-size:12.5px}
+@media(max-width:640px){.pgrid.list .pcard{grid-template-columns:36px 1fr}.pgrid.list .pcard p{grid-column:2}}
+.pbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px}.pbar .eyebrow{margin:0}
+.vtog{display:flex;gap:4px}.vtog button{width:34px;height:32px;display:grid;place-items:center;border:1.5px solid var(--char);background:#fff;color:var(--char);padding:0}
+.vtog button.on,.vtog button:hover{background:var(--char);color:#fff}
+.meetbtn{border:1.5px dashed var(--char);background:var(--lime);font-weight:800;font-size:13px;padding:6px 13px;display:inline-flex;gap:7px;align-items:center}
+.meetbtn:hover{border-style:solid}
+#meetBox{margin-top:16px}#meetBox .mhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.meetGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
+.meetCard{background:#fff;border:1px solid var(--line);padding:18px;animation:mReveal 1.5s cubic-bezier(.2,.7,.2,1) both;position:relative}
+.meetCard>div>*{animation:riseIn .5s ease both}
+.meetCard .c4{grid-template-columns:1fr}
+.meetCard .teamsBtn{margin-top:14px;background:#4b53bc;border-color:#4b53bc}
+@keyframes mReveal{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@media(prefers-reduced-motion:reduce){.meetCard,.meetCard>div>*{animation:none}}
 /* profile (C4 Facts Rail + Story) */
 .c4{display:grid;grid-template-columns:290px 1fr;gap:22px;align-items:start}
 @media(max-width:900px){.c4{grid-template-columns:1fr}}
@@ -396,8 +437,8 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
 <body>
 
 <!-- ================= LOGIN ================= -->
-<div id="loginView">
- <div style="width:100%;max-width:420px">
+<div id="loginView" class="lv"><div class="lvBg"></div><div class="lvGrid"><div class="lvText"></div>
+ <div class="lvCard">
   <div class="loginCard">
    <div class="logo"><span>SHAPE</span></div>
    <p class="sub">Staff intranet sign-in</p>
@@ -417,7 +458,7 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
   </div>
   <p class="demo-note">Interactive demo of the Axis intranet in the SHAPE look. Everything here is fictional.<br><a href="about.html">About this demo</a> · <a href="samples/">Samples library</a></p>
  </div>
-</div>
+</div></div>
 
 <!-- ================= APP ================= -->
 <div id="app" class="hidden">
@@ -478,9 +519,9 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
 
   <!-- PEOPLE -->
   <section class="view hidden" id="v-people"><div class="bgrid">
-   <div class="tile" data-name="Page title" data-span="12" style="--span:12"><h1>People</h1><p class="lede">How SHAPE is organized, from the CEO to every team. Click a team to see everyone on it, or anyone to open their profile.</p>
-    <div class="pmode"><button class="tab on" id="pmOrg" onclick="peopleMode('org')">Org chart</button><button class="tab" id="pmAll" onclick="peopleMode('all')">Everyone A–Z</button><input class="inp" id="pplFind" placeholder="Find a colleague…" style="margin-left:auto;min-width:220px" oninput="peopleMode('all');renderPeople()"></div></div>
-   <div class="tile" data-name="Org chart" data-span="12" style="--span:12"><div class="org" id="orgChart"></div><div id="pplAll" class="hidden"><p class="eyebrow" id="pplCount"></p><div class="pgrid" id="pgrid"></div></div></div>
+   <div class="tile" data-name="Page title" data-span="12" style="--span:12"><h1>People</h1><p class="lede">Everyone at SHAPE, A to Z. Switch to the org chart to see how teams fit together, or meet someone new.</p>
+    <div class="pmode"><button class="tab on" id="pmAll" onclick="peopleMode('all')">Everyone A–Z</button><button class="tab" id="pmOrg" onclick="peopleMode('org')">Org chart</button><button class="meetbtn" id="meetBtn" onclick="meetSomeone()">✦ Meet someone new</button><input class="inp" id="pplFind" placeholder="Find a colleague…" style="margin-left:auto;min-width:220px" oninput="peopleMode('all');renderPeople()"></div></div>
+   <div class="tile" data-name="Org chart" data-span="12" style="--span:12"><div id="meetBox" class="hidden"></div><div class="org hidden" id="orgChart"></div><div id="pplAll"><div class="pbar"><p class="eyebrow" id="pplCount"></p><div class="vtog" role="group" aria-label="View as"><button id="pvList" title="List view" aria-label="List view" onclick="setPView('list')"><svg width="16" height="14" viewBox="0 0 16 14" fill="currentColor"><rect y="0" width="16" height="2.4"/><rect y="5.8" width="16" height="2.4"/><rect y="11.6" width="16" height="2.4"/></svg></button><button id="pvGrid" class="on" title="Grid view" aria-label="Grid view" onclick="setPView('grid')"><svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><rect width="4.4" height="4.4"/><rect x="5.8" width="4.4" height="4.4"/><rect x="11.6" width="4.4" height="4.4"/><rect y="6.6" width="4.4" height="4.4"/><rect x="5.8" y="6.6" width="4.4" height="4.4"/><rect x="11.6" y="6.6" width="4.4" height="4.4"/></svg></button></div></div><div class="pgrid" id="pgrid"></div></div></div>
   </div></section>
 
   <!-- PROFILE -->
@@ -547,6 +588,8 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
    <div class="tile card" data-name="Profile layout" id="plTile" data-span="6" style="--span:6;cursor:pointer" onclick="go('layouts')"><span class="ttl">Profile layout · company-wide</span>
     <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div class="plprev" id="plThumb" style="width:200px;height:130px;flex:none"></div>
     <div style="flex:1;min-width:160px"><b id="plName" style="font-family:var(--serif);font-size:19px;font-weight:500"></b><p style="color:var(--mut);font-size:13px;line-height:1.5;margin:4px 0 10px">One layout for every profile. See every option as a finished profile before you choose.</p><button class="btn sm" onclick="event.stopPropagation();go('layouts')">Browse layouts</button></div></div></div>
+   <div class="tile card" data-name="Login page" id="loginTile" data-span="12" style="--span:12"><span class="ttl">Login page</span>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0;flex:1;min-width:220px">The sign-in page is the one page everyone sees first, before they log in. Admins and Super Users can design it like a landing page: move and resize the sign-in box, add a photo, a collage or a video, and add your own words. Everything behind the login stays private.</p><button class="btn sm" onclick="go('loginedit')">Design the login page</button></div></div>
    <div class="tile card" data-name="Tutorials" data-span="12" style="--span:12"><span class="ttl">Tutorials</span><p style="color:var(--mut);font-size:13.5px;line-height:1.55;margin:0 0 12px">Pick one and SHAPE walks you through it, one highlighted step at a time.</p><div class="tuts" id="tutList"></div></div>
    <div class="tile card" data-name="Theme" data-span="6" style="--span:6"><span class="ttl">Theme</span>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm na" onclick="setTheme('#1f2426','SHAPE Charcoal')">SHAPE Charcoal</button><button class="btn sm na" style="background:#293893;border-color:#293893" onclick="setTheme('#293893','SHAPE Navy')">SHAPE Navy</button><button class="btn sm na" style="background:#17352a;border-color:#17352a" onclick="setTheme('#17352a','Forest')">Forest</button><button class="btn sm na lime" onclick="holidayTheme()">Holiday</button></div>
@@ -571,6 +614,12 @@ body.editing #siteFooter .tile{outline-color:rgba(210,220,81,.6)}
    <button class="btn alt sm" onclick="go('settings')">← Back to Settings</button><div style="height:14px"></div>
    <h1>Profile layouts</h1><p class="lede" style="margin-bottom:18px">Every option shown as a finished profile. Pick one and all 150 profiles re-render from the same data: same boxes, same order, for everyone. <span id="plWho"></span></p>
    <div class="plgrid" id="plGrid"></div>
+  </section>
+
+  <section class="view hidden" id="v-loginedit">
+   <button class="btn alt sm" onclick="go('settings')">← Back to Settings</button><div style="height:14px"></div>
+   <h1>Login page</h1><p class="lede" style="margin-bottom:18px">Design the first page everyone sees. Changes show in the preview as you make them; nothing goes live until you publish. <span id="leWho"></span></p>
+   <div class="leGrid"><div class="lePanel" id="lePanel"></div><div><div class="lePrev" id="lePrev"></div><p style="color:var(--mut);font-size:12.5px;margin:8px 0 0">Preview at desktop size. On phones the sign-in box always sits in the middle with your text above it.</p></div></div>
   </section>
 
   <footer id="siteFooter"><div class="bgrid">
@@ -802,9 +851,9 @@ const TOURS = {
   ["home","[data-name='Newest members']","Newest members","Everyone who started recently shows up here on Home, with their role and start date."],
   ["home","#newList .act","Say hello","Tap a name in People to open their profile and learn what they do."]]],
  org:["Read the org chart","How SHAPE is organized",[
-  [null,"#railNav [data-nav=people]","Open People","The org chart is the first thing on the People page."],
-  ["people",".onode.ceo","Start at the top","The chart starts with the CEO. The four leaders below each run a group of departments."],
-  ["people",".odept","Departments and teams","Each department lists its teams. Tap a team to see everyone on it, or tap anyone to open their profile."]]],
+  [null,"#railNav [data-nav=people]","Open People","The org chart is one tap away on the People page."],
+  ["people",".onode.ceo","Start at the top","The chart starts with the CEO. The four leaders below each run a group of departments.",()=>peopleMode("org")],
+  ["people",".odept","Departments and teams","Each department lists its teams. Tap a team to see everyone on it, or tap anyone to open their profile.",()=>peopleMode("org")]]],
  search:["Search the whole site","Find anything in one place",[
   [null,"#siteSearch","One search box","Type anything here and press Enter."],
   [null,"#siteSearch","Results by type","Results are grouped into pages, updates, people, HR answers and settings. Try ‘Harbourgate’.",()=>siteSearch("Harbourgate")]]],
@@ -900,7 +949,7 @@ function doLogin(){
  const er=$("liErr"); er.style.display="block";
  er.textContent = key ? "Wrong password for the demo. It's axis-demo." : "No demo account with that email. Try a demo login below, e.g. staff@jvdev.example / axis-demo.";
 }
-function logout(){ if(editing) endEdit(false); me=null; $("app").classList.add("hidden"); $("fab").classList.add("hidden"); $("hrPop").classList.add("hidden"); $("loginView").classList.remove("hidden"); $("userMenu").classList.add("hidden"); }
+function logout(){ if(editing) endEdit(false); scrollTo(0,0); me=null; $("app").classList.add("hidden"); $("fab").classList.add("hidden"); $("hrPop").classList.add("hidden"); $("loginView").classList.remove("hidden"); $("userMenu").classList.add("hidden"); }
 function toggleMenu(ev){ if(ev)ev.stopPropagation(); $("userMenu").classList.toggle("hidden"); }
 document.addEventListener("click",e=>{ if(!$("userMenu").classList.contains("hidden") && !e.target.closest("#userMenu") && !e.target.closest("#avaBtn")) $("userMenu").classList.add("hidden") });
 $("umSwitch").onclick = ()=>{ const order=["staff","editor","admin","super"]; enterAs(order[(order.indexOf(me)+1)%4]); };
@@ -945,6 +994,7 @@ function go(v){
  window.scrollTo({top:0});
  if(v==="settings") renderAccess();
  if(v==="layouts") renderLayouts();
+ if(v==="loginedit") renderLoginEdit();
  if(v==="vision") playVision();
  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
  sec.classList.remove("wipeIn"); void sec.offsetWidth; if(!reduced) sec.classList.add("wipeIn");
@@ -1032,6 +1082,17 @@ function renderOrg(){
 }
 function peopleMode(m){ $("orgChart").classList.toggle("hidden",m!=="org"); $("pplAll").classList.toggle("hidden",m==="org"); $("pmOrg").classList.toggle("on",m==="org"); $("pmAll").classList.toggle("on",m!=="org"); if(m==="org") $("pplFind").value=""; else renderPeople(); }
 function pcard(p){ return `<div class="pcard lift" onclick="viewProfile(PEOPLE[${pIx(p)}])">${av(p.name)}<h3>${p.name}</h3><p>${p.title}</p><p>${p.department}</p></div>`; }
+let pview="grid";
+function setPView(v){ pview=v; $("pgrid").classList.toggle("list",v==="list"); $("pvList").classList.toggle("on",v==="list"); $("pvGrid").classList.toggle("on",v==="grid"); }
+function meetSomeone(){
+ const pool=PEOPLE, pick=[];
+ while(pick.length<2){ const p=pool[Math.floor(Math.random()*pool.length)]; if(!pick.includes(p)) pick.push(p); }
+ const b=$("meetBox"); b.classList.remove("hidden");
+ b.innerHTML=`<div class="mhead"><span class="ttl" style="margin:0">Meet someone new</span><span style="color:var(--mut);font-size:13px">Two colleagues picked at random. Say hi!</span><button class="btn alt sm" style="margin-left:auto" onclick="meetSomeone()">Shuffle again</button><button class="btn alt sm" onclick="$('meetBox').classList.add('hidden')">Close</button></div>
+  <div class="meetGrid">${pick.map((p,k)=>`<div class="meetCard" style="animation-delay:${k*250}ms"><div>${playout(profileTemplate)[3](pdata(p))}</div><button class="btn teamsBtn" onclick="toast('Demo: in the live site this opens a Teams chat with ${esc(p.name)}.')">Message ${esc(p.name.split(" ")[0])} on Teams</button></div>`).join("")}</div>`;
+ b.querySelectorAll(".meetCard").forEach((c,k)=>c.querySelectorAll(".c4rail>*,.c4story>*,.meetCard>div>*:not(.c4)").forEach((el,i)=>el.style.animationDelay=(k*250+120+i*90)+"ms"));
+ b.scrollIntoView({behavior:"smooth",block:"start"});
+}
 function renderPeople(){
  const q=$("pplFind").value.toLowerCase(), list=PEOPLE.filter(p=>(p.name+" "+p.title+" "+p.department).toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
  $("pplCount").textContent = (q?list.length+" match"+(list.length===1?"":"es"):"All "+PEOPLE.length+" people")+", A–Z";
@@ -1071,8 +1132,61 @@ function useLayout(id){ profileTemplate=id; logAudit("Profile layout set for eve
 function previewLayout(id){ const keep=profileTemplate; profileTemplate=id; viewProfile(byName("Harper Novak")); profileTemplate=keep; $("profAdmin").innerHTML=`<span class="chip lime" style="align-self:center">Sample: ${playout(id)[1]}</span><button class="btn alt sm" onclick="go('layouts')">Back to layouts</button>`; }
 function renderPlTile(){ const l=playout(profileTemplate); $("plName").textContent=l[1]; $("plThumb").innerHTML=`<div style="transform:scale(.2)">${l[3](pdata(byName("Harper Novak")))}</div>`; $("plTile").classList.toggle("hidden",RANK[me]<2); }
 
+/* ============ LOGIN PAGE DESIGNER ============ */
+const LOGIN_DEFAULT={pos:"mc",size:100,bg:"paper",img:"hero",collage:["tower","crane","city"],video:"",dim:40,head:"",body:""};
+let LOGIN={...LOGIN_DEFAULT}, leDraft=null;
+try{ Object.assign(LOGIN, JSON.parse(localStorage.getItem("shapeLogin")||"{}")); }catch(e){}
+const SPOTS={t:1,m:2,b:3,l:1,c:2,r:3}, MIRROR={l:"r",r:"l",c:"c",t:"b",b:"t",m:"t"};
+function applyLogin(root,c){
+ const src=k=>IMG[k]||k, media=c.bg==="image"||c.bg==="collage"||(c.bg==="video"&&c.video);
+ const bg = c.bg==="image" ? `<img src="${esc(src(c.img))}" alt="">`
+  : c.bg==="collage" ? `<div class="col">${c.collage.slice(0,5).map(k=>`<img src="${esc(src(k))}" alt="">`).join("")}</div>`
+  : c.bg==="video" && c.video ? `<video src="${esc(c.video)}" autoplay muted loop playsinline></video>` : "";
+ const bgEl=root.querySelector(".lvBg");
+ bgEl.innerHTML = bg + (media?`<div class="dim" style="opacity:${c.dim/100}"></div>`:"");
+ bgEl.style.background = {paper:"var(--paper)",char:"var(--char)",lime:"var(--lime)"}[c.bg]||"var(--char)";
+ root.classList.toggle("dark", media||c.bg==="char");
+ const [r,col]=c.pos, card=root.querySelector(".lvCard"), tx=root.querySelector(".lvText");
+ root.querySelector(".lvGrid").style.gridTemplateRows = r==="m" ? "1fr auto 1fr" : "auto 1fr auto";
+ card.style.gridArea=SPOTS[r]+"/"+SPOTS[col]; card.style.zoom=c.size/100;
+ card.style.justifySelf={l:"start",c:"center",r:"end"}[col]; card.style.alignSelf={t:"start",m:"center",b:"end"}[r];
+ const tr = col==="c" ? MIRROR[r] : r, tc = col==="c" ? "c" : MIRROR[col];
+ tx.style.gridArea=SPOTS[tr]+"/"+SPOTS[tc]; tx.style.textAlign={l:"left",c:"center",r:"right"}[tc]; tx.style.justifySelf={l:"start",c:"center",r:"end"}[tc];
+ tx.style.alignSelf = col==="c" ? {t:"start",b:"end"}[tr] : {t:"start",m:"center",b:"end"}[tr];
+ tx.innerHTML = (c.head?`<h2>${esc(c.head)}</h2>`:"")+(c.body?`<p>${esc(c.body)}</p>`:"");
+}
+function renderLoginEdit(){
+ const ok=RANK[me]>=2; if(!leDraft) leDraft=JSON.parse(JSON.stringify(LOGIN));
+ $("leWho").textContent = ok ? "" : "Only Admins and Super Users can change it.";
+ const d=leDraft, seg=(k,opts)=>`<div class="segs">${opts.map(([v,l])=>`<button class="${d[k]===v?'on':''}" onclick="leSet('${k}','${v}')">${l}</button>`).join("")}</div>`;
+ const thumbs=(multi)=>`<div class="imgPick">${Object.keys(IMG).map(k=>`<button class="${(multi?d.collage.includes(k):d.img===k)?'on':''}" style="background-image:url('${IMG[k]}')" aria-label="${k}" onclick="${multi?`leCol('${k}')`:`leSet('img','${k}')`}"></button>`).join("")}</div>`;
+ $("lePanel").innerHTML = !ok ? `<p style="margin:0;color:var(--mut)">Ask an Admin if the login page needs a change.</p>` : `
+  <label>Sign-in box position</label><div class="pos9">${["tl","tc","tr","ml","mc","mr","bl","bc","br"].map(k=>`<button class="${d.pos===k?'on':''}" aria-label="Position ${k}" onclick="leSet('pos','${k}')"></button>`).join("")}</div>
+  <label for="leSize">Sign-in box size · <span id="leSizeV">${d.size}%</span></label><input type="range" id="leSize" min="80" max="140" step="5" value="${d.size}" style="width:100%" oninput="leDraft.size=+this.value;$('leSizeV').textContent=this.value+'%';lePreview()">
+  <label>Background</label>${seg("bg",[["paper","Paper"],["char","Charcoal"],["lime","Lime"],["image","Photo"],["collage","Collage"],["video","Video"]])}
+  ${d.bg==="image"?`<label>Photo</label>${thumbs(false)}<label for="leUp" style="margin-top:8px">Or upload your own</label><input type="file" id="leUp" accept="image/*" onchange="leUpload(this,'img')">`:""}
+  ${d.bg==="collage"?`<label>Collage photos · pick up to 5</label>${thumbs(true)}`:""}
+  ${d.bg==="video"?`<label for="leVid">Video link (MP4)</label><input class="inp" id="leVid" placeholder="https://…/video.mp4" value="${esc(d.video.startsWith('blob:')?'':d.video)}" onchange="leDraft.video=this.value;lePreview()"><label for="leVUp" style="margin-top:8px">Or upload a video file</label><input type="file" id="leVUp" accept="video/*" onchange="leUpload(this,'video')"><p style="font-size:12px;color:var(--mut);margin:6px 0 0">Plays muted on a loop behind the sign-in box.</p>`:""}
+  ${["image","collage","video"].includes(d.bg)?`<label for="leDim">Darken background · <span id="leDimV">${d.dim}%</span></label><input type="range" id="leDim" min="0" max="80" step="5" value="${d.dim}" style="width:100%" oninput="leDraft.dim=+this.value;$('leDimV').textContent=this.value+'%';lePreview()">`:""}
+  <label for="leHead">Headline</label><input class="inp" id="leHead" maxlength="60" placeholder="e.g. Raising the bar" value="${esc(d.head)}" oninput="leDraft.head=this.value;lePreview()">
+  <label for="leBody">Text</label><textarea class="inp" id="leBody" rows="3" maxlength="280" placeholder="A welcome line, a reminder, a link to IT help…" oninput="leDraft.body=this.value;lePreview()">${esc(d.body)}</textarea>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="btn sm" onclick="lePublish()">Publish</button><button class="btn alt sm" onclick="leDraft={...LOGIN_DEFAULT,collage:[...LOGIN_DEFAULT.collage]};renderLoginEdit()">Start over</button><button class="btn alt sm" onclick="leDraft=null;renderLoginEdit()">Discard changes</button></div>`;
+ if(!$("lePrev").firstChild){ const c=$("loginView").cloneNode(true); c.removeAttribute("id"); c.classList.remove("hidden"); c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id")); $("lePrev").appendChild(c); }
+ lePreview();
+}
+function lePreview(){ const f=$("lePrev"), v=f.firstChild; applyLogin(v,leDraft); const k=f.clientWidth/1280; v.style.transform=`scale(${k})`; f.style.height=760*k+"px"; }
+function leSet(k,v){ leDraft[k]=v; renderLoginEdit(); }
+function leCol(k){ const c=leDraft.collage, i=c.indexOf(k); if(i>=0){ if(c.length>1) c.splice(i,1); } else if(c.length<5) c.push(k); renderLoginEdit(); }
+function leUpload(inp,k){ const f=inp.files[0]; if(!f) return;
+ if(k==="video"){ leDraft.video=URL.createObjectURL(f); return renderLoginEdit(); }
+ const r=new FileReader(); r.onload=()=>{ leDraft.img=r.result; renderLoginEdit(); }; r.readAsDataURL(f); }
+function lePublish(){ LOGIN=JSON.parse(JSON.stringify(leDraft)); applyLogin($("loginView"),LOGIN);
+ try{ localStorage.setItem("shapeLogin",JSON.stringify(LOGIN)); }catch(e){}
+ logAudit("Login page published"); toast("Login page published. Sign out to see it as everyone will."); }
+addEventListener("resize",()=>{ if(leDraft&&$("lePrev").firstChild&&!$("v-loginedit").classList.contains("hidden")) lePreview(); });
+
 /* ============ SITE SEARCH ============ */
-const SETTINGS_INDEX = [["Tutorials","Step-by-step walkthroughs of the site","settings"],["Profile layouts","See every profile layout as a finished sample","settings"],["Header & footer","Build a footer or announcement bar for every page","builder"],["Org chart","How SHAPE is organized","people"],["People & access","Change any colleague's role and permissions","settings"],["Left menu","Rename, reorder and hide menu items","settings"],["Theme","Colours and the holiday theme","settings"],["Profile layout","The one company-wide profile layout","settings"],["Audit log","Every change, hash-chained","admin"],["Moderation queue","Posts waiting for review","admin"],["HR documents","Files that feed Ask HR","admin"]];
+const SETTINGS_INDEX = [["Login page","Design the sign-in page: position, size, photos, video, text","loginedit"],["Tutorials","Step-by-step walkthroughs of the site","settings"],["Profile layouts","See every profile layout as a finished sample","settings"],["Header & footer","Build a footer or announcement bar for every page","builder"],["Org chart","How SHAPE is organized","people"],["People & access","Change any colleague's role and permissions","settings"],["Left menu","Rename, reorder and hide menu items","settings"],["Theme","Colours and the holiday theme","settings"],["Profile layout","The one company-wide profile layout","settings"],["Audit log","Every change, hash-chained","admin"],["Moderation queue","Posts waiting for review","admin"],["HR documents","Files that feed Ask HR","admin"]];
 function siteSearch(q){
  q=(q||"").trim(); $("siteSearch").value=q; $("searchBox").value=q;
  if(!q){ go("search"); $("searchOut").innerHTML=""; return; }
@@ -1160,7 +1274,7 @@ function bulkRole(){ const r=$("bulkRole").value, sel=[...document.querySelector
 function openAccess(name){ accQ=name||""; accDept="All"; accOpen = name ? PEOPLE.findIndex(p=>p.name===name) : null; go("settings"); setTimeout(()=>$("accessCard").scrollIntoView({behavior:"smooth",block:"start"}),120); }
 
 function renderSettings(){
- renderPlTile();
+ renderPlTile(); $("loginTile").classList.toggle("hidden",RANK[me]<2);
  $("tutList").innerHTML = Object.entries(TOURS).filter(([k,t])=>k!=="edit"||RANK[me]>=1).map(([k,[n,s]])=>`<button onclick="startTour('${k}')">${n}<small>${s}</small></button>`).join("");
  renderMenuBuilder();
  $("permRows").innerHTML = CAPS.map(([c,l])=>`<tr><td>${l}</td>${Object.keys(ROLECAPS).map((r,ri)=>`<td>${c==="html"&&ri<3?'<span class="pill red">locked</span>':`<button class="tgl ${ROLECAPS[r].includes(c)?'on':''}" aria-label="${l} for ${r}" onclick="this.classList.toggle('on')"></button>`}</td>`).join("")}</tr>`).join("");
@@ -1397,6 +1511,7 @@ function showStep(){
 }
 document.addEventListener("keydown",e=>{ if(tour&&e.key==="Escape") endTour(); });
 
-function renderAll(){ renderRail(); renderOrg(); renderSettings(); renderAdmin(); renderPages(); renderHomeLists(); renderCarousel(); renderRates(); seedChat(); }
+function renderAll(){ renderRail(); renderOrg(); renderPeople(); renderSettings(); renderAdmin(); renderPages(); renderHomeLists(); renderCarousel(); renderRates(); seedChat(); }
+applyLogin($("loginView"),LOGIN);
 </script>
 </body></html>
